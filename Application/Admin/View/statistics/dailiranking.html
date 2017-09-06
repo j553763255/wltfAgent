@@ -1,0 +1,62 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<div class="tab">
+    <div class="tab-head">
+        <!--<strong>系统设置</strong>-->
+        <ul class="tab-nav">
+            <li class="active"><a href="#city1">排名统计</a></li>
+        </ul>
+    </div>
+
+    <div class="container" id="agentshenhe">
+        <form method="post">
+
+            <!--  <div class="form-inline" >
+              <label for="status"><b>请选择要查询排行数：</b></label>
+              <select class="input" id="status"  name="select">
+                  <option>全部</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>5</option>
+                  <option>7</option>
+              </select>
+              <button class="button bg-main " type="submit" name="submit" >确定</button>
+              </div>
+           !-->
+
+            <table class="table  table-hover table-responsive table-bordered" id="fenzu" >
+                <thead>
+                <tr>
+                    <th style="text-align: center;vertical-align: middle">排名</th>
+                    <th style="text-align: center;vertical-align: middle">代理商</th>
+                    <th style="text-align: center;vertical-align: middle">奖金</th>
+                </tr>
+                </thead>
+
+
+                <tbody>
+                <volist name="rank" id="vo">
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">第{:(I('get.p'))?((I('get.p')-1)*10+$i):($i)}名</td><!--第{$vo.rank_id}名!-->
+                        <td style="text-align: center;vertical-align: middle;">{$vo.rank_name}</td>
+                        <td style="text-align: center;vertical-align: middle;">{$vo.rank_money}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </form>
+
+        <!--     <div class="pagination-group">
+                <ul>
+                {$page}
+                </ul>
+            </div>
+        !-->
+        <div class="pagination-group" style="float: right">
+            {$page}
+        </div>
+
+
+    </div>
+</div>
+

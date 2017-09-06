@@ -1,0 +1,55 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">尚惠币账户充值</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">充值账号</th>
+                        <th style="text-align: center">充值金额</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <form method="post" class="form-x" action="">
+                        <tr>
+                            <td>
+                                <input type="text" name="user_name" class="input input-auto input-small" size="20" value="">
+                            </td>
+                            <td>
+                                <input type="text" name="money" class="input input-auto input-small" size="20" value="">
+                            </td>
+                            <td>
+                                <button class="button bg-main button-default">充值</button>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div><br>
+    <div class="panel">
+        <div class="panel-head">平台尚惠币充值详情</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">加盟商</th>
+                        <th style="text-align: center">充值金额</th>
+                        <th style="text-align: center">充值时间</th>
+                        <th style="text-align: center">操作人ID</th>
+                        <th style="text-align: center">操作人员</th>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            充值总金额：100元&nbsp;&nbsp;&nbsp;&nbsp;
+                            今日充值金额：100元
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">提升加盟商等级</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">加盟商</th>
+                        <th style="text-align: center">等级</th>
+                        <th style="text-align: center">新等级</th>
+                        <th style="text-align: center">缴费金额</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <form method="post" class="form-x" action="{:U('admin/joining/upGrade')}">
+                        <tr>
+                            <td>
+                                <input type="text" name="user_name" class="input input-auto input-small" size="20"
+                                       value="{$refer.user_name}" data-validate="required:此项必填">
+                            </td>
+                            <td>
+                                <input type="text" name="old_class" class="input input-auto input-small" size="20"
+                                       value="{$refer.old_class}" data-validate="required:此项必填,number:只能填写数字">
+                            </td>
+                            <td>
+                                <input type="text" name="new_class" class="input input-auto input-small" size="20"
+                                       value="{$refer.new_class}" data-validate="required:此项必填,number:只能填写数字">
+                            </td>
+                            <td>
+                                <input type="text" name="money" class="input input-auto input-small" size="20"
+                                       value="{$refer.money}" data-validate="required:此项必填,number:只能填写数字">
+                            </td>
+                            <td>
+                                <button class="button border-blue button-small" type="submit">确认修改</button>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div><br>
+    <!--<div class="panel">-->
+        <!--<div class="panel-head">加盟商升级记录</div>-->
+        <!--<div class="panel-body">-->
+            <!--<div class="table-responsive-y">-->
+                <!--<form method="post" class="form-inline">-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="user_name">加盟商</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="user_name" name="user_name" size="20" placeholder="加盟商账号" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="province">省份</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="province" name="province_id" size="20" placeholder="所属省份" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="city">城市</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="city" name="city_id" size="20" placeholder="所属城市" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-button">-->
+                        <!--<button class="button bg-main" type="submit">搜索</button>-->
+                    <!--</div>-->
+                <!--</form><br/>-->
+                <!--<table class="table table-bordered" style="text-align: center">-->
+                    <!--<tr>-->
+                        <!--<th style="text-align: center">编号</th>-->
+                        <!--<th style="text-align: center">加盟商</th>-->
+                        <!--<th style="text-align: center">新等级</th>-->
+                        <!--<th style="text-align: center">升级时间</th>-->
+                        <!--<th style="text-align: center">操作人ID</th>-->
+                        <!--<th style="text-align: center">操作人员</th>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</div>-->
+            <!--<div class="pages">{$page}</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

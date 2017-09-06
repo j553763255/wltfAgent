@@ -1,0 +1,30 @@
+<title>设置</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/set.css">
+<body>
+<div id="header">
+    <span class="header-title">设置</span>
+    <a href="{:U('home/index/index')}" class="fl-left">&lt;</a>
+</div>
+<div class="list-main">
+    <a href="{:U('home/set/changePwd')}"><div class="list-file bottom-line-block">
+        <span>修改登录密码</span><img src="/wltfagent/Public/home/images/1_06.png"/>
+    </div></a>
+    <if condition="$is_set eq 1">
+    <a href="{:U('home/set/setPayPwd')}"><div class="list-file">
+        <span>设置支付密码</span><img src="/wltfagent/Public/home/images/1_06.png"/>
+    </div></a>
+    <else />
+    <a href="{:U('home/set/resetPayPwd')}"><div class="list-file">
+        <span>重置支付密码</span><img src="/wltfagent/Public/home/images/1_06.png"/>
+    </div></a>
+    </if>
+</div>
+<div class="list-foot">
+    <div class="list-file">
+        <span>客服中心</span><img src="/wltfagent/Public/home/images/1_06.png"/>
+    </div>
+</div>
+<a class="login-out" href="{:U('home/login/login_out')}"><div class="login-out"><span>退出登录</span></div></a>
+</body>
+</html>

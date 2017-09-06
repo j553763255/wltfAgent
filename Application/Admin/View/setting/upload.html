@@ -1,0 +1,108 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+<html>
+<body>
+<!--<form action="{:U('admin/uploadinformation')}" method="post" enctype="multipart/form-data">
+    <label for="file">Filename:</label>
+    <input type="file" name="file" id="file"/>
+    <br />
+    <input type="submit" name="submit" value="上传" />
+
+</form>!-->
+<form action="{:U('admin/setting/upload')}" method="post" enctype="multipart/form-data">
+    <div style="width: 100%;height: 100%;">
+        <div><strong>代理信息上传：</strong></div>
+        <div class="form-group">
+            <a class="button input-file" style="text-align: center;vertical-align: middle;" href="javascript:void(0);">上传合同文件<input  size="80" type="file" name="file1" id="file1" onchange="check1()" /></a><!--//显示合同!-->
+            <a class="button input-file" style="text-align: center;vertical-align: middle;" href="javascript:void(0);">上传证件图片<input  size="80" type="file" name="file2" id="file2" onchange="check2()" /></a><!--//显示证件!-->
+            <button class="button bg-blue" type="submit" name="submit" style="text-align: center;vertical-align: middle;" >确定上传</button>
+        </div>
+        <div><p id="f1name"></p></div>
+        <div><p id="f2name"></p></div>
+        <br>
+        <a id="changemouse1" class="dialogs" data-toggle="click" data-target="#mydialog1" data-width="40%" onmouseover="changemouse()" onmouseout="defaultmouse()">查看合同</a><br>
+        <a id="changemouse2" class="dialogs" data-toggle="click" data-target="#mydialog2" data-width="40%" onmouseover="changemouse()" onmouseout="defaultmouse()">查看证件</a>
+    </div>
+</form>
+
+<div id="mydialog1">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span><strong>查看合同</strong>
+        </div>
+        <div style="text-align: center;vertical-align: middle" class="dialog-body"><img style="height:70%" src="{$addr1}"></div>
+        <div class="dialog-foot">
+            <button class="button bg-green dialog-close">确认</button>
+        </div>
+    </div>
+</div>
+<div id="mydialog2">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span><strong>查看证件</strong>
+        </div>
+        <div style="text-align: center;vertical-align: middle" class="dialog-body"><img style="height:70%" src="{$addr2}"></div>
+        <div class="dialog-foot">
+            <button class="button bg-green dialog-close">确认</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function changemouse()
+    {
+        var obj1 = document.getElementById("changemouse1");
+        var obj2 = document.getElementById("changemouse2");
+        obj1.style.cursor = 'pointer';
+        obj2.style.cursor = 'pointer';
+    }
+</script>
+<script>
+    function defaultmouse()
+    {
+        var obj1 = document.getElementById("changemouse1");
+        var obj2 = document.getElementById("changemouse2");
+        obj1.style.cursor = 'default';
+        obj2.style.cursor = 'default';
+    }
+</script>
+<!--
+<script>
+    function display()
+    {
+        var obj = document.getElementById("demo")
+        {
+            obj.style.display="";
+        }
+
+    }
+
+</script>
+!-->
+<script>
+    function check1()
+    {
+
+        var filepath=file1.value ;
+        filepath=filepath.substring(filepath.lastIndexOf('.')+1,filepath.length);
+        if(filepath != 'jpg' && filepath != 'gif'&& filepath != 'png'&& filepath != 'jpeg')
+            alert("只能上传JPG,GIF,PNG或者JPEG格式的图片");
+        else document.getElementById("f1name").innerText=file1.value;
+
+    }
+</script>
+<script>
+    function check2()
+    {
+
+        var filepath=file2.value ;
+        filepath=filepath.substring(filepath.lastIndexOf('.')+1,filepath.length);
+        if(filepath != 'jpg' && filepath != 'gif'&& filepath != 'png'&& filepath != 'jpeg')
+            alert("只能上传JPG,GIF,PNG或者JPEG格式的图片");
+       else document.getElementById("f2name").innerText=file2.value;
+
+    }
+</script>
+
+</body>
+</html>

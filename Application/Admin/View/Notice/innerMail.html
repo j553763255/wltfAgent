@@ -1,0 +1,103 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<div class="panel">
+    <div class="panel-head"><strong><h3>收件箱</h3></strong></div>
+    <!--head-->
+    <div class="table-responsive table-bordered" style="height: 30px;line-height: 26px;font-size: 15px;border-bottom: 1px solid #ddd;">
+        <div style="width: 100px;text-align: center;float: left">全部</div>
+        <div style="float: right;background-color: #0a5aaf;width: 40px;text-align: center;border-radius: 5px;margin: 1px 30px;"><a href="{:U('admin/Notice/writeMessage')}">写信</a></div>
+    </div>
+    <!--信息table-->
+    <!--收件箱信息列表展现-->
+    <div class="showList">
+        <table class="table">
+            <tr>
+                <th width="100"></th>
+                <th>发件人</th>
+                <th>标题</th>
+                <th>时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            <foreach name="list" item="vo">
+                <tr class="lists">
+                    <td width="100"><input type="checkbox" value="{$vo.id}"></td>
+                    <td>{$vo.send_name}</td>
+                    <td><a href="{:U('admin/Notice/checksMessage','id='.$vo['id'])}">{$vo.title}</a></td>
+                    <td>{$vo.post_time|date="Y-m-d H:i:s",###}</td>
+                    <td>
+                        <if condition="($vo.statue eq 1)">未读</if>
+                        <if condition="($vo.statue eq 2)">已读</if>
+                    </td>
+                    <td>
+                        <!--<a href="{:U('admin/Notice/replyMessage',array('id'=>$vo['id']))}">回复</a>&nbsp;&nbsp;-->
+                        <a href="{:U('admin/Notice/deleteMessage',array('id'=>$vo['id']))}">删除</a></td>
+                </tr>
+            </foreach>
+            <if condition="$list neq ''">
+            <tr>
+                <td colspan="6">
+                    <div style="width: 154px;float: left"><input id="all" type="checkbox" value="">&nbsp;&nbsp;&nbsp;<span><a id="selectAll" href="#">全部删除</a></span></div>
+                    <div>{$page}</div>
+                </td>
+            </tr>
+            </if>
+        </table>
+    </div>
+</div>
+<script>
+    $(function () {
+
+       $('#all').on('click',function () {
+           if(this.checked){
+               $(".lists :checkbox").prop("checked",true);
+           }else{
+               $(".lists :checkbox").prop("checked",false);
+           }
+       });
+
+        //设置全选复选框
+        $(".lists :checkbox").click(function(){
+            allchk();
+        });
+
+        //函数allchk()就是用来检测全选框#all应该是选中状态还是未选中状态的。
+        function allchk(){
+            var chknum = $(".lists :checkbox").size();//选项总个数
+            var chk = 0;
+            $(".lists :checkbox").each(function () {
+                if($(this).prop("checked") == true){
+                    chk ++;
+                }
+            });
+            if(chknum==chk){
+                //全选
+                $("#all").prop("checked",true);
+            }else{
+                //不全选
+                $("#all").prop("checked",false);
+            }
+        };
+
+        $("#selectAll").on("click",function () {
+            var valArr = [];
+            $(".lists :checkbox").each(function(){
+                if($(this).prop("checked") == true){
+                    valArr.push($(this).val());
+                }
+            });
+            var vals = valArr.join(',');//转换为逗号隔开的字符串
+            $.ajax({
+                url:"/index.php/admin/Notice/deleteMessage",
+                data:{'id':vals},
+                dataType:"json",
+                type:"post",
+                success: function (data) {
+                    alert('删除成功!');
+                    window.location.reload();//刷新当前页面
+                }
+            });
+
+        });
+    });
+</script>

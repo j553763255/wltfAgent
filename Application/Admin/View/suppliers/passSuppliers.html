@@ -1,0 +1,72 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">合作企业列表</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">企业名称</th>
+                        <th style="text-align: center">企业类别</th>
+                        <th style="text-align: center">对接专员</th>
+                        <th style="text-align: center">企业地址</th>
+                        <th style="text-align: center">注册资金</th>
+                        <th style="text-align: center">销售额</th>
+                        <th style="text-align: center">上传时间</th>
+                        <th style="text-align: center">状态</th>
+                        <th style="text-align: center">审核时间</th>
+                        <th style="text-align: center">审核管理员</th>
+                        <th style="text-align: center">备注</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <if condition="$suppliers eq ''">
+                        <tr><td colspan="14" style="color: #00A0EA;font-size: 24px">暂无数据</td></tr>
+                    <else />
+                    <volist name="suppliers" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.suppliers_name}</td>
+                            <td>{$vo.suppliers_type}</td>
+                            <td>{$vo.user_id}</td>
+                            <td>{$vo.address}</td>
+                            <td>{$vo.registered}</td>
+                            <td>{$vo.money}</td>
+                            <td>{$vo.create_time|date="Y-m-d",###}</td>
+                            <td>{$vo.status}</td>
+                            <td>{$vo.handle_time|date="Y-m-d",###}</td>
+                            <td>{$vo.admin_id}</td>
+                            <td>{$vo.remark}</td>
+                            <td>
+                                <button class="button button-small bg-sub service-ratio" val="{$vo.id}" disabled="disabled">暂无操作</button>
+                            </td>
+                        </tr>
+                    </volist>
+                    </if>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".service-ratio").click(function () {
+        var id = $(this).attr("val");
+        var ratio = $("input[name='ratio-" + id +"']").val();
+        $.ajax({
+            url:"{:U('admin/joining/serviceRatio')}",
+            type:"post",
+            data:{"id":id,"ratio":ratio},
+            dataType:"json",
+            success:function (data) {
+                if(data){
+                    layer.msg("修改成功！");
+                    setTimeout("location.reload()",1500);
+                }else {
+                    layer.msg("修改失败！");
+                }
+            }
+        })
+    })
+</script>

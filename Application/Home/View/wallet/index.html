@@ -1,0 +1,141 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/wallet.css">
+<body>
+<div id="header">
+    <a href="{:U('home/'.$url.'/index')}" class="fl-left">&lt;</a>
+    钱包
+</div>
+<div class="banner">
+    <div class="img-bg">
+        <img src="/wltfagent/Public/home/images/ceshi.png">
+    </div>
+    <p>Michael<!--{$user.real_name}--></p>
+</div>
+<div class="moneySum">
+    <div class="money">
+        <p class="value">￥666666<!--{$user.money}--></p>
+        <p class="name">余额</p>
+    </div>
+    <div class="integral">
+        <p class="value">999<!--{$user.points}--></p>
+        <p class="name">积分</p>
+    </div>
+    <!--<div class="coin">-->
+        <!--<p class="value">{$user.join_fee}</p>-->
+        <!--<p class="name">注册金</p>-->
+    <!--</div>-->
+</div>
+<div class="detailed">
+    <div class="title">
+       <p> 资产明细</p>
+    </div>
+    <ul class="detailed-box clearfix">
+        <li>
+            <a href="{:U('/home/wallet/moneyDetail')}">
+                <img src="/wltfagent/Public/home/images/money1.png" />
+                <span>余额</span>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('/home/wallet/pointsDetail')}">
+                <img src="/wltfagent/Public/home/images/integral1.png" />
+                <span>积分</span>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('home/wallet/recharge')}">
+                <img src="/wltfagent/Public/home/images/recharge1.png" />
+                <span>注册币充值</span>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('/home/wallet/bindingBank')}">
+                <img src="/wltfagent/Public/home/images/bank1.png" />
+                <span>绑定银行卡</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="money-tx-box">
+    <a href="{:U('home/wallet/cash')}">提现</a>
+    <a href="#">转账</a>
+</div>
+</body>
+<!--
+<ul class="content">
+    <a href="{:U('/home/wallet/moneyDetail')}">
+        <li class="money">
+            <img class="icon" src="/wltfagent/Public/home/images/money.png">
+            <span>余额</span>
+            <img class="right" src="/wltfagent/Public/home/images/right.png">
+        </li>
+    </a>
+    <a href="{:U('/home/wallet/pointsDetail')}">
+        <li class="integral">
+            <img class="icon" src="/wltfagent/Public/home/images/integral.png">
+            <span>积分</span>
+            <img class="right" src="/wltfagent/Public/home/images/right.png">
+        </li>
+    </a>
+    &lt;!&ndash;<li class="integral" style="border-top: 1px solid #cccccc">&ndash;&gt;
+    &lt;!&ndash;<img class="icon" src="/wltfagent/Public/home/images/money.png">&ndash;&gt;
+    &lt;!&ndash;<span>游戏余额</span>&ndash;&gt;
+    &lt;!&ndash;<span style="float: right;margin-right: 0.15rem">{$user.fixed_recharge}</span>&ndash;&gt;
+    &lt;!&ndash;</li>&ndash;&gt;
+</ul>
+<div class="detailed2">
+    <ul class="content">
+        &lt;!&ndash;<a href="javascript:;" onclick="mobileBoxMsg('暂未开放充值功能，敬请期待！')">&ndash;&gt;
+        <a href="{:U('home/wallet/recharge')}">
+            <li class="money">
+                <img class="icon" src="/wltfagent/Public/home/images/recharge.png">
+                <span>注册币充值</span>
+                <img class="right" src="/wltfagent/Public/home/images/right.png">
+            </li>
+        </a>
+        <if condition="$bankUrl eq 1">
+            <a href="{:U('/home/wallet/bindingBank')}">
+                <li class="integral">
+                    <img class="icon" src="/wltfagent/Public/home/images/bank.png">
+                    <span>绑定银行卡</span>
+                    <img class="right" src="/wltfagent/Public/home/images/right.png">
+                </li>
+            </a>
+            <else/>
+            <a href="{:U('/home/wallet/myBank')}">
+                <li class="integral">
+                    <img class="icon" src="/wltfagent/Public/home/images/bank.png">
+                    <span>绑定银行卡</span>
+                    <img class="right" src="/wltfagent/Public/home/images/right.png">
+                </li>
+            </a>
+        </if>
+    </ul>
+</div>
+<div class="foot-seize"></div>
+<div class="foot">
+    <if condition="$code eq 1">
+        <a class="cash" href="{:U('home/wallet/cash')}">提现</a>
+        &lt;!&ndash;<a class="cash weihu">提现</a>&ndash;&gt;
+        <else/>
+        <a class="cash notCash">提现</a>
+    </if>
+    &lt;!&ndash;<a class="transfer" href="{:U('home/wallet/transfer')}">转账</a>&ndash;&gt;
+    <a class="transfer weihu">转账</a>
+</div>
+<script>
+    $(function () {
+        $(".notCash").click(function () {
+            layer.open({
+                content: '未到可提现时间！<br>可提现时间为每周三10:00-22:00。'
+                ,btn: '我知道了'
+            })
+        })
+        $(".weihu").click(function () {
+            layer.open({
+                content: '功能维护中，请耐心等待！'
+                ,btn: '我知道了'
+            })
+        })
+    });
+</script>-->

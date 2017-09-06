@@ -1,0 +1,661 @@
+input{
+    border:none;
+    outline: none;
+    line-height: 0.5rem;
+    width:2rem;
+}
+button{
+    font-size: 0.2rem;
+    border-radius: 0.05rem;
+    border:none;
+    margin-left:0.15rem;
+    width: 3.42rem;
+    color: #ffffff;
+    height:0.5rem;
+    background-color: #00AFA5;
+    outline: none;
+}
+.banner{
+    height: 1.24rem;
+    background:url("../images/bg.jpg") 100% 100%;
+    padding-top:0.16rem;
+}
+.banner .img-bg{
+    width:0.66rem;
+    height:0.66rem;
+    margin: 0 auto;
+    border-radius: 0.66rem;
+}
+.banner img{
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-top:0.03rem;
+    margin-left: 0.03rem;
+    border-radius: 0.6rem;
+    -webkit-box-shadow: 0 0 0 0.05rem rgba(255,255,255,.5);
+    box-shadow: 0 0 0 0.05rem rgba(255,255,255,.5);
+}
+.banner p{
+    font-size: 0.16rem;
+    color: #fff;
+    text-align: center;
+    margin-top: 0.12rem;
+}
+.moneySum{
+    height: 0.5rem;
+    background-color: #FFFFFF;
+    padding: 0.05rem 0;
+}
+.moneySum p{
+    line-height:0.25rem;
+}
+.moneySum .money{
+    float: left;
+    width: 49.5%;
+    text-align: center;
+    border-right: 1px solid #cccccc;
+}
+.moneySum .coin{
+    float: left;
+    width: 33%;
+    text-align: center;
+    border-right: 1px solid #cccccc;
+}
+.moneySum .integral{
+    float: left;
+    text-align: center;
+    width: 49.4%;
+}
+.moneySum .value{
+    font-size: 0.18rem;
+}
+.moneySum .name{
+    font-size: 0.15rem;
+    color: #666666;
+}
+.detailed{
+    background-color: #fff;
+    margin-top: 0.1rem;
+}
+
+.detailed2{
+    background-color: #fff;
+    margin-top: 0.25rem;
+}
+.detailed .title{
+    font-size: 0.16rem;
+    height:0.5rem;
+    color: #333333;
+    font-weight: bold;
+    line-height: 0.5rem;
+    border-bottom: 0.01rem solid #cccccc;
+}
+.title p{
+    margin-left:0.15rem;
+}
+.content{
+    font-size: 0.15rem;
+    line-height: 0.5rem;
+    margin-left:0.15rem;
+}
+.content span{
+    margin-left: 0.11rem;
+    color:#333333;
+}
+.content li{
+    height:0.5rem;
+}
+.content .money{
+    border-bottom: 0.01rem solid #cccccc;
+}
+.content .icon{
+    margin-top: 0.14rem;
+    height:0.21rem;
+    width: 0.2rem;
+}
+.content .right{
+    float: right;
+    margin:0.15rem;
+    height:0.15rem;
+}
+
+.content2{
+    margin-top: 0.25rem;
+    font-size: 0.15rem;
+    line-height: 0.5rem;
+    margin-left:0.15rem;
+}
+.content2 span{
+    margin-left: 0.11rem;
+    color:#333333;
+}
+.content2 li{
+    height:0.5rem;
+}
+.content2 .money{
+    border-bottom: 0.01rem solid #cccccc;
+}
+.content2 .icon{
+    margin-top: 0.14rem;
+    height:0.21rem;
+    width: 0.2rem;
+}
+.content2 .right{
+    float: right;
+    margin:0.15rem;
+    height:0.15rem;
+}
+.detailBanner{
+    height:0.5rem;
+}
+.detailBanner div{
+    float: left;
+    width: 1.875rem;
+    height:0.5rem;
+    background-color: #fff;
+}
+.detailBanner div p{
+    font-size: 0.15rem;
+    line-height: 0.5rem;
+    height: 0.48rem;
+    width: 0.4rem;
+    text-align: center;
+    margin:0 auto;
+}
+.detailBanner .action p{
+    color:#ff3333;
+    border-bottom: 0.02rem solid #ff3333;
+}
+.selectTime{
+    margin-top: 0.15rem;
+    height:0.5rem;
+    border-bottom: 0.01rem solid #cccccc;
+    background-color: #fff;
+    color: #333333;
+}
+.selectTime .name{
+    font-size: 0.16rem;
+    margin-left: 0.15rem;
+    float: left;
+    line-height: 0.5rem;
+}
+.selectTime .right{
+    position: absolute;
+    z-index: 11;
+    margin-top: 0.175rem;
+    height:0.15rem;
+    float: right;
+    right: 0.15rem;
+    margin-left: 0.13rem;
+}
+.selectTime .time input{
+    border: none;
+    outline: none;
+    height:0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.15rem;
+    float: right;
+}
+.totalMoney{
+    height:0.75rem;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 0.25rem;
+}
+.totalMoney .money{
+    font-size: 0.25rem;
+}
+.totalMoney .explain{
+    font-size: 0.16rem;
+    margin-top: 0.14rem;
+}
+.news{
+    height:0.5rem;
+    color:#666666;
+    font-size: 0.14rem;
+    line-height: 0.5rem;
+    text-align: center;
+}
+.specific ul li{
+    height:0.6rem;
+    /*clear:both;;*/
+    background-color: #fff;
+    border-bottom: 0.01rem solid #cccccc;
+}
+.specific ul li .left{
+    float: left;
+    margin-left:0.15rem;
+    margin-top: 0.13rem;
+}
+.specific ul li .left .explain{
+    font-size: 0.15rem;
+}
+.specific ul li .left .time{
+    color:#666666;
+    font-size:0.13rem;
+}
+.specific ul li .right{
+    float: right;
+}
+.specific ul li .right .money{
+    font-size: 0.16rem;
+    line-height:0.6rem;
+    margin-right: 0.13rem;
+    float: left;
+}
+.specific ul li .right img{
+    float: right;
+    height: 0.16rem;
+    margin-top: 0.22rem;
+    margin-right: 0.15rem;
+}
+.billBanner{
+    height: 0.25rem;
+    padding-top: 0.16rem;
+    font-size: 0.16rem;
+    line-height: 0.25rem;
+    background-color: #fff;
+}
+.billBanner img{
+    height:0.25rem;
+    width: 0.25rem;
+}
+.billBanner .company{
+    width: 2.87rem;
+    margin-left: 0.45rem;
+}
+.billMoney{
+    height:1.13rem;
+    background-color: #fff;
+    padding-top: 0.4rem;
+}
+.billMoney .value{
+    font-size: 0.35rem;
+    font-weight: bold;
+    text-align: center;
+}
+.billMoney .type{
+    margin-top: 0.2rem;
+    font-size: 0.15rem;
+    color:#666666;
+    text-align: center;
+}
+.billMessage{
+    background-color: #fff;
+}
+.billMessage ul li{
+    height:0.4rem;
+    font-size: 0.15rem;
+    line-height: 0.4rem;
+}
+.billMessage ul li .title{
+    float: left;
+    margin-left: 0.15rem;
+}
+.billMessage ul li .intro{
+    float: right;
+    margin-right: 0.15rem;
+    color:#666666;
+}
+.foot-seize{
+    height: 0.5rem;
+}
+.foot{
+    font-size: 0.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    background-color: #fff;
+    border-top:0.01rem solid #cccccc;
+    color: #3399ff;
+    position: fixed;
+    bottom:0;
+    width: 100%;
+}
+.foot .cash{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 49%;
+    text-align: center;
+    height: 0.5rem;
+    border-right: 0.01rem solid #cccccc;
+}
+.foot .transfer{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 48%;
+    text-align: center;
+    height: 0.5rem;
+}
+
+.input-card p{
+    height:0.5rem;
+    color: #666666;
+    line-height:0.5rem;
+    font-size: 0.15rem;
+    padding-left: 0.15rem;
+}
+.input-card .bank-card{
+    padding-left: 0.15rem;
+    line-height: 0.5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc ;
+    border-top: 1px solid #cccccc;
+    background: #ffffff;
+    font-size: 0.15rem;
+    height:0.5rem;
+    margin-bottom: 0.1rem;
+}
+.input-card .bank-card span{
+    color: #333333;
+}
+.input-card .bank-card input{
+    color: #999999;
+    border:none;
+    width: 2.5rem;
+    height:0.3rem;
+    outline: none;
+}
+.input-card button{
+    margin-top: 0.65rem;
+}
+.input-massage{
+    display: none;
+}
+.input-massage p{
+    height:0.5rem;
+    color: #666666;
+    line-height:0.5rem;
+    font-size: 0.15rem;
+    padding-left: 0.15rem;
+}
+.input-massage .bank-card{
+    padding-left: 0.15rem;
+    line-height: 0.5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc ;
+    border-top: 1px solid #cccccc;
+    background: #ffffff;
+    font-size: 0.15rem;
+    height:0.5rem;
+    margin-bottom: 0.1rem;
+}
+.input-massage .bank-card span{
+    color: #333333;
+}
+.input-massage .bank-card input{
+    color: #999999;
+    border:none;
+    outline: none;
+}
+.input-massage .bank-massage{
+    background: #ffffff;
+    font-size: 0.15rem;
+    padding-left: 0.15rem;
+    line-height: 0.5rem;
+    height:2rem;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+.input-massage .bank-massage li{
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc;
+    height:0.5rem;
+}
+.input-massage .bank-massage li input{
+    color: #999999;
+    border:none;
+    outline: none;
+}
+.input-massage .bank-massage li:nth-last-child(1){
+    border-bottom: none;
+}
+.input-massage button{
+    margin-top: 0.65rem;
+}
+.myBank{
+    background-color: #fff;
+}
+.myBank ul li .massage {
+    box-sizing: border-box;
+    padding-left: 0.15rem;
+    padding-top:0.1rem;
+    height:1rem;
+    border-bottom: 1px solid #cccccc;
+}
+.myBank ul li img{
+    width: 0.4rem;
+    float: left;
+}
+.myBank ul li .massage div{
+    margin-left:0.55rem;
+    font-size: 0.15rem;
+}
+.myBank ul li .massage div p{
+    margin-bottom: 0.1rem;
+}
+.card-num{
+    color:#999999;
+}
+.operation{
+    box-sizing: border-box;
+    height:0.4rem;
+    background-color: #fff;
+    border-bottom: 1px solid #cccccc;
+}
+.operation span{
+    float: left;
+    margin-left: 0.15rem;
+    height: 0.3rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    margin-top: 0.05rem;
+    width: 1.5rem;
+}
+.operation span .yesImg{
+    margin-top: 0.04rem;
+    width: 0.2rem;
+}
+.operation span p{
+    color: #666666;
+    line-height: 0.3rem;
+    font-size: 0.13rem;
+}
+.setting{
+    float: left;
+    margin-left: 0.15rem;
+    width: 1.5rem;
+    border:none;
+    height: 0.3rem;
+    color: #ffffff;
+    line-height: 0.3rem;
+    border-radius: 0.3rem;
+    background: #00CB98;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    margin-top: 0.05rem;
+    font-size: 0.13rem;
+}
+.delete{
+    float: right;
+    width: 0.51rem;
+    border:none;
+    background-color: #fff;
+    height: 0.3rem;
+    margin-right: 0.15rem;
+    font-size: 0.13rem;
+    color:#666666;
+    line-height:0.4rem;
+}
+.myBank ul li .delete img{
+    width: 0.2rem;
+    margin-top: 0.1rem;
+    padding-right:0.05rem;
+}
+.transfer .form-input{
+    margin-top: 0.25rem;
+    height:0.5rem;
+    background-color: #fff;
+    border-top:1px solid #cccccc;
+    border-bottom:1px solid #cccccc;
+}
+.transfer .form-input .target_account{
+    line-height: 0.5rem;
+    margin-left: 0.15rem;
+    font-size: 0.15rem;
+    margin-right: 0.15rem;
+    float: left;
+}
+.transfer .form-input .target_mobile{
+    line-height: 0.5rem;
+    font-size: 0.15rem;
+    width:2rem;
+    float: left;
+}
+.transfer .first-page .bank{
+    margin-top: 0.25rem;
+    height:1rem;
+    background-color: #fff;
+    border-top:1px solid #cccccc;
+    border-bottom:1px solid #cccccc;
+
+}
+.transfer .first-page .bank .target_account{
+    line-height: 0.5rem;
+    padding-left: 0.15rem;
+    font-size: 0.15rem;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc;
+}
+.transfer .first-page .bank .bank_msg{
+    line-height: 0.5rem;
+    padding-left: 0.15rem;
+    font-size: 0.15rem;
+    width: 100%;
+}
+.transfer .first-page .bank .bank_msg span span{
+    color:#666666;
+    margin-left: 0.1rem;
+}
+.transfer .first-page .bank .bank_msg img{
+    height: 0.35rem;
+    margin-top: 0.07rem;
+}
+.transfer .notes{
+    height:0.5rem;
+    padding-top: 0.1rem;
+    margin-left: 0.15rem;
+    font-size: 0.13rem;
+    color: #999999;
+}
+.transfer .notes img{
+    height: 0.14rem;
+    margin-right: 0.02rem;
+}
+.confirm_account{
+    color: #666666;
+}
+.confirm_account .account{
+    margin-top: 0.28rem;
+}
+.confirm_account div{
+    height:0.3rem;
+}
+.confirm_account div .name{
+    float: left;
+     font-size: 0.13rem;
+     margin-left: 0.15rem;
+     margin-right: 0.15rem;
+}
+.confirm_account div .value{
+    float: right;
+    font-size: 0.13rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+}
+.confirm{
+    margin-top: 0.5rem;
+}
+.last-page{
+    display: none;
+}
+.recharge .form-input{
+    margin-top: 0.25rem;
+    height:0.5rem;
+    background-color: #fff;
+    border-top:1px solid #cccccc;
+    border-bottom:1px solid #cccccc;
+}
+.recharge .form-input .target_account{
+    line-height: 0.5rem;
+    margin-left: 0.15rem;
+    font-size: 0.15rem;
+    margin-right: 0.15rem;
+    float: left;
+}
+.recharge .form-input .target_mobile{
+    line-height: 0.5rem;
+    font-size: 0.15rem;
+    width:2rem;
+    float: left;
+}
+.recharge .form-label{
+    padding-left: 0.15rem;
+    height:0.5rem;
+    background-color: #fff;
+    margin-top: 0.2rem;
+    border-top:solid #cccccc 1px;
+    border-bottom: solid #cccccc 1px;
+}
+.recharge .form-label label{
+    height:0.5rem;
+    font-size: 0.15rem;
+}
+.recharge .form-label label input{
+    margin-top: 0.19rem;
+    height:auto;
+}
+.recharge .form-label label img{
+    margin-top: 0.1rem;
+    height: 0.3rem;
+    margin-right: 0.1rem;
+}
+.pwd-box{
+    width:2.75rem;
+    height:0.5rem;
+    position: relative;
+    border: 1px solid #9f9fa0;
+    border-radius: 3px;
+    over-flow:hidden;
+    clear: both;
+}
+.pwd-box input[type="tel"]{
+    width: 99%;
+    height: 0.5rem;
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.09rem;
+    opacity: 0;
+    z-index: 1;
+    letter-spacing: 0.17rem;
+    clear: both;
+}
+.fake-box{
+    height:0.5rem;
+}
+.fake-box input{
+    display: block;
+    width: 0.45rem;
+    height: 0.5rem;
+    float: left;
+    border: none;
+    border-right: 1px solid #cccccc;
+    text-align: center;
+    font-size: 0.15rem;
+    line-height: 0.22rem;
+}
+.fake-box input:nth-last-child(1){
+    border:none;
+}

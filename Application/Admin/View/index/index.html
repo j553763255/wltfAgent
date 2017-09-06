@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>拼图后台管理-后台管理</title>
+    <link rel="stylesheet" href="/wltfagent/public/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/wltfagent/public/admin/css/admin.css">
+    <script src="/wltfagent/public/admin/js/jquery.js"></script>
+    <script src="/wltfagent/public/admin/js/pintuer.js"></script>
+    <script src="/wltfagent/public/admin/js/respond.js"></script>
+    <script src="/wltfagent/public/admin/js/admin.js"></script>
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+    <div class="lefter">
+        <div class="logo border-bottom"><a href="{:U('admin/index/index')}"><img src="/wltfagent/public/admin/images/login.png" height="50em" alt="后台管理系统" />尚惠生活</a></div>
+    </div>
+</head>
+
+<body>
+<div class="righter nav-navicon" id="admin-nav">
+    <div class="mainer">
+        <div class="admin-navbar">
+            <span class="float-right">
+            	<a class="button button-little bg-blue" href="#" target="_blank">前台首页</a>
+                <a class="button button-little bg-yellow"  href="{:U('admin/loginout')} "target="_blank">注销登录</a>
+            </span>
+            <ul class="nav nav-inline admin-nav">
+                <li class="active"><a href="{:U('admin/index/index')}" class="icon-home"> 开始</a>
+                    <ul><li><a href="{:U('admin/start/addagent')}">添加代理</a></li>
+                        <li><a href="{:U('admin/start/member')}">代理管理</a></li>
+                        <!--<li><a href="#">订单管理</a></li>-->
+                        <!--<li class="active"><a href="#">会员管理</a></li>-->
+                        <!--<li><a href="#">文件管理</a></li>-->
+                        <!--<li><a href="#">栏目管理</a></li>-->
+                    </ul>
+                </li>
+                <!--<li><a href="system.html" class="icon-cog"> 系统</a>-->
+            		<!--<ul><li><a href="#">全局设置</a></li>
+            		<li class="active"><a href="#">系统设置</a></li>
+            		<li><a href="#">会员设置</a></li>
+            		<li><a href="#">积分设置</a></li></ul>-->
+                <!--</li>-->
+                <!--<li><a href="content.html" class="icon-file-text"> 内容</a>-->
+					<!--<ul><li><a href="#">添加内容</a></li><li class="active"><a href="#">内容管理</a></li><li><a href="#">分类设置</a></li><li><a href="#">链接管理</a></li></ul>-->
+                <!--</li>-->
+                <!--<li><a href="#" class="icon-shopping-cart"> 订单</a></li>-->
+                <!--<li><a href="#" class="icon-user"> 会员</a></li>-->
+                <!--<li><a href="#" class="icon-file"> 文件</a></li>-->
+                <!--<li><a href="#" class="icon-th-list"> 栏目</a></li>-->
+            </ul>
+        </div>
+        <div class="admin-bread">
+            <span>尚惠生活，帮助您成就梦想的舞台。</span>
+            <ul class="bread">
+                <li><a href="index.html" class="icon-home"> 开始</a></li>
+                <li>后台首页</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--<iframe frameborder=0  height=100%   marginheight=0 marginwidth=0 scrolling=yes  name="iframe" src="{:U('admin/index/homepage')}">-->
+<!--</iframe>-->
+</body>
+<body>
+<div class="admin">
+	<div class="line-big">
+        <iframe  frameborder=0 height=600px width=500px marginheight=0 marginwidth=0 scrolling=yes  name="iframe" src="{:U('admin/index/homepage')}">
+        </iframe>
+    </div>
+    <br />
+</div>
+</body>
+</html>

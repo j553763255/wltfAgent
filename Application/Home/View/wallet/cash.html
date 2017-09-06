@@ -1,0 +1,33 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/wallet.css">
+<script src="/wltfagent/Public/home/js/wallet.js"></script>
+<body>
+<div id="header">
+    <a href="javascript:;" onclick="back();return false;">
+        <img class="back" src="/wltfagent/Public/home/images/left.png">
+    </a>
+    提现
+</div>
+<form class="transfer" action="{:U('home/wallet/cash')}" method="post" target="niu-frame">
+    <div class="first-page">
+        <div class="form-input" >
+            <span class="target_account">提现金额</span>
+            <input class="target_mobile" name="cash_money" placeholder="请输入提现金额">
+        </div>
+        <div class="bank">
+            <div class="target_account">提现账号</div>
+            <div class="bank_msg">
+                <if condition="empty($defaultBank)">
+                    <a href="{:U('home/wallet/bindingBank')}"><span style="color:#666666;">绑定银行卡>></span></a>
+                    <else/>
+                    <img src="/wltfagent/Public/home/images/Bank-logo.png">
+                    <span>{$defaultBank.bank_name}<span>尾号{$defaultBank.bankLast}</span></span>
+                </if>
+            </div>
+        </div>
+        <p class="notes" style="color: #d81e06"><img src="/wltfagent/Public/home/images/wonder.png">每日只可提现一次且提现金额不得小于200元！</p>
+        <button type="submit">提交</button>
+    </div>
+</form>
+</body>
+</html>

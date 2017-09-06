@@ -1,0 +1,110 @@
+<title>级别</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/rank.css">
+<body>
+<div id="header">
+    <a href="#" onclick="javascript :history.back(-1);return false;" class="fl-left">&lt;</a>
+    机构类型
+</div>
+<div class="level-up">
+    <p class="ft14">我的级别</p>
+    <div class="level-img ft14 clearfix">
+        <img src="/wltfagent/Public/home/images/1_11.png" class="fl-left" />
+        <div class="fl-left ml10">
+            <p>级别：市级</p>
+            <p class="orange mt5">级别越高，福利越多</p>
+        </div>
+    </div>
+</div>
+<div class="level-up">
+    <p class="ft14">升级</p>
+
+</div>
+
+<!--<div class="middle">
+    <div class="middle-img"><img src="/wltfagent/Public/home/images/1_10.png"></div>
+    <div class="middle-msg">
+        <p class="rank">级别：{$my_rank.rank_name}</p>
+        <p class="user-id" style="display: none">{$my_rank.user_id}</p>
+        <p class="user-cost" style="display: none">{$my_rank.cost}</p>
+        <p class="remark">级别越高,福利越多</p>
+    </div>
+</div>-->
+<div class="body">
+    <div class="body-rank">
+        <div class="rank-left"><span>一级</span></div>
+        <div class="rank-middle">
+            <p class="rank">省级</p>
+            <p class="remark"><span>加盟费50000<!--{$rank_message[0]['need_money']}-->元</span></p>
+        </div>
+        <div class="rank-right"><button class="button-cs" data-id="1">说明</button></div>
+        <!--<if condition="$my_rank.id eq 1">
+            <div class="rank-right"><button class="button-cs">升级</button></div>
+        <else/>
+            <div class="rank-right"><button class="button-sub" data-id="1">升级</button></div>
+        </if>-->
+    </div>
+    <div class="body-rank mt5">
+        <div class="rank-left cg-sub"><span>二级</span></div>
+        <div class="rank-middle">
+            <p class="rank">市级</p>
+            <p class="remark"><span>加盟费10000<!--{$rank_message[1]['need_money']}-->元</span></p>
+        </div>
+        <if condition="$my_rank.id elt 2">
+            <div class="rank-right"><button class="button-cs">说明</button></div>
+            <else/>
+            <div class="rank-right"><button class="button-sub" data-id="2">说明</button></div>
+        </if>
+    </div>
+    <div class="body-rank mt5">
+        <div class="rank-left cg-main"><span>三级</span></div>
+        <div class="rank-middle">
+            <p class="rank">贸易商</p>
+            <p class="remark"><span>加盟费3000<!--{$rank_message[2]['need_money']}-->元</span></p>
+        </div>
+        <if condition="$my_rank.id elt 3">
+            <div class="rank-right"><button class="button-cs">说明</button></div>
+            <else/>
+            <div class="rank-right"><button class="button-sub" data-id="3">说明</button></div>
+        </if>
+    </div>
+</div>
+</body>
+<script>
+    $('.button-sub').on('click',function(){
+        var user_id = $('.user-id').html();
+        var cost = $('.user-cost').html();
+        var rank_id = $(this).attr('data-id');
+        $.ajax({
+            url:"{:U('home/index/rankAjax')}",
+            type: 'post',
+            dataType:'json',
+            data:{user_id:user_id,rank_id:rank_id,cost:cost},
+            success:function(data){
+                if(data['code'] == 1){
+                    layer.open({
+                        content: '升级成功！'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                    setTimeout('window.location.reload()',1000);
+                }
+                if(data['code'] == 3){
+                    layer.open({
+                        content: '注册币余额不足，请先充值！'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                }
+            },
+            error:function(){
+                layer.open({
+                    content: '网络系统出错，请重新操作！'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+            }
+        });
+    });
+</script>
+</html>

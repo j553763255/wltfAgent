@@ -1,0 +1,191 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">提现功能设置</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">提现时间设置</th>
+                        <th style="text-align: center">状态设置</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <form method="post" class="form-x" action="{:U('admin/finance/cashSet')}">
+                        <input type="hidden" name="type" value="1"/>
+                        <tr>
+                            <td>
+                                <label>开始时间：</label>
+                                <input type="date" name="start_time" class="input input-auto input-small" size="20" value="{$status.start_time|date='Y-m-d',###}" />
+
+                                <label>截止时间：</label>
+                                <input type="date" name="end_time" class="input input-auto input-small" size="20" value="{$status.end_time|date='Y-m-d',###}">
+                            </td>
+                            <td>
+                                <if condition="$status.free eq 1">
+                                    <div class="button-group radio">
+                                        <label class="button bg-sub active">
+                                            <input name="status" value="1" checked="checked" type="radio">开启
+                                        </label>
+                                        <label class="button bg-sub">
+                                            <input name="status" value="2" type="radio"></span>关闭
+                                        </label>
+                                    </div>
+                                <else />
+                                    <div class="button-group radio">
+                                        <label class="button bg-sub ">
+                                            <input name="status" value="1"  type="radio">开启
+                                        </label>
+                                        <label class="button bg-sub active">
+                                            <input name="status" value="2" checked="checked" type="radio"></span>关闭
+                                        </label>
+                                    </div>
+                                </if>
+                            </td>
+                            <td>
+                                <button class="button bg-sub" type="submit" name="operate" value="set">确认修改</button>
+                            </td>
+                        </tr>
+                    </form>
+                    <form method="post" class="form-x" action="{:U('admin/finance/cashSet')}">
+                        <input type="hidden" name="type" value="2"/>
+                        <tr>
+                            <td>
+                                <label>固定提现日：</label>
+                                <select name="week">
+                                    <option value="{$status.week}">{$status.week}</option>
+                                    <option value="周一">周一</option>
+                                    <option value="周二">周二</option>
+                                    <option value="周三">周三</option>
+                                    <option value="周四">周四</option>
+                                    <option value="周五">周五</option>
+                                    <option value="周六">周六</option>
+                                    <option value="周日">周日</option>
+                                </select>
+                            </td>
+                            <td>
+                                <if condition="$status.fixed eq 1">
+                                    <div class="button-group radio">
+                                        <label class="button bg-sub active">
+                                            <input name="status" value="1" checked="checked" type="radio">开启
+                                        </label>
+                                        <label class="button bg-sub">
+                                            <input name="status" value="2" type="radio"></span>关闭
+                                        </label>
+                                    </div>
+                                    <else />
+                                    <div class="button-group radio">
+                                        <label class="button bg-sub">
+                                            <input name="status" value="1"  type="radio">开启
+                                        </label>
+                                        <label class="button bg-sub active">
+                                            <input name="status" value="2" checked="checked" type="radio"></span>关闭
+                                        </label>
+                                    </div>
+                                </if>
+                            </td>
+                            <td>
+                                <button class="button bg-sub" type="submit" name="operate" value="set">确认修改</button>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div><br>
+    <div class="panel">
+        <div class="panel-head">提现处理</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">提现人</th>
+                        <th style="text-align: center">联系号码</th>
+                        <th style="text-align: center">提现金额</th>
+                        <th style="text-align: center">提现时间</th>
+                        <th style="text-align: center">银行</th>
+                        <th style="text-align: center">银行卡号</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <if condition="$list neq ''">
+                        <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.real_name}</td>
+                            <td>{$vo.tel}</td>
+                            <td>{$vo.money}</td>
+                            <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                            <td>{$vo.bank}</td>
+                            <td>{$vo.card}</td>
+                            <td>
+                                <button class="button bg-main button-small agree" data-id="{$vo.id}">确认</button>
+                                <button class="button bg-main button-small refuse" data-id="{$vo.id}">拒绝</button>
+                            </td>
+                        </tr>
+                        </volist>
+                        <else />
+                        <tr>
+                            <td colspan="8" style="font-size: 24px;color: #00a1ec">暂无数据</td>
+                        </tr>
+                    </if>
+                    <tr>
+                        <td colspan="8" style="color: #00a1ec">
+                            提现笔数共：{$count}笔&nbsp;&nbsp;&nbsp;&nbsp;
+                            提现金额共：{$total}元&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<div class="remarks" style="display: none">
+    <form method="post" class="form-x">
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>理由：</label>
+            </div>
+            <div class="field"><br/>
+                <textarea id="reason" name="remarks" cols="40" rows="6"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    /*通过*/
+    $('.agree').on('click',function(){
+        var id = $(this).attr('data-id');
+        console.log(1111);
+        $.post("{:U('admin/finance/cashSet')}",{id:id,operate:'pay',statue:1},function(data){
+            if(data['code'] == 1){
+                layer.msg('操作成功',{icon:1});
+                setTimeout('window.location.reload()',1500);
+            }
+        });
+    });
+    /*拒绝*/
+    $('.refuse').on('click',function(){
+        var id = $(this).attr('data-id');
+        layer.open({
+            title:'说明填写',
+            type: 1,
+//                    skin: 'demo-class', //样式类名
+            closeBtn: 1, //显示关闭按钮
+            shadeClose: true, //开启遮罩关闭
+            area:['30%','30%'],
+            content: $('.remarks'),
+            btn:['确认','取消'],
+            yes: function(){
+                var remarks = $('#reason').val();
+                $.post("{:U('admin/finance/cashSet')}",{id:id,operate:'pay',statue:2,remarks:remarks},function(data){
+                    if(data['code'] == 1){
+                        layer.msg('操作成功！',{icon:1});
+                        setTimeout('window.location.reload()',1500);
+                    }
+                });
+            }
+        });
+    });
+</script>

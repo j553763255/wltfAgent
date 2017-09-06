@@ -1,0 +1,97 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">加盟商列表</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <!--<form method="post" class="form-inline">-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="user_name">加盟商</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="user_name" name="user_name" size="20" placeholder="加盟商账号" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="province">省份</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="province" name="province_id" size="20" placeholder="所属省份" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="city">城市</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="city" name="city_id" size="20" placeholder="所属城市" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-button">-->
+                        <!--<button class="button bg-main" type="submit">搜索</button>-->
+                    <!--</div>-->
+                <!--</form><br/>-->
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">加盟商</th>
+                        <th style="text-align: center">等级</th>
+                        <th style="text-align: center">所属服务中心</th>
+                        <th style="text-align: center">所属省</th>
+                        <th style="text-align: center">所属市</th>
+                        <th style="text-align: center">个人业绩</th>
+                        <th style="text-align: center">直推人数</th>
+                        <th style="text-align: center">服务费比例</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <if condition="$list eq ''">
+                        <tr><td colspan="8" style="color: #00A0EA;font-size: 24px">暂无数据</td></tr>
+                    <else />
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.real_name}</td>
+                            <td>{$vo.exchange_class}</td>
+                            <td>{$vo.superior_number}</td>
+                            <td>{$vo.province}</td>
+                            <td>{$vo.city}</td>
+                            <td>{$vo.achievement}</td>
+                            <td>{$vo.share_num}</td>
+                            <td>
+                                <input size="6" type="text" style="border: none;outline: none" name="ratio-{$vo.id}" value="{$vo.service_ratio}">
+                            </td>
+                            <td>
+                                <button class="button button-small bg-sub service-ratio" val="{$vo.id}">服务费修改</button>
+                            </td>
+                        </tr>
+                    </volist>
+                    </if>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".service-ratio").click(function () {
+        var id = $(this).attr("val");
+        var ratio = $("input[name='ratio-" + id +"']").val();
+        $.ajax({
+            url:"{:U('admin/joining/serviceRatio')}",
+            type:"post",
+            data:{"id":id,"ratio":ratio},
+            dataType:"json",
+            success:function (data) {
+                if(data){
+                    layer.msg("修改成功！");
+                    setTimeout("location.reload()",1500);
+                }else {
+                    layer.msg("修改失败！");
+                }
+            }
+        })
+    })
+</script>

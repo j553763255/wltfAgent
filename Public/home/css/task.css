@@ -1,0 +1,93 @@
+
+.header-title{
+    font-weight: bold;
+    font-size: 0.2rem;
+}
+.header img{
+    height: 0.19rem;
+    width: 0.11rem;
+    position: absolute;
+    left: 0.15rem;
+    top:0.125rem;
+}
+.task-list{
+    font-family: "Microsoft YaHei", arial, sans-serif;
+    height: 1.15rem;
+    background-color: #fff;
+    margin: 0.15rem 0.15rem 0 0.15rem;
+}
+.task-list .task-left{
+    float: left;
+    font-size: 0.16rem;
+    height: 1.15rem;
+    width: 0.8rem;
+    padding-left: 0.1rem;
+    padding-top: 0.1rem;
+}
+.task-list .task-left .task-type{
+    padding: 0.01rem 0.06rem;
+    font-weight: normal;
+    font-size: 0.12rem;
+    color: #ff9999;
+    border: 0.01rem solid #ff9999;
+    border-radius: 0.03rem;
+}
+.task-list .task-left .task-complete{
+    position: absolute;
+    margin-top:0.1rem;
+    border-radius: 0.8rem;
+    background-color: #00cc99;
+}
+.task-list .task-left .task-complete .complete-right{
+    float: left;
+    width: 0.46rem;
+    margin: 0.075rem 0.075rem;
+    border-radius: 0.46rem;
+    font-size: 0.15rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 0.46rem;
+    background-color: #fff;
+}
+.task-list .task-centre{
+    float: left;
+    width: 2.2rem;
+}
+.task-list .task-centre .task-title{
+    margin-top: 0.1rem;
+    font-size: 0.2rem;
+    color: #666666;
+}
+.task-list .task-centre .task-time{
+    margin:0.1rem 0.05rem;
+    font-size: 0.14rem;
+    color: #999999;
+}
+.task-list .task-centre .button{
+    /*background-color: #00cc99;*/
+    outline:none;
+    background: #79E4CA;
+    width: 0.8rem;
+    color: #fff;
+    font-size: 0.15rem;
+    border: none;
+    height:0.3rem;
+    float: right;
+    margin-top: 0.05rem;
+    line-height: 0.3rem;
+    border-radius: 0.3rem;
+}
+.task-list .task-right{
+    /*background-color: #ff3334;*/
+    background-color: #999999;
+    width: 0.16rem;
+    color: #fff;
+    height:1.15rem;
+    float: right;
+    text-align: center;
+}
+.task-list .task-right .task-operate{
+    font-family: "Microsoft YaHei", arial, sans-serif;
+    margin-top: 0.2rem;
+    font-size: 0.14rem;
+}

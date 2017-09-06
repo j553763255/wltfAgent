@@ -1,0 +1,13 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<div class="panel">
+    <div class="panel-head"><strong><h3>发送邮件</h3></strong></div>
+    <form action="{:U('admin/Notice/writeMessage')}" method="post">
+        <div style="height: 400px;margin: 3% 20%;">
+            <p><span>收件人：</span><input type="text" name="rec_name" value="{$de.rec_name}" /></p><br/>
+            <p><span>标题　：</span><input type="text" name="title" value="{$de.title}" /></p><br/>
+            <p><span>内容　：</span><textarea rows="3" cols="40" name="message"></textarea></p><br/>
+            <div style="margin: 0 20%"><input type="submit" name="submit" value="发送"/></div>
+        </div>
+    </form>
+</div>

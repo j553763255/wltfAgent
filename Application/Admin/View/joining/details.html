@@ -1,0 +1,580 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">加盟商列表</div>
+        <div class="panel-body">
+            <div class="panel-head" style="float: left"><button class="button bg-sub add-agent">+添加新加盟商</button></div>
+            <div class="panel-head" style="float: right"><button class="button bg-sub up-msg">+更新测试数据</button></div>
+            <div class="table-responsive-y">
+                <!--<form method="post" class="form-inline">-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="user_name">加盟商</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="user_name" name="user_name" size="20" placeholder="加盟商账号" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="province">省份</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="province" name="province_id" size="20" placeholder="所属省份" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="city">城市</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="city" name="city_id" size="20" placeholder="所属城市" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-button">-->
+                        <!--<button class="button bg-main" type="submit">搜索</button>-->
+                    <!--</div>-->
+                <!--</form><br/>-->
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">ID</th>
+                        <th style="text-align: center">账户(真名)</th>
+                        <th style="text-align: center">加盟商等级</th>
+                        <th style="text-align: center">推荐人id</th>
+                        <th style="text-align: center">账户余额</th>
+                        <th style="text-align: center">注册币</th>
+                        <th style="text-align: center">账户积分</th>
+                        <th style="text-align: center">个人业绩</th>
+                        <th style="text-align: center">直推人数</th>
+                        <th style="text-align: center">状态</th>
+                        <th style="text-align: center">分红点</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>账户：{$vo.user_name}<br/>真名：{$vo.real_name}</td>
+                            <td>{$vo.rank_id}</td>
+                            <td>{$vo.referee_id}</td>
+                            <td>{$vo.money}</td>
+                            <td>{$vo.register_coin}</td>
+                            <td>{$vo.points}</td>
+                            <td>{$vo.achievement}</td>
+                            <td>{$vo.referee_num}</td>
+                            <td><if condition="$vo.status eq 1">正常<else />已冻结</if></td>
+                            <td>{$vo.dividend}</td>
+                            <td>
+                                <button class="button button-small bg-sub amount" data-id="{$vo.id}">余额</button>
+                                <button class="button button-small bg-sub coin" data-id="{$vo.id}">注册币</button>
+                                <button class="button button-small bg-sub edit" data-id="{$vo.id}">编辑</button>
+                                <button class="button button-small bg-sub del" data-id="{$vo.id}">删除</button>
+                            </td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<!--余额充值-->
+<div class="operate" style="display: none">
+    <form method="post" class="form-x">
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="amount">余额：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" id="amount" name="amount" size="30" data-validate="required:此项不能为空"/>&nbsp;&nbsp;&nbsp;(减少余额输入负数)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>理由：</label>
+            </div>
+            <div class="field"><br/>
+                <textarea id="reason" name="remarks" cols="30" rows="5"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<!--注册币充值-->
+<div class="operate-coin" style="display: none">
+    <form method="post" class="form-x">
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="amount">注册币：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" id="coin" name="coin" size="30" data-validate="required:此项不能为空"/>&nbsp;&nbsp;&nbsp;(减少余额输入负数)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>理由：</label>
+            </div>
+            <div class="field"><br/>
+                <textarea id="reason-coin" name="remarks" cols="30" rows="5"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<!--添加新加盟商-->
+<div class="addMessage" style="display: none">
+    <form method="post" class="form-x" action="{:U('admin/joining/details')}">
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="user_name">账户：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto user_name" name="user_name" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="real_name">真实姓名：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto real_name" name="real_name" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="card_id">身份证号：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto card_id" name="card_id" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>等&nbsp;&nbsp;级：</label>
+            </div>
+            <div class="field"><br/>
+                <select name="rank" class="select">
+                    <option value="1">一级加盟商</option>
+                    <option value="2">二级加盟商</option>
+                    <option value="3">三级加盟商</option>
+                    <option value="4">推广专员</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="tel">加盟费用：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" name="join_fee" value="" size="30" data-validate="required:此项不能为空,number:只能为数字"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="tel">分红点：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" name="dividend" value="" size="10" data-validate="required:此项不能为空,number:只能为数字"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="tel">手机号码：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto tel" name="tel" value="" size="30" data-validate="required:此项不能为空,number:只能为数字"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>地&nbsp;&nbsp;址：</label>
+            </div>
+            <div class="field"><br>
+                <select class="province" name="province">
+                    <option selected="selected" value="">请选择省</option>
+                    <volist name="province" id="vo">
+                        <option value="{$vo.code}">{$vo.name}</option>
+                    </volist>
+                </select>
+                <select class="city" name="city">
+                    <option selected='selected'  value=''>请选择市</option>
+                </select>
+                <select class="area" name="area">
+                    <option selected="selected"  value="">请选择区</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="addr">详细地址：</label>
+            </div>
+            <div class="field"><br/>
+                <input class="input input-auto addr" name="address" id="addr" type="text" placeholder="请输入详细地址" size="30">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="mobile">推荐人手机：</label>
+            </div>
+            <div class="field recommend"><br/>
+                <input class="input input-auto mobile" name="mobile" id="mobile" type="text" placeholder="请输入推荐人手机号码" size="30">
+                <span class="referee" style="color:red;"></span>
+                <input class="input input-auto " name="referee_id" type="hidden"  value="" >
+                <input class="input input-auto " name="service_number" type="hidden"  value="" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>账户状态：</label>
+            </div>
+            <div class="field"><br/>
+                <div class="button-group radio">
+                    <label class="button active">
+                        <input name="status" value="1" checked="checked" type="radio"><span class="icon icon-check"></span>正常
+                    </label>
+                    <label class="button">
+                        <input name="status" value="2" type="radio"><span class="icon icon-check"></span>已冻结
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-button">
+            <button class="button bg-main" name="operate" type="submit" value="add">确认添加</button>
+        </div><br/>
+    </form>
+</div>
+<!--修改加盟商信息-->
+<div class="editMessage" style="display: none">
+    <form method="post" class="form-x" action="{:U('admin/joining/details')}">
+        <input type="hidden" name="id" value=""/>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="user_name">账户：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" id="user_name" name="user_name" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="pwd">密码：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="password" class="input input-auto" id="pwd" name="pwd" value="" size="30"/>&nbsp;&nbsp;(注意：填写该项表示修改原密码！)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="real_name">真实姓名：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" id="real_name" name="real_name" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="card_id">身份证号：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" id="card_id" name="card_id" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>等级：</label>
+            </div>
+            <div class="field"><br/>
+                <select name="rank" id="select">
+                    <option value="1">一级加盟商</option>
+                    <option value="2">二级加盟商</option>
+                    <option value="3">三级加盟商</option>
+                    <option value="4">推广专员</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="tel">加盟费用：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto join-fee" name="join_fee" value="" size="30" data-validate="required:此项不能为空,number:只能为数字"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="tel">分红点：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto dividend" name="dividend" value="" size="10" data-validate="required:此项不能为空,number:只能为数字"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="tel">手机号码：</label>
+            </div>
+            <div class="field"><br/>
+                <input type="text" class="input input-auto" id="tel" name="tel" value="" size="30" data-validate="required:此项不能为空"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>地&nbsp;&nbsp;址：</label>
+            </div>
+            <div class="field"><br>
+                <select class="province" name="province">
+                    <option selected="selected" value="" id="old-province"></option>
+                    <!--<option selected="selected" value="">请选择省</option>-->
+                    <volist name="province" id="vo">
+                        <option value="{$vo.code}">{$vo.name}</option>
+                    </volist>
+                </select>
+                <select class="city" name="city">
+                    <option selected="selected" value="" id="old-city"></option>
+                    <!--<option selected='selected' value=''>请选择市</option>-->
+                </select>
+                <select class="area" name="area">
+                    <option selected="selected" value="" id="old-area"></option>
+                    <!--<option selected="selected"  value="">请选择区</option>-->
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="address">详细地址：</label>
+            </div>
+            <div class="field"><br/>
+                <input class="input input-auto addr" name="address" id="address" type="text" placeholder="请输入详细地址" size="30">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="address">业&nbsp;&nbsp;绩：</label>
+            </div>
+            <div class="field"><br/>
+                <input class="input input-auto achievement" name="achievement" id="achievement" type="text" placeholder="请输入业绩值" size="30">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label for="address">积&nbsp;&nbsp;分：</label>
+            </div>
+            <div class="field"><br/>
+                <input class="input input-auto points" name="points" id="points" type="text" placeholder="请输入积分值" size="30">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label"><br/>
+                <label>账户状态：</label>
+            </div>
+            <div class="field"><br/>
+                <div class="button-group radio" id="statue">
+                    <label class="button active">
+                        <input name="status" value="1" checked="checked" type="radio"><span class="icon icon-check"></span>正常
+                    </label>
+                    <label class="button">
+                        <input name="status" value="2" type="radio"><span class="icon icon-check"></span>已冻结
+                    </label>
+            </div>
+            </div>
+        </div>
+        <div class="form-button">
+            <button class="button bg-main" name="operate" type="submit" value="edit" style="margin-left:20%;">确认修改</button>
+        </div><br/>
+    </form>
+</div>
+<script>
+/*省市区三级联动*/
+$(".province").change(function () {
+    $(".city").html("<option selected='selected' value=''>请选择市</option>");
+    var provinceId = $(this).val();
+    $.ajax({
+        type:"post",
+        url:"{:U('admin/joining/getCity')}",
+        dataType:"json",
+        data:{"provinceId":provinceId},
+        success:function (data) {
+            for (var i=0; i < data.length; i++){
+                $(".city").append("<option value='" + data[i].code + "'>" + data[i].name +"</option>")
+            }
+        }
+    })
+});
+$(".city").change(function () {
+    $(".area").html("<option selected='selected'  value=''>请选择区</option>");
+    var cityId = $(this).val();
+    $.ajax({
+        type:"post",
+        url:"{:U('admin/joining/getArea')}",
+        dataType:"json",
+        data:{"cityId":cityId},
+        success:function (data) {
+            for (var i=0; i < data.length; i++){
+                $(".area").append("<option value='" + data[i].code + "'>" + data[i].name +"</option>")
+            }
+        }
+    })
+});
+
+/*余额*/
+$('.amount').on('click',function(){
+    var id = $(this).attr('data-id');
+    var index1 = layer.open({
+        title:'余额操作',
+        type: 1,
+//                    skin: 'demo-class', //样式类名
+        closeBtn: 1, //显示关闭按钮
+        shadeClose: true, //开启遮罩关闭
+        area:['40%','40%'],
+        content: $('.operate'),
+        btn:['确认','取消'],
+        yes: function(){
+            var money = $('#amount').val();
+            var remarks = $('#reason').val();
+            $.post("{:U('admin/joining/details')}",{id:id,money:money,operate:'recharge',remarks:remarks},function(data){
+                if(data['code'] == 1){
+                    layer.msg('修改成功！',{icon:1});
+                    setTimeout('window.location.reload()',1500);
+                }
+            });
+            layer.close(index1);
+        }
+    });
+});
+
+/*注册币*/
+$('.coin').on('click',function(){
+    var id = $(this).attr('data-id');
+    var index2 = layer.open({
+        title:'注册币充值操作',
+        type: 1,
+//                    skin: 'demo-class', //样式类名
+        closeBtn: 1, //显示关闭按钮
+        shadeClose: true, //开启遮罩关闭
+        area:['40%','40%'],
+        content: $('.operate-coin'),
+        btn:['确认','取消'],
+        yes: function(){
+            var money = $('#coin').val();
+            var remarks = $('#reason-coin').val();
+            $.post("{:U('admin/joining/details')}",{id:id,money:money,operate:'coin-recharge',remarks:remarks},function(data){
+                if(data['code'] == 1){
+                    layer.msg('修改成功！',{icon:1});
+                    setTimeout('window.location.reload()',1500);
+                }
+            });
+            layer.close(index2);
+        }
+    });
+});
+
+/*编辑*/
+$('.edit').on('click',function(){
+    var id = $(this).attr('data-id');
+    $.post("{:U('admin/joining/details')}",{id:id,type:'msg'},function(data){
+        $('#user_name').val(data['user_name']);
+        $('#pwd').val("");
+        $('#real_name').val(data['real_name']);
+        $('#card_id').val(data['card_id']);
+        $('#tel').val(data['tel']);
+        $("input[name='id']").val(id);
+        $(".dividend").val(data['dividend']);
+        $("#address").val(data['address']);
+        $('#user_name').val(data['user_name']);
+        $('.join-fee').val(data['join_fee']);
+        $('.achievement').val(data['achievement']);
+        $('.points').val(data['points']);
+        $('#old-province').val(data['province_id']);
+        $('#old-province').html(data['province']);
+        $('#old-city').val(data['city_id']);
+        $('#old-city').html(data['city']);
+        $('#old-area').val(data['area_id']);
+        $('#old-area').html(data['area']);
+        var _html = '<option value="'+data['rank_id']+'">'+data['rank']+'</option>'
+                    +'<option value="1">一级加盟商</option>'
+                    +'<option value="2">二级加盟商</option>'
+                    +'<option value="3">三级加盟商</option>'
+                    +'<option value="4">推广专员</option>';
+        $("#select").html(_html);
+        if(data['status'] == 1){
+            var _statue ='<label class="button active">'+
+                    '<input name="status" value="1" checked="checked" type="radio"><span class="icon icon-check"></span>正常'+
+                    '</label>'+
+                    '<label class="button">'+
+                    '<input name="status" value="2" type="radio"><span class="icon icon-check"></span>已冻结'+
+                    '</label>';
+        }else{
+            var _statue ='<label class="button ">'+
+                    '<input name="status" value="1" type="radio"><span class="icon icon-check"></span>正常'+
+                    '</label>'+
+                    '<label class="button active">'+
+                    '<input name="status" value="2" type="radio" checked="checked"><span class="icon icon-check"></span>已冻结'+
+                    '</label>';
+        }
+
+        $('#statue').html(_statue);
+    });
+    layer.open({
+        title:'修改信息',
+        type: 1,
+//                    skin: 'demo-class', //样式类名
+        closeBtn: 1, //显示关闭按钮
+        shadeClose: true, //开启遮罩关闭
+        area:['60%','80%'],
+        content: $('.editMessage')
+    });
+});
+
+/*删除*/
+$('.del').on('click',function(){
+    var id = $(this).attr('data-id');
+    $.post("{:U('admin/joining/details')}",{id:id,operate:'del'},function(data){
+        if(data['code'] == 1){
+            layer.msg('删除成功',{icon:1});
+            setTimeout('window.location.reload()',1500);
+        }
+    });
+});
+
+/*添加*/
+$('.add-agent').on('click',function(){
+    layer.open({
+        title:'添加信息',
+        type: 1,
+//                    skin: 'demo-class', //样式类名
+        closeBtn: 1, //显示关闭按钮
+        shadeClose: true, //开启遮罩关闭
+        area:['60%','80%'],
+        content: $('.addMessage')
+    });
+});
+/*推荐人*/
+$("#mobile").keyup(function () {
+    $('.referee').html("");
+    var mobile = $("input[name='mobile']").val();
+    if (mobile.length == 11){
+        $.ajax({
+            type:"post",
+            url:"{:U('admin/joining/getReferee')}",
+            data:{"mobile":mobile},
+            dataType:"json",
+            success:function (data) {
+                if (data['code'] == 1 ){
+                    $('.referee').html("推荐人："+data['real_name']);
+                    $("input[name='referee_id']").val(data['referee_id']);
+                    $("input[name='service_number']").val(data['service_number']);
+                }else{
+					layer.msg("该推荐人不存在",{icon:2});
+                }
+            }
+        })
+    }
+})
+$('.up-msg').on('click',function(){
+    $.post("{:U('admin/joining/details')}",{operate:'test'},function(data){
+        if(data['code'] == 1){
+            layer.msg("更新成功！",{icon:1});
+        }else{
+            layer.msg("更新失败！",{icon:1});
+        }
+    });
+});
+</script>

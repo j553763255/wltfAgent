@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #f0f0f0;
+}
+.header{
+    font-size: 0.2rem;
+    text-align: center;
+    background-color: #fff;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    border-bottom: 1px solid #ccc;
+}
+.header-title{
+    font-weight: bold;
+    font-size: 0.2rem;
+}
+.header img{
+    height: 0.19rem;
+    width: 0.11rem;
+    position: absolute;
+    left: 0.15rem;
+    top:0.125rem;
+
+}
+.middle{
+    height: 3.5rem;
+    background-color: #fff;
+    line-height: 0.5rem;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    margin-bottom: 0.25rem;
+    clear: both;
+}
+.middle img{
+    float: right;
+    height: 0.4rem;
+    width: 0.4rem;
+    padding-top: 0.05rem;
+    border-radius: 0.2rem;
+}
+.main-same{
+    border-top: 0.01rem solid #cccccc;
+    clear: both;
+
+}
+.sp-name{
+    font-weight: bold;
+    font-size: 0.16rem;
+    color: #333;
+    float: left;
+}
+.sp-val{
+    float: right;
+    color: #999;
+    font-size: 0.15rem;
+}
+.foot{
+    height: 1rem;
+    background-color: #fff;
+    line-height: 0.5rem;
+    padding-left: 0.15rem;
+    padding-right: 0.25rem;
+    width: 90%;
+}
+.foot .foot-same{
+    border-bottom: 0.01rem solid #cccccc;
+    clear: both;
+}

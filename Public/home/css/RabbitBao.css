@@ -1,0 +1,158 @@
+body{
+    /*background: #f0f0f0;*/
+    font-family: "微软雅黑", Verdana;
+}
+img{
+    vertical-align: top;
+}
+a{
+    text-decoration:none;
+    color:#333333;
+}
+li{
+    list-style-type:none;
+}
+.statistics{
+    height: 2rem;
+    background-color: #fff;
+}
+.statistics .statistics-left{
+    float: left;
+    padding-left: 0.27rem;
+}
+.statistics .statistics-left div:first-child{
+    margin-top: 0.25rem;
+}
+.statistics .statistics-left img{
+    width: 1.29rem;
+}
+.statistics .statistics-left div .image{
+    width: 1.29rem;
+    height:0.38rem;
+}
+.statistics .statistics-left .left-top{
+    height:0.63rem;
+    width: 1.29rem;
+}
+.statistics .statistics-left div .title{
+    margin-top: 0.09rem;
+    color:#666666;
+    font-size: 0.14rem;
+    float: left;
+}
+.statistics .statistics-left div .money{
+    margin-top: 0.07rem;
+    color: #333333;
+    font-size: 0.16rem;
+    float: right;
+}
+.statistics .statistics-right{
+    float: right;
+    margin-right: 0.27rem;
+}
+.statistics .statistics-right .image{
+    margin-top: 0.25rem;
+}
+.statistics .statistics-right .image img{
+    height:1.5rem;
+}
+.statistics .statistics-right .value{
+    width:1.5rem;
+    position: absolute;
+    top:1.17rem;
+}
+.statistics .statistics-right .value .title{
+    font-size: 0.13rem;
+    color:#666666;
+    text-align: center;
+}
+.statistics .statistics-right .value .money{
+    margin-top: 0.08rem;
+    font-size: 0.25rem;
+    text-align: center;
+}
+.content{
+    margin-top: 0.15rem;
+}
+.content .nav-head{
+    height:0.5rem;
+    background-color: #fff;
+}
+.content .nav-head ul li{
+    width:50%;
+    float: left;
+    font-size: 0.15rem;
+    height:0.5rem;
+    /*width: 1.25rem;*/
+    line-height: 0.5rem;
+    text-align: center;
+    border-bottom: 0.02rem solid #cccccc;
+}
+.content .nav-body div ul li{
+    background-color: #fff;
+    font-size: 0.15rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    border-bottom: 0.01rem solid #cccccc;
+    overflow: hidden;
+    width: 100%;
+}
+.content .nav-body div ul li img{
+    height: 0.15rem;
+    float: left;
+    margin: 0.175rem 0.15rem;
+}
+.content .nav-body div ul li .title{
+    float: left;
+}
+.content .nav-body div ul li .value{
+    float: right;
+    margin-right: 0.15rem;
+    color: #999999;
+}
+.nav-body .tab-body{
+    /*display: none;*/
+}
+.nav-body .active{
+    display: block;
+}
+#tab-task{
+    background: #f0f0f0;
+}
+.panel{
+    background: #FFFFFF;
+    margin-top: 0.25rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    height: 2.15rem;
+    border-radius: 0.08rem;
+    border:1px solid #cccccc;
+}
+.panel .head{
+    height: 0.15rem;
+    border-top-left-radius: 0.08rem;
+    border-top-right-radius: 0.08rem;
+    background-color: #ff3333;
+}
+.panel .body{
+    padding-top: 0.28rem;
+    padding-left:0.18rem;
+    padding-right: 0.18rem;
+}
+.panel .title{
+    font-size: 0.18rem;
+}
+.panel .time{
+    margin-top: 0.22rem;
+    font-size: 0.14rem;
+    color:#999999;
+}
+.panel .content{
+    margin-top: 0.2rem;
+    font-size: 0.14rem;
+    color:#999999;
+}
+.panel .money{
+    margin-top: 0.3rem;
+    font-size: 0.15rem;
+}

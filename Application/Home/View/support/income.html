@@ -1,0 +1,120 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/support.css">
+<body>
+<div id="header">
+    <span class="header-title">收入管理</span>
+    <a href="{:U('home/support/index')}" class="fl-left">&lt;</a>
+</div>
+<div class="table-title">
+    <ul>
+        <li>时间</li>
+        <li>奖金<hr class="line"></li>
+        <li>额外奖金<hr class="line"></li>
+        <li>操作<hr class="line"></li>
+    </ul>
+</div>
+<if condition="$list eq ''">
+    <br/>
+    <div style="text-align: center;font-size: 0.2rem">暂无信息</div>
+<else />
+<volist name="list" id="vo">
+<div class="table-content">
+    <div class="table-list">
+        <ul>
+            <li>{$vo.date}<hr></li>
+            <li>{$vo.amount}</li>
+            <li>{$vo.task}</li>
+            <li class="drop-down" data-id="{$vo.id}">查看<img class="img img{$vo.id}" src="/wltfagent/Public/home/images/3_30.png"/></li>
+        </ul>
+    </div>
+    <div class="table-hidden table-hidden{$vo.id}">
+        <ul>
+            <li>推荐奖励 {$vo.recommend}</li>
+            <li>服务奖励 {$vo.service}</li>
+            <li>项目分红 {$vo.bonus}</li>
+            <li>任务奖励 {$vo.task}</li>
+        </ul>
+    </div>
+</div>
+</volist>
+<div class="end" data-num="{$num}" data-time="{$close_time}"></div>
+<div class="icon" style="text-align: center;font-size: 0.2rem"></div></if>
+</body>
+<script>
+    $('.drop-down').on('click',function(){
+        var id = $(this).attr('data-id');
+        $('.img'+id).addClass('img-animal');
+        var ds = $('.table-hidden'+id).css('display');
+        if(ds == "none"){
+            $('.table-hidden'+id).slideDown();
+        }else{
+            $('.img'+id).removeClass('img-animal');
+            $('.table-hidden'+id).slideUp();
+        }
+    });
+
+    //滚动加载事件
+    $(window).scroll(function(){
+        var scrollTop = $(this).scrollTop();
+        var scrollHeight = $(document).height();
+        var windowHeight = $(this).height();
+        if(scrollTop + windowHeight >= scrollHeight){
+            ajaxFollowList();//后台查询数据
+        }
+    });
+
+    // 后台接口加载数据函数
+    function ajaxFollowList(){
+        var num = $('.end').attr('data-num');
+        var time = $('.end').attr('data-time');
+        var url = "{:U('home/support/income')}";//后台接口
+        $.ajax({
+            type:"post",
+            url:url, //接口
+            dataType:'json',
+            data:{time:time,num:num},
+            success:function(data) {
+                var html = '';
+                if(data != null){
+                    if (data.length > 0) {
+                        //获取所见页面的最后一条数据的id
+                        var length = data.length - 1;
+                        var new_num = data[length].id;
+                        var new_time = data[length].time;
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<div class="table-content">';
+                            html += '<div class="table-list">';
+                            html += ' <ul>';
+                            html += '<li>'+data[i]["date"]+'<hr></li>';
+                            html += '<li>'+data[i]["amount"]+'<hr></li>';
+                            html += '<li>'+data[i]["task"]+'<hr></li>';
+                            html += '<li class="drop-down" data-id="'+data[i]["id"]+'">查看<img class="img img'+data[i]["id"]+'" src="/wltfagent/Public/home/images/3_30.png"/></li>';
+                            html += '</ul>';
+                            html += '</div>';
+                            html += '<div class="table-hidden table-hidden'+data[i]["id"]+'">';
+                            html += '<ul>';
+                            html += '<li>推荐奖励'+ data[i]["recommend"]+'</li>';
+                            html += '<li>服务奖励'+ data[i]["service"]+'</li>';
+                            html += '<li>项目分红'+ data[i]["bonus"]+'</li>';
+                            html += '<li>任务奖励'+ data[i]["task"]+'</li>';
+                            html += '</ul>';
+                            html += '</div>';
+                            html += '</div>';
+                        }
+                        $(".end").append(html);//查询到的数据进行页面上的布置
+                        $(".end").attr('data-num',new_num);
+                        $(".end").attr('data-time',new_time);
+                        console.log($(".end").attr('data-time'));
+                    }else{
+                        html += "暂无数据可加载..."
+                        $('.icon').html(html);
+                    }
+                }else{
+                    html += "暂无数据可加载..."
+                    $('.icon').html(html);
+                }
+            }
+        });
+    }
+</script>
+</html>

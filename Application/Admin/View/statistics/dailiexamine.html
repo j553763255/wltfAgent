@@ -1,0 +1,169 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+
+<div class="table-responsive table-bordered"><br>
+    <form action="" method="get"  class="form-inline">
+        <div class="demo">
+            <div class="form-group">
+                <div class="label">
+                    <label for="start">
+                        审核时间
+                    </label>
+                </div>
+                <div class="field">
+                    <input class="input" id="start" name="start" value="">-
+                    <input class="input" id="end" name="end" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label for="agentname">
+                        代理商
+                    </label>
+                </div>
+                <div class="field">
+                    <input class="input" type="text" id="agentname" name="agentname" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label for="status">
+                        审核状态
+                    </label>
+                </div>
+                <div class="field">
+                    <select class="input" id="status"  name="selete">
+                        <option value="">请选择</option>
+                        <option value="通过" >通过</option>
+                        <option value="拒绝">拒绝</option>
+                        <option value="未审核">未审核</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="button bg-blue float-right" type="submit" name="submit" id="selecting" >搜索</button>
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <tr>
+            <th style="text-align: center;vertical-align: middle">级别</th>
+            <th style="text-align: center;vertical-align: middle">代理商</th>
+            <th style="text-align: center;vertical-align: middle">审核时间</th>
+          <!--  <th>审核IP</th>!-->
+            <th style="text-align: center;vertical-align: middle">审核内容</th>
+            <th style="text-align: center;vertical-align: middle">管理员</th>
+            <th style="text-align: center;vertical-align: middle">审核状态</th>
+        </tr>
+      <!--  <tr>
+            <th><input type="checkbox"></th>
+            <td>测试1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <p class="text-green">通过</p>
+            </td>
+        </tr>
+        <tr>
+            <th><input type="checkbox"></th>
+            <td>测试2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <p class="text-yellow">未审核</p>
+            </td>
+        </tr>
+        <tr>
+            <th><input type="checkbox"></th>
+            <td>测试3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <p class="text-red">拒绝</p>
+            </td>
+        </tr>!-->
+        <volist name="list" id="shenhe">
+             <tr>
+                 <td style="text-align: center;vertical-align: middle;">{$shenhe.agentexamine_id}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$shenhe.agentexamine_name}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$shenhe.agentexamine_time}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$shenhe.agentexamine_task}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$shenhe.agentexamine_feedback}</td>
+                 <td style="text-align: center;vertical-align: middle">{$shenhe.agentexamine_feedback}</td>
+             </tr>
+         </volist>
+    </table>
+    <div id="pageBar" class="pagination" style="float: right">
+        {$page}
+    </div>
+</div>
+<div id="mydialog">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span><strong>对话框标题</strong>
+        </div>
+        <div class="dialog-body">是否确认删除</div>
+        <div class="dialog-foot">
+            <button class="button dialog-close">取消</button>
+            <button class="button bg-green">确认</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //日期范围限制
+
+    !function(){  //这种叫自执行函数表达式在这种情况下，解析器在解析function关键字的时候，会将相应的代码解析成function表达式，而不是function声明。
+        laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+        laydate({elem: '#demo'});//绑定元素
+    }();
+    var start = {
+        elem: '#start',
+        format: 'YYYY-MM-DD',
+        min:  '1999-06-16',//设定最小日期为当前日期
+        max: laydate.now(), //最大日期
+        istime: true,
+        istoday: false,
+        festival: true, //显示节日
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+
+    var end = {
+        elem: '#end',
+        format: 'YYYY-MM-DD',
+        min: laydate.now(),
+        max: '2099-06-16',
+        istime: true,
+        istoday: false,
+        festival: true, //显示节日
+        choose: function(datas){
+            start.max = datas; //结束日选好后，充值开始日的最大日期
+        }
+    };
+    laydate(start);
+    laydate(end);
+
+</script>
+
+
+<script type="text/javascript">
+    $(function(){
+                //查询
+                $("#selecting").click(function(){
+                    $("#form").attr("action", "__URL__/dailicashlog/p/1");
+                    $("#form").submit();
+                });
+            }
+    );
+</script>

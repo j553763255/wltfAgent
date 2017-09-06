@@ -1,0 +1,214 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+
+<div class="container"><br/>
+    <div class="panel">
+        <div class="panel-head">
+            <span>积分兑换设置</span>
+            <sapn style="float: right"><button class="button button-little bg-blue add-change">新增设置</button></sapn>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <td>编号</td>
+                        <td>代理等级</td>
+                        <td>兑换积分值</td>
+                        <td>兑换物品</td>
+                        <td>是否使用</td>
+                        <td>操作</td>
+                    </tr>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.daili_class}</td>
+                            <td>{$vo.exchange_point}</td>
+                            <td>{$vo.award}</td>
+                            <td><if condition="$vo['type'] eq 1">禁用<else/>使用</if></td>
+                            <td>
+                                <button class="button button-little bg-blue change" value="{$vo.id}">编辑</button>
+                                <button class="button button-little bg-sub del" value="{$vo.id}">删除</button>
+                            </td>
+                        </tr>
+                    </volist>
+                    <!--<tr>-->
+                        <!--<td>1</td>-->
+                        <!--<td>1</td>-->
+                        <!--<td>1</td>-->
+                        <!--<td>1</td>-->
+                        <!--<td>1</td>-->
+                        <!--<td>-->
+                            <!--<button class="button button-little bg-blue change" value="{$vo.id}">编辑</button>-->
+                            <!--<button class="button button-little bg-sub del" value="{$vo.id}">删除</button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="add-message" class="container-layout" style="display: none">
+    <br/>
+    <form  method="post"  class="form-x">
+        <input type="hidden" name="operate" value="add"/>
+        <div class="demo" id="demo">
+            <div class="form-group">
+                <div class="label">
+                    <label class="cash">代理等级：</label>
+                </div>
+                <div class="field">
+                    <select name="daili_class">
+                        <option value="1">一级代理</option>
+                        <option value="2">二级代理</option>
+                        <option value="3">三级代理</option>
+                        <option value="4">业务专员</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label class="card">兑换积分值：</label>
+                </div>
+                <div class="field">
+                    <input class="input input-auto" id="need" name="need_points" value="" placeholder="需要的积分值" data-validate="required:此项不能为空,number:只能填写数字"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label class="card">兑换物品：</label>
+                </div>
+                <div class="field">
+                    <input class="input input-auto" id="add-award" name="award" value="" placeholder="需要的积分值" data-validate="required:此项不能为空"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label class="card">是否开启：</label>
+                </div>
+                <div class="field">
+                    <label><input type="radio"  name="type" value="2" checked="checked"/>使用</label>
+                    <label><input type="radio"  name="type" value="1" />禁用</label>
+                </div>
+            </div>
+            <button id="refer" class="button border-blue button-small" type="submit" style="margin-left: 45%">提交</button>
+        </div>
+    </form>
+</div>
+
+<div id="change-message" class="container-layout" style="display: none">
+    <br/>
+    <form  method="post" action="{:U('admin/setting/exchange')}" class="form-x">
+        <input type="hidden" name="operate" value="edit"/>
+        <input type="hidden" name="set_id" class="set_id" value=""/>
+        <div class="demo">
+            <div class="form-group">
+                <div class="label">
+                    <label class="cash">代理等级：</label>
+                </div>
+                <div class="field">
+                    <select name="daili_class">
+                        <option value="1">一级代理</option>
+                        <option value="2">二级代理</option>
+                        <option value="3">三级代理</option>
+                        <option value="4">业务专员</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label class="card">兑换积分值：</label>
+                </div>
+                <div class="field">
+                    <input class="input input-auto need-point"  name="need_points" value="" placeholder="需要的积分值" data-validate="required:此项不能为空,number:只能填写数字"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label class="card">兑换物品：</label>
+                </div>
+                <div class="field">
+                    <input class="input input-auto award"  name="award" value="" placeholder="兑换物品" data-validate="required:此项不能为空"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label class="card">是否开启：</label>
+                </div>
+                <div class="field">
+                    <label><input type="radio"  name="type" value="2" checked="checked"/>使用</label>
+                    <label><input type="radio"  name="type" value="1" />禁用</label>
+                </div>
+            </div>
+            <button id="sub" class="button border-blue button-small" type="submit" style="margin-left: 45%">提交</button>
+        </div>
+    </form>
+</div>
+<script>
+$(document).ready(function() {
+    $('.add-change').on('click',function(){
+        var index = layer.open({
+            title: '新增内容',
+            type: 1,
+            //                    skin: 'demo-class', //样式类名
+            closeBtn: 1, //显示关闭按钮
+            shadeClose: true, //开启遮罩关闭
+            area: ['60%', '30%'],
+            content: $('#add-message'),
+        });
+        $("#refer").click(function(){
+            layer.close(index);
+        })
+    });
+
+    /*修改*/
+    $('.change').on('click',function(){
+        var id = $(this).val();
+        $.get("/index.php/admin/setting/exchange",{id:id},function(data){
+            $('.need-point').val(data['exchange_point']);
+            $('.award').val(data['award']);
+            $('.set_id').val(data['id']);
+        });
+        var index = layer.open({
+            title: '修改内容',
+            type: 1,
+            //                    skin: 'demo-class', //样式类名
+            closeBtn: 1, //显示关闭按钮
+            shadeClose: true, //开启遮罩关闭
+            area: ['60%', '30%'],
+            content: $('#change-message'),
+        });
+        $("#sub").click(function(){
+            layer.close(index);
+        })
+    });
+
+    /*删除*/
+    $(".del").click(function () {
+        var id = $(this).val();
+        layer.confirm('是否确认删除？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                url: "/index.php/admin/setting/exchange",
+                type: "post",
+                data: {id: id, operate:'del'},
+                datatype: "json",
+                success: function (data) {
+                    if (data['code'] == 1) {
+                        layer.msg('删除成功', {icon: 1});
+                        setTimeout("window.location.reload()", 1500);
+                    } else {
+                        layer.msg('删除失败', {icon: 2});
+                    }
+                }
+            });
+        });
+    });
+
+})
+</script>

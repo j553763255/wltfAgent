@@ -1,0 +1,184 @@
+<title>排行榜</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/rankingList.css">
+<script src="/wltfagent/Public/home/js/rankingList.js"></script>
+<body>
+<div id="header">
+    <a href="javascript:;" onclick="back();return false;" class="fl-left">&lt;</a>
+    排行榜
+</div>
+<div class="nav">
+    <div class="active 1" id="incomeRanking"><p>收入</p></div>
+    <div id="achievementRanking"><p>业绩</p></div>
+    <div id="pointsRanking"><p>积分</p></div>
+</div>
+
+<div class="rankPanel incomeRanking">
+    <volist name="incomeRanking" id="vo">
+        <if condition="$vo.id eq $_SESSION['uid']">
+            <div class="mySelf rankingList">
+                <p class="ranking">{$key + 1}</p>
+                <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                <!--<else/>-->
+                <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+                <p class="value">{$vo.income}</p>
+            </div>
+        </if>
+    </volist>
+    <volist name="incomeRanking" id="vo">
+        <if condition="$key lt 3">
+            <div class="rankingList active2 ">
+                <p class="ranking">{$key + 1}</p>
+                <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                <!--<else/>-->
+                <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+                <p class="value">{$vo.income}</p>
+            </div>
+            <else />
+            <div class="rankingList">
+                <p class="ranking">{$key + 1}</p>
+                <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                <!--<else/>-->
+                <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+                <p class="value">{$vo.income}</p>
+            </div>
+        </if>
+    </volist>
+</div>
+<div class="rankPanel achievementRanking">
+<volist name="achievementRanking" id="vo">
+    <if condition="$vo.id eq $_SESSION['uid']">
+        <div class="mySelf rankingList">
+            <p class="ranking">{$key + 1}</p>
+            <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                    <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                    <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                    <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                    <!--<else/>-->
+                    <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+            <p class="value">{$vo.achievement}</p>
+        </div>
+    </if>
+</volist>
+<volist name="achievementRanking" id="vo">
+        <if condition="$key lt 3">
+        <div class="rankingList active2 ">
+            <p class="ranking">{$key + 1}</p>
+            <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                    <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                    <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                    <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                    <!--<else/>-->
+                    <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+            <p class="value">{$vo.achievement}</p>
+        </div>
+        <else />
+        <div class="rankingList">
+            <p class="ranking">{$key + 1}</p>
+            <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                    <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                    <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                    <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                    <!--<else/>-->
+                    <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+            <p class="value">{$vo.achievement}</p>
+        </div>
+    </if>
+</volist>
+</div>
+<div class="rankPanel pointsRanking">
+    <volist name="pointsRanking" id="vo">
+        <if condition="$vo.id eq $_SESSION['uid']">
+            <div class="mySelf rankingList">
+                <p class="ranking">{$key + 1}</p>
+                <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                    <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                    <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                    <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                    <!--<else/>-->
+                    <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+                <p class="value">{$vo.points}</p>
+            </div>
+        </if>
+    </volist>
+    <volist name="pointsRanking" id="vo">
+        <if condition="$key lt 3">
+            <div class="rankingList active2 ">
+                <p class="ranking">{$key + 1}</p>
+                <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                    <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                    <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                    <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                    <!--<else/>-->
+                    <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+                <p class="value">{$vo.points}</p>
+            </div>
+            <else />
+            <div class="rankingList">
+                <p class="ranking">{$key + 1}</p>
+                <img src="/wltfagent/Public/home/images/ceshi.png">
+            <span>
+                <p class="name">{:substr_replace($vo['tel'],'****',3,4)}</p>
+                <!--<if condition="$vo.rank_id eq 1">-->
+                    <!--<p class="rank level1">{$vo.rank_name}</p>-->
+                    <!--<elseif condition="$vo.rank_id eq 2"/>-->
+                    <!--<p class="rank level2">{$vo.rank_name}</p>-->
+                    <!--<else/>-->
+                    <!--<p class="rank level3">{$vo.rank_name}</p>-->
+                <!--</if>-->
+            </span>
+                <p class="value">{$vo.points}</p>
+            </div>
+        </if>
+    </volist>
+</div>
+</body>

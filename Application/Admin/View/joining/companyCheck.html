@@ -1,0 +1,142 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">加盟商列表</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+
+                <!--<form method="post" class="form-inline">-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="user_name">加盟商</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="user_name" name="user_name" size="20" placeholder="加盟商账号" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="province">省份</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="province" name="province_id" size="20" placeholder="所属省份" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="city">城市</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="city" name="city_id" size="20" placeholder="所属城市" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-button">-->
+                        <!--<button class="button bg-main" type="submit">搜索</button>-->
+                    <!--</div>-->
+                <!--</form><br/>-->
+
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">加盟商</th>
+                        <th style="text-align: center">等级</th>
+                        <th style="text-align: center">申请时间</th>
+                        <th style="text-align: center">所属兑换中心(上级负责人)</th>
+                        <th style="text-align: center">备注说明</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <if condition="$list eq ''">
+                        <tr><td colspan="7" style="color: #00A0EA;font-size: 24px">暂无数据</td></tr>
+                        <else />
+                        <volist name="list" id="vo">
+                            <tr>
+                                <td>{$vo.id}</td>
+                                <td>{$vo.real_name}</td>
+                                <td class="company">{$vo.company_class}</td>
+                                <td>{$vo.apply_time|date="Y-m-d H:i:s",###}</td>
+                                <td>{$vo.superior_number}</td>
+                                <td>{$vo.remarks}</td>
+                                <td>
+                                    <button class="button bg-main checks" data-statue="{$vo.id}" mold="1" data-id="{$vo.apply_id}">同意</button>
+                                    <button class="button bg-main checks" data-statue="{$vo.id}" mold="2" data-id="{$vo.apply_id}">驳回</button>
+                                </td>
+                            </tr>
+                        </volist>
+                    </if>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<div class="fail-dialogs" style="display: none">
+<form method="post" class="form-x" action="{:U('admin/joining/companyCheck')}"><br/>
+    <input type="hidden" name="user_id" value=""/>
+    <div class="form-group">
+        <div class="label"><label>标题：</label></div>
+        <div class="field">
+            <input type="text" class="input input-auto" name="title" size="30" value="申请驳回邮件说明" readonly/>
+        </div>
+    </div><br/>
+    <div class="form-group">
+        <div class="label"><label>说明：</label></div>
+        <div class="field">
+            <textarea rows="10" cols="40"></textarea>
+        </div>
+    </div><br/>
+    <div class="form-group">
+        <button class="button bg-sub text-big add"  name="submit" type="submit" style="margin-left:40% ">提交</button>
+    </div>
+    <br/>
+</form>
+</div>
+<script>
+    $(function () {
+        var id = $('.company').html();
+        if (id == 2){
+            $('.company').html("市级")
+        }else{
+            $('.company').html("省级")
+        }
+    });
+    $('.checks').on('click',function(){
+        var id = $(this).attr('data-statue');
+        var user_id = $(this).attr('data-id');
+        var type = $(this).attr('mold');
+        if(type == 1 ){
+            $.post("{:U('admin/joining/companyCheck')}",{id:id,type:1,user_id:user_id},function(data){
+                if(data['code'] == 1){
+                    layer.msg('审批成功',{icon:1});
+                    setTimeout('window.location.reload()',1500);
+                }
+                if(data['code'] == 2){
+                    layer.msg('审批成功，无下属办事处更新',{icon:1});
+                    setTimeout('window.location.reload()',1500);
+                }
+                if(data['code'] == 3){
+                    layer.msg('所属中心标识更新失败',{icon:1});
+                    setTimeout('window.location.reload()',1500);
+                }
+                if(data['code'] == 4){
+                    layer.msg('网络故障，审核更新失败，请联系技术人员',{icon:1});
+                    setTimeout('window.location.reload()',1500);
+                }
+
+            });
+        }
+
+        if(type == 2){
+            var apply_id = $(this).attr("data-id");
+            $("input[name='user_id']").val(apply_id);
+            console.log($("input[name='user_id']").val());
+            layer.open({
+                title:'申请驳回邮件说明',
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['40%', '50%'], //宽高
+                content: $('.fail-dialogs')
+            });
+        }
+    });
+</script>

@@ -1,0 +1,25 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/wallet.css">
+<body>
+<div id="header">
+    <a href="#" onclick="back();return false;">
+        <img class="back" src="/wltfagent/Public/home/images/left.png">
+    </a>
+    账单详情
+</div>
+<div class="billBanner">
+    <span class="company"><img src="/wltfagent/Public/home/images/logo.png">江苏兔尔宝文化发展有限公司</span>
+</div>
+<div class="billMoney">
+    <p class="value">{$flow.money}</p>
+    <p class="type">交易成功</p>
+</div>
+<div class="billMessage">
+    <ul>
+        <li><span class="title">付款方式</span><span class="intro">{$type}</span></li>
+        <li><span class="title">账单说明</span><span class="intro">{$flow.remarks}</span></li>
+        <li><span class="title">积分奖励</span><span class="intro">{$flow.integral}积分</span></li>
+        <li><span class="title">创建时间</span><span class="intro">{$flow.create_time|date="Y-m-d",###}</span></li>
+    </ul>
+</div>
+</body>

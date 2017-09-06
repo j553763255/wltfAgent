@@ -1,0 +1,58 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<body>
+<div class="panel margin">
+    <div class="panel-head">
+        添加兑换商品
+        <button class="button bg-sub bounce" style="margin-left: 85%"><span class="icon-angle-left"></span>返回</button>
+    </div>
+    <div class="panel-body">
+        <form method="post" action="/admin/Setting/addMall" enctype="multipart/form-data">
+            <table>
+                <tr style="height: 50px;">
+                    <td><strong>商品名称: </strong></td>
+                    <td><input type="text" class="input input-auto" name="goodsName" placeholder="商品名称" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品兑换所需的积分:</strong></td>
+                    <td><input type="number" class="input input-auto" name="need_pionts" placeholder="商品兑换所需的积分" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>上传图片:</strong></td>
+                    <td><input type="file" class="input input-auto" name="goods_pic" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品数量:</strong></td>
+                    <td><input type="number" class="input input-auto float-left" name="qty" placeholder="商品数量" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品介绍:</strong></td>
+                    <td><input type="text" class="input float-left" name="introduction" placeholder="商品介绍" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品上架状态:</strong></td>
+                    <td>
+                        <div class="button-group radio">
+                            <label class="button active">
+                                <input name="type" value="1" checked="checked" type="radio">
+                                <span class="icon icon-check"></span> 开启
+                            </label>
+                            <label class="button">
+                                <input name="type" value="0" type="radio">
+                                <span class="icon icon-times"></span> 关闭
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <button class="button bg-sub" type="submit">确认添加</button>
+        </form>
+    </div>
+</div>
+<script>
+    $(".bounce").click(function () {
+        window.history.go(-1);
+    })
+</script>
+</body>

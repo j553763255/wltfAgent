@@ -1,0 +1,258 @@
+body{
+    background: #f0f0f0;
+}
+input{
+    border: 0;
+    outline: none;
+}
+.header{
+    font-size: 0.2rem;
+    text-align: center;
+    background-color: #fff;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    border-bottom: 1px solid #ccc;
+}
+.header-title{
+    font-weight: bold;
+    font-size: 0.2rem;
+}
+.header img{
+    height: 0.19rem;
+    width: 0.11rem;
+    position: absolute;
+    left: 0.15rem;
+    top:0.125rem;
+}
+.main{
+    border-top:0.01rem solid #cccccc;
+    border-bottom:0.01rem solid #cccccc;
+    background-color: #fff;
+    padding:0.1rem 0;
+}
+.demo{
+    margin-left: 0.15rem;
+    clear: both;
+}
+.cPwd-form ul li{
+    margin:0.1rem 0;
+    padding:0.1rem 0;
+    border-bottom:0.01rem solid #ccc;
+}
+.cPwd-form ul li:last-child{
+    border-bottom:none;
+}
+.form-group{
+    line-height: 0.5rem;
+    border-bottom: 0.01rem solid #cccccc;
+    font-size: 0.16rem;
+    color: #333333;
+    /*font-weight: bold;*/
+}
+label{
+    float: left;
+}
+.group-dif{
+    border-bottom: 0;
+}
+.form-remark{
+    height: 0.3rem;
+    line-height: 0.18rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.15rem;
+    font-size: 0.13rem;
+    color: #999999;
+    margin-left: 0.15rem;
+    padding-right: 0.15rem;
+}
+.foot{
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    height: 0.5rem;
+    width: 3.45rem;
+    border-radius: 0.03rem;
+
+
+}
+.step-two{
+    display:none;
+}
+.foot a{
+    display: block;
+    font-size: 0.2rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 0.5rem;
+    text-align: center;
+}
+
+.cs-red{
+    background-color: red;
+}
+.cs-default{
+    background-color:#ccc;
+}
+.bottom-line-block{
+    border-bottom: 0.01rem solid #cccccc;
+}
+.bottom-line-none{
+    border: 0;
+}
+.list-main{
+    height: 1rem;
+    background-color: #fff;
+    margin-bottom: 0.25rem;
+}
+.list-foot{
+    height: 0.5rem;
+    background-color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+.list-file{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    margin-left: 0.15rem;
+}
+.list-file span{
+    font-size: 0.16rem;
+    color: #333;
+    font-weight: bold;
+    position: absolute;
+    left: 0.15rem;
+}
+.list-file img{
+    height: 0.15rem;
+    width: 0.09rem;
+    position: absolute;
+    right: 0.15rem;
+    margin-top: 0.175rem;
+}
+.login-out{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    background-color: #fff;
+    font-size: 0.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.login-out:visited{
+    color: #ff3333;
+}
+.check-content{
+    height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+}
+.check-content .check-file{
+    line-height: 0.5rem;
+    font-size: 0.16rem;
+    color: #333333;
+    font-weight: bold;
+    margin-left: 0.15rem;
+}
+.check-content .check-file input{
+    line-height: 0.4rem;
+    height:0.4rem;
+    font-size: 0.16rem;
+    color: #999999;
+    margin-left: 0.15rem;
+}
+.check-button{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    font-size: 0.2rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    border-radius: 0.05rem;
+    color: #fff;
+}
+.pay-user{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    background-color: #fff;
+    font-size: 0.15rem;
+    color: #999;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    border-top: 0.01rem solid #ccc;
+    border-bottom: 0.01rem solid #ccc;
+}
+.pay-user span{
+    padding-left: 0.15rem;
+}
+.pay-user input{
+    padding-left: 0.15rem;
+    color: #999;
+    line-height: 0.20rem;
+}
+.pay-nav{
+    background-color: #fff;
+    border-top: 0.01rem solid #ccc;
+    border-bottom: 0.01rem solid #ccc;
+    margin-bottom: 0.5rem;
+}
+.pay-nav .pay-pwd{
+    font-size: 0.15rem;
+    font-weight: bold;
+    line-height: 0.5rem;
+    margin-left: 0.15rem;
+    color:#333;
+}
+.pay-nav .pay-pwd .forget-pwd{
+    font-size: 0.15rem;
+    color: red;
+    position: absolute;
+    line-height: 0.5rem;
+    right: 0.15rem;
+}
+.pay-nav .pay-pwd input{
+    padding-left: 0.15rem;
+    color:#999;
+    font-size: 0.15rem;
+    line-height: 0.2rem;
+}
+.check-main{
+    background-color: #ccc;
+}
+.check-sub{
+    background-color: red;
+    display:none;
+}
+.check-forget{
+    display: none;
+}
+.check-forget .check-title{
+    background-color: #f0f0f0;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.12rem;
+    color: #ff6633;
+    text-align: center;
+}
+.check-forget .check-title img{
+    height: 0.12rem;
+    width: 0.14rem;
+    margin-right: 0.05rem;
+}
+.check-forget .check-card{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.15rem;
+    color: #333;
+    font-weight: bold;
+    background-color: #fff;
+    padding-left: 0.15rem;
+    margin-bottom: 0.5rem;
+    border-top: 0.01rem solid #ccc;
+    border-bottom: 0.01rem solid #ccc;
+}
+.check-forget .check-card input{
+    font-size: 0.115rem;
+    color: #999;
+    line-height: 0.4rem;
+    margin-left: 0.15rem;
+}
+
+

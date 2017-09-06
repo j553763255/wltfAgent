@@ -1,0 +1,103 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<div class="tab">
+    <div class="tab-head">
+        <ul class="tab-nav">
+            <li class="active"><a href="#city1">一级省级  </a></li>
+            <li><a href="#city2">二级市级</a></li>
+            <li><a href="#city3">三级市级</a></li>
+            <li><a href="#city4">四级市级</a></li>
+
+        </ul>
+    </div>
+    <div class="tab-body">
+        <br />
+        <div class="tab-panel active" id="city1">
+            <form method="post" class="form-x" action="{:U('admin/depositset')}">
+                <div class="form-group">
+                    <div class="label"><label>押金</label></div>
+                    <div class="xm1">
+                        <input type="text" class="input "size="50" data-validate="required:" value="" name="deposit_city1" />
+                    </div>
+                    <span style="line-height: 40px">设置金额</span>
+                </div>
+               <div class="form-button"><button class="button bg-blue" type="submit" name="submit_city1">提交</button></div>
+            </form>
+        </div>
+
+
+        <div class="tab-panel" id="city2">
+            <form method="post" class="form-x" action="{:U('admin/depositset2')}">
+                <div class="form-group">
+                    <div class="label"><label>押金二 </label></div>
+                    <div class="xm1">
+                        <input type="text" class="input "size="50" data-validate="required:" value="" name="deposit_city2"/>
+                    </div>
+                    <span style="line-height: 40px">设置金额</span>
+                </div>
+               <div class="form-button"><button class="button bg-blue" type="submit" name="submit_city2">提交</button></div>
+            </form>
+
+
+        </div>
+        <div class="tab-panel" id="city3">
+            <form method="post" class="form-x" action="{:U('admin/depositset3')}">
+                <div class="form-group">
+                    <div class="label"><label>押金三</label></div>
+                    <div class="xm1">
+                        <input type="text" class="input "size="50" data-validate="required:" value="" name="deposit_city3" />
+                    </div>
+                    <span style="line-height: 40px">设置金额</span>
+                </div>
+              <div class="form-button"><button class="button bg-blue" type="submit" name="submit_city3">提交</button></div>
+            </form>
+
+        </div>
+        <div class="tab-panel" id="city4">
+            <form method="post" class="form-x" action="{:U('admin/depositset4')}">
+                <div class="form-group">
+                    <div class="label"><label>押金五 </label></div>
+                    <div class="xm1">
+                        <input type="text" class="input "size="50" data-validate="required:" value="" name="deposit_city4" />
+                    </div>
+                    <span style="line-height: 40px">设置金额</span>
+                </div>
+                <div class="form-button"><button class="button bg-blue" type="submit" name="submit_city4">提交</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#province').change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/index.php/admin/addagentajax",
+                data: "province=" + $('#province').val(),
+                success: function (html) {
+                    var str = null;
+                    for (var i = 0; i < html.length; i++) {
+                        var city = html[i]['city'];
+                        str += "<option value="+city+">" + city + "</option>"
+                    }
+                    $('#city').html(str);
+                }, dataType: 'json'
+            })
+        })
+        $('#city').change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/index.php/admin/addagentajaxc",
+                data: "city=" + $('#city').val(),
+                success: function (html) {
+                    var str = null;
+                    for (var i = 0; i < html.length; i++) {
+                        var area = html[i]['area_name'];
+                        str += "<option value="+area+">" + area + "</option>"
+                    }
+                    $('#area').html(str);
+                }, dataType: 'json'
+            })
+        })
+    })
+</script>

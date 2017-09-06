@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>尚惠生活代理后台管理-用户注册</title>
+    <link rel="stylesheet" href="/wltfagent/public/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/wltfagent/public/admin/css/admin.css">
+    <script src="/wltfagent/public/admin/js/jquery.js"></script>
+    <script src="/wltfagent/public/admin/js/pintuer.js"></script>
+    <script src="/wltfagent/public/admin/js/respond.js"></script>
+    <script src="/wltfagent/public/admin/js/admin.js"></script>
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+</head>
+
+<body>
+<div class="container">
+    <div class="line">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <br /><br />
+            <div class="media media-y">
+                <a href="#" target="_blank"><img src="/wltfagent/public/admin/images/login.png" class="radius" alt="后台管理用户注册系统" /></a>
+            </div>
+            <br /><br />
+            <form action="{:U('admin/login/Newregister')}" method="post">
+                <div class="panel">
+                    <div class="panel-head"><strong>用户注册</strong></div>
+                    <div class="panel-body" style="padding:30px;">
+                <div class="form-group">
+                    <div class="field field-icon-right">
+                        <input type="text" id="registeradmin" class="input" name="registeradmin" placeholder="登录账号" onblur="checkadmin(this)" data-validate="required:请填写用户名,length#>=5:用户长度不符合要求"  />
+                        <span class="icon icon-user"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: none" id="registeruserexamine1">
+                    <li style="color: red">用户名重复:(</li>
+                </div>
+
+                <div class="form-group" style="display: none" id="registeruserexamine2">
+                    <li style="color: green">该用户名可用:)</li>
+                </div>
+
+                <div class="form-group">
+                      <div class="field field-icon-right">
+                         <input id="registerpassword" type="password" class="input" name="registerpassword" placeholder="登录密码" data-validate="required:请填写密码,length#>=5:密码长度不符合要求" />
+                         <span class="icon icon-key"></span>
+                      </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field field-icon-right">
+                        <input id="registerpasswordrepeat" type="password" class="input" name="registerpasswordrepeat" placeholder="重复密码" onblur="checkpwd(this)" data-validate="required:请填写密码,length#>=5:密码长度不符合要求" />
+                        <span class="icon icon-key"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: none" id="registerpasswordexamine">
+                    <li style="color: red">两次密码输入不一致</li>
+                </div>
+
+                <div class="form-group">
+                    <div class="field field-icon-right">
+                        <input type="user" class="input" name="registerrealname" placeholder="真实姓名"  />
+                        <span class="icon icon-user"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field field-icon-right">
+                        <input type="text" class="input" name="registermobile" placeholder="手机号码" data-validate="required:请填写手机号码,length#>=8:手机号码长度不符合要求" />
+                        <span class="icon icon-mobile"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field field-icon-right">
+                        <select name="registercompanyid" class="input">
+                            <volist name="company" id="vo">
+                                <option value="{$vo.company_id}">{$vo.company_name}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field field-icon-right">
+                        <input type="" class="input" name="registerrefereeid" placeholder="推荐人ID" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field">
+                        <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                        <IMG onclick="this.src=this.src+'?'+Math.random()" src="{:U('admin/login/verify')}" width="80" height="32" class="passcode" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button class="button button-block bg-blue text-big" name="submit" type="submit" >提交注册</button>
+                </div>
+
+
+
+                <!--   <div class="dialog-foot">
+                       <button class="button dialog-close">取消</button>
+                       <button class="button bg-green" >确认</button>
+                   </div>!-->
+
+                 </div>
+                  </div>
+            </form>
+
+            <!-- <div class="text-right text-small text-gray padding-top" id="register" style="float: left"><a class="text-gray" target="_blank" href="#">注册新用户</a></div>!-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--用户名检查!-->
+<script>
+    function checkadmin()
+    {
+        var obj1 = document.getElementById("registeruserexamine1");
+        var obj2 = document.getElementById("registeruserexamine2");
+
+           $.ajax({
+               type: "post",
+               url: "/index.php/admin/login/registeruserexamine",
+               data: "registeradmin=" + $('#registeradmin').val(),
+            success: function (data) {
+               // str = JSON.stringify(data);
+                //obj.style.display="block";
+
+                if(data == 1 )
+                {
+                    // alert("有重复用户，请重新输入！");
+                    obj2.style.display = "none";
+                    obj1.style.display = "";
+                 //   return false;
+                }
+                if(data == 0)
+                {
+                    obj1.style.display = "none";
+                    obj2.style.display = "";
+                //    return true;
+                 // alert("恭喜，该用户没有注册！");
+                }
+                if(data == 3)
+                {
+                    obj1.style.display = "none";
+                    obj2.style.display = "none";
+               //     return false;
+                }
+                // {操作1}
+                // else {操作2}
+
+
+            },
+
+
+        })
+
+    }
+
+</script>
+
+
+
+<!--清除密码内容!-->
+<script>
+    window.load = function(){
+        document.getElementById('registerpassword').value='';
+    };
+
+</script>
+
+<!--密码检查!-->
+<script>
+    function checkpwd()
+    {
+
+        var obj = document.getElementById("registerpasswordexamine");
+        var password = document.getElementById("registerpassword").value;
+        var passwordrepeat = document.getElementById("registerpasswordrepeat").value;
+
+        if(passwordrepeat && password)
+             {
+
+             if(password == passwordrepeat)
+                {
+                  obj.style.display = "none"
+                   // return true;
+                }
+
+              if(passwordrepeat !=  password )
+                {
+                  obj.style.display = "";
+                   // return false;
+                }
+             }
+        //else
+                   //  return false;
+
+    }
+
+</script>
+
+</body>
+</html>
+

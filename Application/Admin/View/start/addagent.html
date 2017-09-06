@@ -1,0 +1,144 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+<body>
+<div class="container">
+<div class="tab">
+      <div class="tab-head">
+        <ul class="tab-nav">
+            <li class="active"><a href="#tab-role">角色管理</a></li>
+          <!--<li><a href="#tab-set">账号管理</a></li>-->
+        </ul>
+      </div>
+      <div class="tab-body">
+         <div class="tab-panel active margin" id="tab-role">
+             <div class="table-responsive">
+                 <button class="button button bg-blue dialogs" data-toggle="click" data-target="#add" data-mask="2" data-width="50%">添加角色</button></br></br>
+                 <table class="table  table-bordered">
+                     <thead>
+                         <tr>
+                             <th>角色名称</th>
+                             <th>个数</th>
+                             <th>权限</th>
+                             <th>操作</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <volist name="roles" id="vo">
+                             <tr>
+                                 <td>{$vo.role_name}</td>
+                                 <td>{$vo.numble}</td>
+                                 <td>
+                                     <select class="input input-auto">
+                                         <if condition="!empty($vo['role'])">
+                                             <volist name="vo['role']" id="vo2">
+                                                 <option>{$vo2}</option>
+                                             </volist>
+                                             <else/>
+                                             <option>无</option>
+                                         </if>
+                                     </select>
+                                 </td>
+                                 <td>
+                                     <a href="/index.php/admin/start/addrole/role_id/{$vo.role_id}"><button class="button border-blue button-little">编辑</button></a>
+                                     <button class="button border-dot button-little dialogs" value="/index.php/admin/start/delrole/role_id/{$vo.role_id}" data-toggle="click" data-target="#del" data-mask="2" data-width="50%">删除</button>
+                                 </td>
+                             </tr>
+                         </volist>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+        <div class="tab-panel" id="tab-set">
+            <div class="table table-bordered">
+                <button class="button button-big bg-blue">添加账号</button></br></br>
+                <table class="table">
+                    <tr>
+                        <th>id</th>
+                        <th>账号</th>
+                        <th>角色名称</th>
+                        <th>手机</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>admin</td>
+                        <td>系统管理员</td>
+                        <td>15000000000</td>
+                        <td>
+                            <button class="button border-blue button-small">编辑</button>
+                            <button class="button border-dot button-small dialogs" data-toggle="click" data-target="#del" data-mask="2" data-width="30%">删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+<div id="del">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span><strong>删除</strong>
+        </div>
+        <div class="dialog-body">是否确定删除记录？</div>
+        <div class="dialog-foot">
+            <button class="button dialog-close">取消</button>
+            <a class="geturl"><button class="button bg-green">确认</button></a>
+        </div>
+    </div>
+</div>
+<div id="add">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span><strong>添加角色</strong>
+        </div>
+        <div class="dialog-body">
+            <form method="post" class="form-x" action="{:U('admin/start/addagent')}">
+                <div class="form-group">
+                    <div class="label"><label for="rolename">角色名称</label></div>
+                    <div class="field">
+                        <input type="text" class="input" style="!important;width: 80%" id="rolename" name="rolename" placeholder="角色名称" />
+                    </div>
+                </div>
+                <button type="submit" class="button bg-blue dialog-close float-right">确定</button>
+            </form>
+            <button class="button bg-green dialog-close float-right">取消</button>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script>
+    $(function () {
+        $('#province').change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/index.php/admin/addagentajax",
+                data: "province=" + $('#province').val(),
+                success: function (html) {
+                    var str = null;
+                    for (var i = 0; i < html.length; i++) {
+                        var city = html[i]['city'];
+                        str += "<option value=" + city + ">" + city + "</option>"
+                    }
+                    $('#city').html(str);
+                }, dataType: 'json'
+            })
+        });
+        $('#city').change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/index.php/admin/addagentajaxc",
+                data: "city=" + $('#city').val(),
+                success: function (html) {
+                    var str = null;
+                    for (var i = 0; i < html.length; i++) {
+                        var area = html[i]['area_name'];
+                        str += "<option value=" + area + ">" + area + "</option>"
+                    }
+                    $('#area').html(str);
+                }, dataType: 'json'
+            })
+        });
+    })
+</script>

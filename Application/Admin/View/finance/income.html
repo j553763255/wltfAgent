@@ -1,0 +1,41 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">平台总收入详情</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">加盟商</th>
+                        <th style="text-align: center">等级</th>
+                        <th style="text-align: center">入账时间</th>
+                        <th style="text-align: center">收入类型</th>
+                        <th style="text-align: center">入账金额</th>
+                    </tr>
+                    <if condition="$list eq 'false'">
+                        <tr>
+                            <td colspan="6" style="font-size: 24px">暂无数据</td>
+                        </tr>
+                    <else />
+                        <volist name="list" id="vo">
+                            <tr>
+                                <td>{$vo.id}</td>
+                                <td>{$vo.user_name}</td>
+                                <td>{$vo.rank_name}</td>
+                                <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                                <td>加盟费</td>
+                                <td>{$vo.money}</td>
+                            </tr>
+                        </volist>
+                    </if>
+                    <tr>
+                        <td colspan="6" style="color: #00a1ec">系统平台收计：{$total}元</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>

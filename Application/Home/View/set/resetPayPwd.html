@@ -1,0 +1,152 @@
+
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/set.css">
+<body>
+<div class="header">
+    <span class="header-title">重置支付密码</span>
+    <a href="{:U('home/set/setList')}"><span><img src="/wltfagent/Public/home/images/1_02.png"/></span></a>
+</div>
+<div class="pay-main">
+    <form  method="post" class="form-x">
+        <div class="pay-user"><span>账户名称</span><input class="input-position" type="text" name="user_name" value="" /></div>
+        <div class="pay-nav">
+            <div class="pay-pwd bottom-line-block">旧支付密码<input class="input old-pay" type="password" name="" value="" placeholder="请输入密码" />
+                <span class="forget-pwd">忘记密码？</span>
+            </div>
+            <div class="pay-pwd bottom-line-block">新支付密码<input class="input new-pay" type="password" name="" value="" placeholder="6位纯数字" /></div>
+            <div class="pay-pwd">确认新密码<input class="input re-pay" type="password" name="" value="" placeholder="请再次输入密码" /></div>
+        </div>
+        <div class="check-button check-main step">完成</div>
+        <div class="check-button check-sub step" id="step">完成</div>
+    </form>
+</div>
+<div class="check-forget">
+    <div class="check-title"><img src="/wltfagent/Public/home/images/2_03.png" />您正在使用“身份证件验证”进行校验</div>
+    <div class="check-card">身份证号<input class="cardID" type="text" name="" value="" placeholder="请输入18位实名认证的身份证号码"/></div>
+    <div class="check-button check-main">完成</div>
+    <div class="check-button check-sub" id="check-sub">完成</div>
+</div>
+
+<div class="step-two" style="display:none">
+    <form  method="post" class="form-x">
+        <div class="pay-user"><span>账户名称</span><input class="input-position" type="text" name="user_name" value="{$GET.user_name}" /></div>
+        <div class="pay-nav">
+            <div class="pay-pwd bottom-line-block">支付密码<input class="input pays-pwd" type="password" name="pay-pwd" value="" placeholder="6位纯数字"/></div>
+            <div class="pay-pwd">确认密码<input class="input pay-rewrite" type="password" name="" value="" placeholder="请再次输入"/></div>
+        </div>
+        <div class="check-button button-submit" id="button-submit" style="background-color: red;">完成</div>
+    </form>
+</div>
+</body>
+<script>
+    $('.forget-pwd').on('click',function(){
+        $('.check-forget').css('display','block');
+        $('.pay-main').css('display','none');
+    });
+    $('.pay-pwd').keyup(function(){
+        $('.input').on('change',function(){
+            var pwd = $(this).val();
+            if(isNaN(pwd) || pwd.length < 6){
+                layer.msg('支付密码只能是6位数字',{icon:2});
+            }
+        });
+        var old_pay = $('.old-pay').val();
+        var new_pay = $('.new-pay').val();
+        var re_pay = $('.re-pay').val();
+        if(old_pay != "" && new_pay != "" && re_pay != ""){
+            $(".check-main").css('display','none');
+            $(".check-sub").css('display','block');
+        }else{
+            $(".check-sub").css('display','none');
+            $(".check-main").css('display','block');
+        }
+    });
+    $('#step').on('click',function(){
+        var old_pay = $('.old-pay').val();
+        var new_pay = $('.new-pay').val();
+        var re_pay = $('.re-pay').val();
+        if(isNaN(old_pay) || old_pay.length != 6){
+            layer.msg('旧支付密码只能是6位数字',{icon:2});
+            return false;
+        }else if(isNaN(new_pay) || new_pay.length != 6){
+            layer.msg('新支付密码只能是6位数字',{icon:2});
+            return false;
+        }else if(new_pay != re_pay){
+            layer.msg('两次密码填写不一致',{icon:2});
+            return false;
+        }else{
+            $.ajax({
+                url: "{:U('home/set/resetPayPwd')}",
+                type: "post",
+                dataType: "json",
+                data: {old_pwd: old_pay,new_pay:new_pay},
+                success: function (data){
+                    if(data['code'] == 1){
+                        layer.msg('修改成功',{icon:1});
+                        function _url(){
+                            window.location.href = '{:U("home/set/setList")}';
+                        }
+                        setTimeout(_url,2000);
+                    }
+                    if(data['code'] == 2){
+                        layer.msg('旧支付密码填写不正确',{icon:2});
+                    }
+                    if(data['code'] == 3){
+                        layer.msg('网络系统系统问题，修改失败，请重新修改',{icon:2});
+                    }
+                }
+            });
+        }
+    });
+    $('.cardID').on('keyup',function(){
+        $(".check-main").css('display','none');
+        $(".check-sub").css('display','block');
+    });
+    $('#check-sub').on('click',function(){
+        var card_id = $('.cardID').val();
+        $.ajax({
+            url: "{:U('home/set/resetPayPwd')}",
+            type: "post",
+            dataType: "json",
+            data: {card_id: card_id,type:'forget'},
+            success: function (data){
+                if(data['code'] == 2){
+                    layer.msg('身份证号不正确',{icon:2});
+                }
+                if(data['success'] == 1){
+                    $('.check-forget').css('display','none');
+                    $('.step-two').css('display','block');
+                    $('input[name="user_name"]').val(data['user_name']);
+                }
+            }
+        });
+    });
+    $('#button-submit').on('click',function(){
+        var pay_pwd = $('.pays-pwd').val();
+        var pay_rewrite = $('.pay-rewrite').val();
+        if(pay_pwd == pay_rewrite){
+            $.ajax({
+                url: "{:U('home/set/setPayPwd')}",
+                type: "post",
+                dataType: "json",
+                data: {pay_pwd: pay_pwd, type: 'submit'},
+                success: function (data) {
+                    if(data['code'] == 2){
+                        layer.msg('支付密码设置成成功！',{icon:1});
+                        function _url(){
+                            window.location.href = '{:U("home/set/setList")}'
+                        }
+                        setTimeout(_url,2000);
+                    }
+                    if(data['code'] == 1){
+                        layer.msg('支付密码只能是6位数字',{icon:2});
+                    }
+                    if(data['code'] == 3){
+                        layer.msg('网络故障，请重新设置！',{icon:2});
+                    }
+                }
+            });
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #f0f0f0;
+}
+.header{
+    font-size: 0.2rem;
+    text-align: center;
+    background-color: #fff;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    border-bottom: 1px solid #ccc;
+}
+.header-title{
+    font-weight: bold;
+    font-size: 0.2rem;
+}
+.header img{
+    height: 0.19rem;
+    width: 0.11rem;
+    position: absolute;
+    right: 3.45rem;
+    top:0.125rem;
+
+}
+.middle{
+    background-color: #ffffff;
+    height: 1rem;
+    clear: both;
+}
+.middle-img{
+    line-height: 0.46rem;
+    float: left;
+}
+.middle-img img{
+    height: 0.46rem;
+    width: 0.39rem;
+    padding-left: 0.95rem;
+    padding-right: 0.2rem;
+    padding-top: 0.27rem;
+}
+.middle-msg{
+    padding-top: 0.28rem;
+    padding-bottom: 0.28rem;
+    float: left;
+}
+.rank{
+    /*font-weight: bold;*/
+    font-size: 0.2rem;
+    color: #333333;
+    margin-bottom: 0.07rem;
+}
+
+.remark{
+    font-size: 0.15rem;
+    color: #ff9966;
+}
+.body{
+    height: 2.7rem;
+}
+.body-rank{
+    height: 0.75rem;
+    background-color: #ffffff;
+    clear: both;
+    padding-right: 0.18rem;
+    padding-left: 0.15rem;
+}
+.rank-left{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    left: 0.5rem;
+    width: 0.5rem;
+    background-color: #ff9a00;
+    font-size: 0.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 0.03rem;
+    float: left;
+    margin-right: 0.23rem;
+    margin-top: 0.125rem;
+    text-align: center;
+}
+.rank-middle{
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+    float: left;
+}
+.rank-middle .rank{
+    font-size: 0.16rem;
+    color: #333333;
+    margin-bottom: 0.14rem;
+}
+.rank-middle .remark{
+    font-size: 0.13rem;
+    color: #999999;
+}
+.rank-middle .remark span{
+    padding-right: 0.24rem;
+}
+.rank-right button{
+    height: 0.3rem;
+    width: 0.7rem;
+    margin-top: 0.225rem;
+    border-radius: 0.03rem;
+    float: right;
+}
+.button-sub{
+    border: 0.02rem solid #00ccff;
+    background-color: #ffffff;
+    font-size: 0.15rem;
+    color: #00ccff;
+    line-height: 0.3rem;
+}
+.button-cs{
+    background-color: #00AFA5;
+    font-size: 0.15rem;
+    color: #fff;
+    line-height: 0.3rem;
+}
+.cg-sub{
+  background-color: #ff6700;
+}
+.cg-main{
+    background-color: #00cdff;
+}
+/* 分辨率<768 */
+@media screen and (min-width:768px){
+    .rank-right button {
+        width: 1rem;
+        font-size:0.16rem;
+    }
+}
+
+

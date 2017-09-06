@@ -1,0 +1,319 @@
+html,body,div,span,hr,h1,h2,h3,h4,h5,h6,p,pre,a,em,img,small,strong,sub,sup,b,dl,dt,dd,ol,ul,li,form,label,table,caption,tbody,tfoot,thead,tr,th,td,form,input,textarea{margin:0;padding:0;border:none;}
+img,a,ul li{
+    vertical-align:top;
+    text-decoration:none;
+    list-style:none;
+    border:none;
+}
+form,input,button,textarea{
+    outline:none;
+    resize:none;
+    border:none;
+}
+html{
+    min-width:320px;
+    max-width:1024px;
+    margin:0 auto;
+    overflow:hidden;
+}
+/* 清除浮动 */
+.clearfix{
+    overflow:hidden;
+}
+.clearfix:after{
+    content:'';
+    width:0;
+    height:0;
+    display:block;
+    clear:both;
+}
+/* 隐藏 */
+.dis{display:none;}
+/* 文本居中方式 */
+.text-c{text-align:center;}
+.text-r{text-align:right;}
+/* 浮动 */
+.fl-left{float:left;}
+.fl-right{float:right;}
+/* 字体大小 */
+.ft12{font-size:0.12rem;}
+.ft14{font-size:0.14rem;}
+.ft16{font-size:0.16rem;}
+.ft18{font-size:0.18rem;}
+/* 颜色 */
+.orange{color:#ed8269;}
+.blue{color:#59d2ff;}
+/* 外边距 */
+.ml10{margin-left:0.1rem;}
+.mt5{margin-top:0.05rem;}
+.mt20{margin-top:0.2rem;}
+.mr10{margin-right:0.1rem;}
+/* 边框 */
+.bor{border-bottom:0.01rem solid #ccc;}
+/* 用户信息 */
+body{
+    background:#f1f1f1;
+    font-family:'Helvetica','微软雅黑',"Microsoft YaHei";
+}
+.wrap{
+    width:100%;
+}
+.user-info{
+    position:relative;
+}
+.user-info h1{
+    font-size:0.2rem;
+    color:#fff;
+    background:#FF9600;
+    padding:0.1rem;
+}
+.user-bg{
+    width:100%;
+    height:2.5rem;
+    background:url("/wltfagent/Public/home/images/bg.jpg") 100% 100%;
+    position:relative;
+    overflow:hidden;
+}
+.user-bg a{
+    color:#000;
+}
+.user-bg img{
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius:50%;
+    display:block;
+    margin:15% auto 5%;
+    -webkit-box-shadow: 0 0 0.1rem #fff;
+    box-shadow: 0 0 0 0.05rem #FEDC70;
+}
+.user-bg p{
+    font-size:0.16rem;
+}
+.zw{
+    color:#fff;
+    background:#E34B00;
+    -webkit-border-radius:0.2rem;
+    border-radius:0.2rem;
+    padding:0.05rem 0.15rem;
+    margin:0 0.1rem;
+}
+.user-bg1{
+    width:100%;
+    background:url("/wltfagent/Public/home/images/bg.png");
+    background-size:100% 100%;
+    padding:0.15rem 0;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+.user-bg1 img{
+    width:0.32rem;
+    height:0.37rem;
+}
+.user-bg1>div a{
+    color:#5a5a5a;
+}
+.user-bg1>div{
+    width:47%;
+    font-weight:normal;
+    color:#5a5a5a;
+    padding:0 1%;
+}
+.user-bg1>p{
+    width:0.01rem;
+    height:0.4rem;
+    background:#5a5a5a;
+}
+.count>div{
+    width:0.72rem;
+    height:0.72rem;
+    text-align:center;
+    background:rgba(255,255,255,.5);
+    -webkit-border-radius:50%;
+    border-radius:50%;
+    position:absolute;
+}
+.count>div p:first-child{
+    line-height:0.45rem;
+}
+.count a,.user-status a{
+    color:#000;
+}
+.count-box1{
+    left:10%;
+    top:33%;
+    -webkit-animation:turn 1s infinite alternate linear;
+    animation:turn 1s infinite alternate linear;
+}
+.count-box2{
+    right:22%;
+    top:18%;
+    -webkit-animation:turn1 1s infinite alternate linear;
+    animation:turn1 1s infinite alternate linear;
+}
+.count-box3{
+    right:6%;
+    top:40%;
+    -webkit-animation:turn2 1s infinite alternate linear;
+    animation:turn2 1s infinite alternate linear;
+}
+@-webkit-keyframes turn {
+    0% {top:32%}
+    50% {top:33%}
+    100% {top:34%}
+}
+@keyframes turn {
+    0% {top:32%}
+    50% {top:33%}
+    100% {top:34%}
+}
+@-webkit-keyframes turn1 {
+    0% {top:17%}
+    50% {top:18%}
+    100% {top:19%}
+}
+@keyframes turn1 {
+    0% {top:17%}
+    50% {top:18%}
+    100% {top:19%}
+}
+@-webkit-keyframes turn2 {
+    0% {top:34%}
+    50% {top:33%}
+    100% {top:32%}
+}
+@keyframes turn2 {
+    0% {top:34%}
+    50% {top:33%}
+    100% {top:32%}
+}
+.img-money,.img-arrow{
+    width:0.2rem;
+    height:0.2rem;
+}
+.user-status{
+    overflow:hidden;
+}
+.user-status ul li{
+    text-align:left;
+    padding:0.1rem 0.2rem;
+    float:none;
+}
+/* 收入明细 */
+.income-box-top{
+    background:#fff;
+}
+.income-box p{
+    padding:0.1rem 0.2rem;
+    border-bottom:0.01rem solid #999;
+}
+.income-box-detail{
+    color:#6D6D6D;
+    padding:0 0.2rem;
+}
+.income-box-detail ul li{
+    padding:0.1rem 0;
+    border-bottom:0.01rem solid #ccc;
+}
+.income-box-detail ul li:last-child{
+    border:none;
+}
+.rotate{
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+/* 支持 */
+#panels-head1,#panels-head{
+    background:none;
+}
+.panels-body,.level-img{
+    background:#fff;
+}
+/* 升级 */
+.level-up>p,.level-img{
+   padding:0.1rem 0.2rem;
+}
+.level-img img{
+    width:0.32rem;
+    height:0.37rem;
+}
+/* 钱包 */
+.detailed-box{
+    padding-bottom:0.15rem;
+}
+.detailed-box li{
+    width:23%;
+    text-align:center;
+    float:left;
+    margin:1%;
+    font-size:0.15rem;
+}
+.detailed-box li img{
+    width:0.4rem;
+    height:0.4rem;
+    display:block;
+    margin:0.1rem auto;
+}
+.detailed-box li a{
+    color:#000;
+}
+.money-tx-box{
+    margin-top:0.5rem;
+}
+.money-tx-box a{
+    width:90%;
+    color:#fff;
+    font-size:0.16rem;
+    text-align:center;
+    background:#00AFA5;
+    display:block;
+    -webkit-border-radius:0.1rem;
+    border-radius:0.1rem;
+    margin:0.1rem auto;
+    padding:0.15rem 0;
+}
+/* 分辨率<768 */
+@media screen and (min-width:768px){
+    /* 首页 */
+    .user-bg{
+        width:100%;
+        height:3rem;
+    }
+    .user-bg img{
+        margin:0.5rem auto 5%;
+    }
+    .user-bg1,.count{
+        font-size:0.14rem;
+    }
+    .count>div{
+        width:1rem;
+        height:1rem;
+        font-size:0.18rem;
+    }
+    .count>div p:first-child{
+        line-height:0.66rem;
+    }
+    .count a{
+        color:#000;
+    }
+    .count-box1{
+        left:20%;
+        top:22%;
+    }
+    .count-box2{
+        right:24%;
+    }
+    .count-box3{
+        right:10%;
+    }
+    .level-up>p,.level-img{
+        font-size:0.16rem;
+    }
+    .rank-right button {
+        width: 1rem;
+    }
+    .detailed-box li img{
+        width:0.8rem;
+        height:0.8rem;
+    }
+}

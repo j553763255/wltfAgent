@@ -1,0 +1,25 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/RabbitBao.css">
+<link rel="stylesheet" href="/wltfagent/Public/home/css/task.css">
+<script src="/wltfagent/Public/home/js/RabbitBao.js"></script>
+<script src="/wltfagent/Public/admin/js/echarts.js"></script>
+<script src="/wltfagent/Public/admin/js/china.js"></script>
+</head>
+<body>
+<div id="header">
+    <a href="javascript:;" onclick="back()" class="fl-left">&lt;</a>
+    加盟商增加消息
+</div>
+<div>
+    <volist name="notice" id="vo">
+        <div class="panel">
+            <div class="head"></div>
+            <div class="body">
+                <p class="title">{$vo.title}</p>
+                <p class="time">{$vo.create_time|date="m",###}月{$vo.create_time|date="d",###}日 </p>
+                <p class="content">{$vo.content}</p>
+            </div>
+        </div>
+    </volist>
+</div>
+</body>

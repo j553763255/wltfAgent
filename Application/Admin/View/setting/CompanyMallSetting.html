@@ -1,0 +1,105 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<body>
+    <div class="panel margin">
+        <div class="panel-head">商城商品设置</div>
+        <div class="panel-body">
+            <button class="button bg-sub addMall margin-button"><a href="/admin/setting/addMall">添加商品</a></button>
+            <table class="table table-bordered margin-top">
+                <tr>
+                    <th>序号</th>
+                    <th>商品名称</th>
+                    <th>缩略图</th>
+                    <th>所需积分</th>
+                    <th>兑换数量</th>
+                    <th>上架状态</th>
+                    <th>上架时间</th>
+                    <th>操作</th>
+                </tr>
+                <volist name="goods" id="vo">
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.name}</td>
+                        <td><img src="/daili{$vo.goods_pic}" style="width: 100px;height: 80px;"></td>
+                        <td>{$vo.need_pionts}</td>
+                        <td>{$vo.qty}</td>
+                        <td>{$vo.type}</td>
+                        <td>{$vo.create_time|date="Y-m-d H:i:s" ,###}</td>
+                        <td>
+                            <button class="button bg-sub modifyGoods" value="{$vo.id}">编辑</button>
+                            <button class="button bg-sub">删除</button>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+        </div>
+    </div>
+    <div class="modifyGoodsDialog padding" style="display: none">
+        <form method="post" action="/admin/Setting/modifyGoods" enctype="multipart/form-data">
+            <input type="hidden" name="goodsId" value="">
+            <table>
+                <tr style="height: 50px;">
+                    <td><strong>商品名称: </strong></td>
+                    <td><input type="text" class="input input-auto" name="goodsName" value="" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品兑换所需的积分:</strong></td>
+                    <td><input type="number" class="input input-auto" name="need_pionts" placeholder="商品兑换所需的积分" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>上传图片:</strong></td>
+                    <td><input type="file" class="input input-auto" name="goods_pic" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品数量:</strong></td>
+                    <td><input type="number" class="input input-auto float-left" name="qty" placeholder="商品数量" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品介绍:</strong></td>
+                    <td><input type="text" class="input float-left" name="introduction" placeholder="商品介绍" /></td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td><strong>商品上架状态:</strong></td>
+                    <td>
+                        <div class="button-group radio">
+                            <label class="button active">
+                                <input name="type" value="1" checked="checked" type="radio">
+                                <span class="icon icon-check"></span> 开启
+                            </label>
+                            <label class="button">
+                                <input name="type" value="0" type="radio">
+                                <span class="icon icon-times"></span> 关闭
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button class="button bg-sub" type="submit">确认修改</button>
+        </form>
+    </div>
+<script>
+    $(".modifyGoods").click(function () {
+        $.ajax({
+            type:"post",
+            url:"/admin/Setting/modifyGoods",
+            data:{"id":$(this).val()},
+            dataType:"json",
+            success:function (data) {
+                $("input[name='goodsId']").val(data.id);
+                $("input[name='goodsName']").val(data.name);
+                $("input[name='need_pionts']").val(data.need_pionts);
+                $("input[name='qty']").val(data.qty);
+                $("input[name='introduction']").val(data.introduction);
+            }
+        });
+        layer.open({
+            type: 1,
+            title:"修改商品参数",
+            skin: 'layui-layer-rim', //加上边框
+            area:'600px',
+            content: $(".modifyGoodsDialog")
+        })
+
+    })
+</script>
+</body>

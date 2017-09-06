@@ -1,0 +1,107 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+
+<div class="container">
+    <br>
+    <div class="panel">
+        <div class="panel-head">
+            <strong>代理参数设置</strong>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>资格</th>
+                        <th>加盟费</th>
+                        <th>提现手续费</th>
+                        <th>分享奖励比例</th>
+                        <th>分红点</th>
+                        <th>服务费比例</th>
+                        <th>限定人数</th>
+                        <th>操作</th>
+                    </tr>
+                    <tbody>
+                    <volist name="rank" id="vo">
+                        <form method="post" class="form-x" action="{:U('admin/setting/fxset')}">
+                            <input name="id" type="hidden" value="{$vo.id}">
+                            <tr>
+                                <td><strong>{$vo.rank_name}</strong></td>
+                                <td><input type="text" class="input input-auto input-small" size="8" name="need_money"
+                                           placeholder="加盟费" value="{$vo.need_money}"/></td>
+                                <td><input type="text" class="input input-auto input-small" size="8" name="transfer_fee"
+                                           placeholder="提现手续费" value="{$vo.transfer_fee}"/></td>
+                                <td><input type="text" class="input input-auto input-small" size="8" name="referee_bouns"
+                                           placeholder="分享奖励比例" value="{$vo.referee_bouns}"
+                                           style="background-size: 12px;background-repeat:no-repeat;background-position:center right; background-image: url(/wltfagent/public/admin/images/percent.png)"/>
+                                </td>
+                                <td><input type="text" class="input input-auto input-small" size="8" name="bouns_dot"
+                                           placeholder="分红点" value="{$vo.bouns_dot}"/></td>
+                                <td><input type="text" class="input input-auto input-small" size="8" name="service_ratio"
+                                           placeholder="服务费比例" value="{$vo.service_ratio}"
+                                           style="background-size: 12px;background-repeat:no-repeat;background-position:center right; background-image: url(/wltfagent/public/admin/images/percent.png)"/>
+                                </td>
+                                <td><input type="text" class="input input-auto input-small" size="8" name="limit_people"
+                                           placeholder="限定人数" value="{$vo.limit_people}"/></td>
+                                <td>
+                                    <div class="form-button float-right">
+                                        <button class="button border-sub button-small" type="submit" name="submit" value="dailiRatio">确认修改</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="payRed" style="display: none">
+    <div class="panel padding">
+        <strong>总分红金额：{$ratio.1.value}元</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button button-small bg-sub margin-bottom payRedBtn" type="button">确认分红</button>
+        <table class="table table-bordered">
+            <tr>
+                <th>等级</th>
+                <th>分红点</th>
+                <th>分红人数</th>
+                <th>金额(元)</th>
+            </tr>
+            <volist name="payRed" id="vo">
+                <tr>
+                    <td>{$vo.rank_name}</td>
+                    <td>{$vo.redDot}</td>
+                    <td>{$vo.num}</td>
+                    <td>{$vo.money}</td>
+                </tr>
+            </volist>
+        </table>
+    </div>
+</div>
+<script>
+    $(".payRed").click(function () {
+        layer.open({
+            type: 1,
+            title: "确认发放分红",
+            closeBtn: 2,
+            area:"50%",
+            shadeClose: true,
+            skin: 'yourclass',
+            content: $("#payRed")
+        });
+    })
+    $(".payRedBtn").click(function () {
+        $.ajax({
+            type:"post",
+            url:"/index.php/admin/setting/payRed",
+            data:{"type":"payRed"},
+            dataType:"json",
+            success:function(data){
+                if (data){
+                    layer.msg('分红成功！', {icon: 1});
+                }else{
+                    layer.msg('分红失败！', {icon: 5});
+                }
+            }
+        })
+    })
+</script>

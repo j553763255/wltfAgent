@@ -1,0 +1,31 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<body>
+    <div class="panel margin">
+        <div class="panel-head">兑换中心设置</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>等级</th>
+                    <th>成立条件</th>
+                    <th>服务费比例(%)</th>
+                    <th>特殊补助比例(%)</th>
+                    <th>操作</th>
+                </tr>
+                    <volist name="ratio" id="vo">
+                        <form method="post" action="{:U('admin/setting/MoneyChangerSetting')}">
+                        <tr>
+                            <td>{$vo.rank_name}</td>
+                            <td><input style="border:none" name="achievement" value="{$vo.achievement}"></td>
+                            <td><input style="border:none" name="service_fee_ratio" value="{$vo.service_fee_ratio}"></td>
+                            <td><input style="border:none" name="subsidy_ratio" value="{$vo.subsidy_ratio}"></td>
+                            <td>
+                                <button class="button button-small bg-sub" name="submit" value="{$vo.id}">修改</button>
+                            </td>
+                        </tr>
+                        </form>
+                    </volist>
+            </table>
+        </div>
+    </div>
+</body>

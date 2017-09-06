@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>尚惠生活代理后台管理-重置密码</title>
+    <link rel="stylesheet" href="/wltfagent/public/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/wltfagent/public/admin/css/admin.css">
+    <script src="/wltfagent/public/admin/js/jquery.js"></script>
+    <script src="/wltfagent/public/admin/js/pintuer.js"></script>
+    <script src="/wltfagent/public/admin/js/respond.js"></script>
+    <script src="/wltfagent/public/admin/js/admin.js"></script>
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+</head>
+
+<body>
+<div class="container">
+    <div class="line">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <br /><br />
+            <div class="media media-y">
+                <a href="#" target="_blank"><img src="/wltfagent/public/admin/images/login.png" class="radius" alt="后台管理用户注册系统" /></a>
+            </div>
+            <br /><br />
+            <form action="{:U('admin/login/forgetpwd')}" method="post">
+                <div class="panel">
+                    <div class="panel-head"><strong>重置密码</strong></div>
+                    <div class="panel-body" style="padding:30px;">
+                        <div class="form-group">
+                            <div class="field field-icon-right">
+                                <input type="text" id="admin" class="input" name="admin" placeholder="用户名" data-validate="required:请填写用户名,length#>=5:用户长度不符合要求"  />
+                                <span class="icon icon-user"></span>
+                            </div>
+                        </div>
+                      <!--  <div class="form-group">
+                            <div class="field field-icon-right">
+                                <input id="mail" type="email" class="input" name="mail" placeholder="注册邮箱" onblur="checkmail(this)"  />
+                                <span class="icon icon-key"></span>
+                            </div>
+                        </div>
+                        !-->
+                        <div class="form-group">
+                           <div class="field field-icon-right">
+                               <input id="mobile" type="tel" class="input" name="mobile" placeholder="手机号码" onblur="checkmobile(this)"  />
+                               <span class="icon icon-mobile"></span>
+                           </div>
+                       </div>
+
+                        <div class="form-group" style="display: none" id="mobileexamine">
+                            <li style="color: red">手机号码格式错误!</li>
+                        </div>
+
+                        <div class="form-group">
+                          <span class="x8">
+                              <input id="code" type="text" class="input" name="code" placeholder="验证码"/>
+                          </span>
+
+                           <span class="x4" style="text-align: center;vertical-align: middle">
+                              <input id="sendmsg" style="text-align: center;vertical-align: middle" type="button" class="button button-block bg-blue text-small" value="获取验证码"/>
+                          </span>
+                        </div>
+                     <!-- <div class="form-group" style="display: none" id="mailexamine">
+                            <li style="color: red">邮箱格式错误!</li>
+                        </div>
+                     !-->
+                        <br>
+                        <div class="form-group"></div>
+                    <!--    <div class="form-group">
+                            <div class="field">
+                                <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                                <IMG onclick="this.src=this.src+'?'+Math.random()" src="{:U('admin/login/verify')}" width="80" height="32" class="passcode" />
+                            </div>
+                        </div>
+                    !-->
+                        <div class="form-group">
+                            <button class="button button-block bg-blue text-big" name="submit" type="submit">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--检查邮箱!--><script>
+    function checkmail() <!--验证邮箱格式!-->
+    {
+
+        var search_str = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
+        var email_val = $("#mail").val();
+        var obj = document.getElementById("mailexamine")//隐藏的块元素，显示邮箱格式错误
+        if(!search_str.test(email_val)){
+            obj.style.display = "";//将此块元素显示
+            $('#mail').focus();
+            return false;
+        }
+
+    }
+
+    function checkmobile()<!--验证手机格式!-->
+    {
+        var obj = document.getElementById("mobileexamine");
+        if (($("#mobile").val() == "")||!$("#mobile").val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/))
+        {
+            obj.style.display = "";
+       //alert("手机号码不能为空！");// alert("手机号码格式不正确！");
+        $("#mobile").focus();
+        return false;
+        }
+
+       else {
+            obj.style.display = "none";
+
+        return true;
+        }
+    }
+
+</script>
+
+<script >
+
+    /*-------------------------------------------*/
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    var code = ""; //验证码
+    var codeLength = 6;//验证码长度
+
+    $(function () {
+        $('#sendmsg').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/index.php/admin/login/obtainyzm",
+                data: "admin=" + $('#admin').val()+"&mobile="+$("#mobile").val() ,
+                success: function (result) {
+                   if(result==0){
+                       curCount = count;
+                       //设置button效果，开始计时
+                       $("#sendmsg").css("background-color", "LightSkyBlue");
+                       $("#sendmsg").attr("disabled", "true");
+                       $("#sendmsg").val("获取" + curCount + "秒");
+                       InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                      // alert("验证码发送成功，请查收!");
+                   }
+                    if(result==1){
+
+                        alert("用户名和手机号不匹配!");
+                    }
+                    if(result==2){
+
+                        alert("用户名不存在！");
+                    }
+
+                },
+                dataType: 'json'
+
+            })
+        })
+    })
+
+    function SetRemainTime() {
+
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#sendmsg").removeAttr("disabled");//启用按钮
+            $("#sendmsg").css("background-color", "");
+            $("#sendmsg").val("重发验证码");
+            code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+        }
+        else {
+            curCount--;
+            $("#sendmsg").val("获取" + curCount + "秒");
+        }
+    }
+</script>
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/support.css">
+<body>
+<div class="header">
+    <span class="header-title">下下级团队</span>
+    <a href="javascript:;" onclick="back()"><span><img src="/wltfagent/Public/home/images/1_02.png"/></span></a>
+</div>
+<div class="partner-list">
+    <ul>
+        <if condition="empty($myTeam)">
+            <div class="noTeam">
+                <img class="" src="/wltfagent/Public/home/images/noTeam.png">
+                <span class="prompt">该加盟商尚未成立团队！</span>
+            </div>
+            <else/>
+            <volist name="myTeam" id="vo">
+                <li class="next1" data-id="1">
+                    <img src="/wltfagent/Public/home/images/1_03.png">
+                    <span>{$vo.real_name}</span>
+                    <span class="last-tel">{$vo.tel}</span>
+                </li>
+            </volist>
+        </if>
+    </ul>
+</div>
+</body>
+</html>

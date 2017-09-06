@@ -1,0 +1,28 @@
+﻿<title>卧龙腾飞加盟系统-用户登录</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/login.css">
+<body>
+<a class="register" href="{:U('home/login/register')}"><img src="/wltfagent/Public/home/images/hands.png">&nbsp;注册</a>
+<!--<a href="/Public/download/turboet_20170526.apk" download="turboet" style="font-size: 0.01rem;color: #373446">游戏下载</a>-->
+<div class="logo">
+    <img src="/wltfagent/Public/home/images/logo.png">
+</div>
+<form method="post" action="{:U('home/login/index')}" target="niu-frame">
+    <table class="form">
+        <tr class="username">
+            <td>
+                <span><img src="/wltfagent/Public/home/images/username.png"></span>用户名
+                <input type="text" name="username">
+            </td>
+        </tr>
+        <tr class="password">
+            <td>
+                <span><img src="/wltfagent/Public/home/images/password.png"></span>密&nbsp;&nbsp;&nbsp;码
+                <input type="password" name="password">
+            </td>
+        </tr>
+    </table>
+    <button class="button" type="submit">登录</button>
+</form>
+<iframe name="niu-frame" style="display: none"></iframe>
+</body>

@@ -1,0 +1,100 @@
+<include file="./Application/Admin/View/default/Public/homeheader.html"/>
+<body>
+<div class="layout  bg-inverse fixed" style="z-index: 9;height: 100%">
+    <div class="navbar bg-yellow">
+            <div class="navbar-head" style="width:15%;margin-left: 20px;height: 6%;">
+                <button class="button icon-navicon" data-target="#navbar1">
+                </button>
+                <a href="{:U('admin/start/dailihome')}" target="_self">
+                    <img style="width: 32px" src="/wltfagent/Public/admin/images/logo.png"/>
+                    <span class="text-large">卧龙腾飞</span></a>
+            </div>
+            <div class="navbar-body nav-navicon" id="navbar1"><!--一级菜单-->
+                <ul class="nav nav-inline nav-menu">
+                    <foreach name="menuList" item="var">
+                        <if condition="($var.fmenu_id eq 0) and ($var.is_show eq 1) ">
+                            <li class="{$var.style}">
+                                <a href="{$var.menu_url}" class="{$var.class}" rel="{$var.menu_id}">{$var.menu_name}</a>
+                            </li>
+                        </if>
+                    </foreach>
+                </ul>
+                <script>
+                    $("#navbar1 ul li a").click(function () {
+                        var fuid = ".fuid_" + $(this).attr("rel");
+                        $(".sidebar ul").hide();
+                        $(fuid).show();
+                    })
+                </script>
+                <ul class="nav nav-inline nav-menu navbar-right">
+                    <li>
+                        <a target="_blank" href="{:U('admin/loginout')}">
+                            <span class="icon-sign-out"></span>注销
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="sidebar bg-yellow">
+    <foreach name="menuList" item="var">
+        <if condition="($var.fmenu_id eq 0) and ($var.is_show eq 1) ">
+                <ul class='list-unstyle fuid_{$var.menu_id}' id='Two-level-menu'>
+                    <foreach name="menuList" item="var2">
+                        <eq name="var2.fmenu_id" value="$var.menu_id">
+                            <li class="two-li"><!--二级菜单-->
+                                <div>
+                                    <a href="{$var2.menu_url}">{$var2.menu_name}</a>
+                                    <span class='icon-angle-down' style='margin-left: 40px;height: 20px;width: 20px'></span>
+                                </div>
+                                <ul class='list-unstyle'>
+                                    <foreach name="menuList" item="var3">
+                                        <eq name="var3.fmenu_id" value="$var2.menu_id">
+                                            <a href="/wltfagent/index.php/admin/{$var3.menu_url}"><li><p>{$var3.menu_name}</p></li></a><!--三级菜单-->
+                                        </eq>
+                                    </foreach>
+                                </ul>
+                            </li>
+                        </eq>
+                    </foreach>
+                </ul>
+        </if>
+    </foreach>
+    </div>
+
+    <div class="layout" style="width: 85%;float:right;">
+        <ul class="bread bg">
+            <li id="first_menu"><a href="javascript:;" class="icon-home text-sub">首页</a></li>
+        </ul>
+        <iframe frameborder=0 height=600px width=100% marginheight=0 marginwidth=0 scrolling=auto name="iframe"
+                src="{:U('admin/start/homepage')}"></iframe>
+    </div>
+</div>
+</body>
+<script>
+    var height = $(window).height() - 100;
+    $(function () {
+        $("iframe").attr("height", height);
+    });
+    $(function () {
+        if (!$("ul")) {
+            $(this).remove();
+        }
+    });
+    $(".sidebar a").click(function () {
+        if ($(this).attr("href") != "javascript:;") {
+            $(".bread").html("");
+        }
+        var url = $(this).attr("href");
+        $.ajax({
+            type: "POST",
+            url: "{:U('admin/start/dailiHomeAjax')}",
+            data: {"url": url},
+            dataType: 'json',
+            success: function (data) {
+                for (var k in data) {
+                    $(".bread").append("<li><a href='" + data[k].menu_url + "' class='" + data[k].class + " text-sub'>" + data[k].menu_name + "</a></li>")
+                }
+            }
+        });
+    })
+</script>

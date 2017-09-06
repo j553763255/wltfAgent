@@ -1,0 +1,90 @@
+.form{
+    padding-top: 0.05rem;
+    /*background: #F9EDB8;*/
+}
+.form-input{
+    height: 0.4rem;
+    border-radius: 0.1rem;
+    border:0.01rem solid #ccc;
+    color: #333333;
+    font-size: 0.16rem;
+    margin-right: 0.15rem;
+    margin-left: 0.15rem;
+    margin-top: 0.2rem;
+    line-height:0.4rem;
+    background:#fff;
+}
+.form-input span{
+    display: inline-block;
+    margin-left: 0.2rem;
+    width: 1rem
+}
+.form-input input{
+    border:none;
+    width:1.9rem;
+    height: 0.35rem;
+    outline:none;
+    /*background: #F9EDB8;*/
+}
+.form-input select{
+    font-size: 0.16rem;
+    border:none;
+    outline:none;
+    /*background: #F9EDB8;*/
+}
+.form-button{
+    margin-top: 0.35rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+}
+.button{
+    border:none;
+
+    height:0.5rem;
+    width: 100%;
+    background-color: #00AFA5;
+    border-radius: 0.1rem;
+    font-size: 0.2rem;
+    color: #ffffff;
+}
+textarea{
+    font-size: 0.16rem;
+    border: none;
+    width: 1.9rem;
+    height: 0.8rem;
+    outline: none;
+    /*background: #F9EDB8;*/
+    margin-top: 0.1rem;
+    margin-left:0.08rem;
+    float:left;
+}
+.explain{
+    height:1rem;
+}
+.explain span{
+    float:left;
+}
+.form form .form-input:nth-child(5){
+    background: none;
+    border:none;
+}
+.addr span{
+    width:1.22rem;
+}
+.addr span,.addr select{
+    text-align:center;
+    margin:0;
+    background:#fff;
+    -webkit-border-radius:0.1rem;
+    border-radius:0.1rem;
+    border:0.01rem solid #ccc;
+}
+.addr select{
+    height:0.4rem;
+    padding:0 0.02rem;
+}
+@media screen and (min-width:768px){
+    .form-input input,textarea{
+        width:75%;
+    }
+}

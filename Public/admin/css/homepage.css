@@ -1,0 +1,54 @@
+#text1div{  display: none;  background-color: #ffcc66;  position: absolute;  border: 4px solid #FF1800;  z-index: 999;  width:300px;  height:150px;  top:180px;  padding: 10px;  border-radius: 10px;  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);  }
+#text1div:before {  left: -14px;  top: 50%;  margin-top: -82px;  margin-left: 20px;  position: absolute;  z-index: -1;  content: "";  width: 0;  height: 0;  border-top: 0;  border-bottom: 11px solid #FF1800;  border-right: 11px solid transparent;  border-left: 11px solid transparent;  }
+#text1div:after {  left: -11px;  top: 50%;  margin-top: 0px;  position: absolute;  content: "";  width: 0;  height: 0;  border-top: 11px solid transparent;  border-bottom: 11px solid transparent;  border-right: 11px solid transparent;  border-left: 0;
+}
+#text2div{  display: none;  background-color: #3ABBEF;  position: absolute; left:105px; border: 4px solid #00A6E7;  z-index: 999;  width:300px;  height:150px;  top:180px;  padding: 10px;  border-radius: 10px;  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+#text2div:before {  left: -14px;  top: 50%;  margin-top: -82px;  margin-left: 20px;  position: absolute;  z-index: -1;  content: "";  width: 0;  height: 0;  border-top: 0;  border-bottom: 11px solid #00A6E7;  border-right: 11px solid transparent;  border-left: 11px solid transparent;
+}
+#text2div:after {  left: -11px;  top: 50%;  margin-top: 0px;  position: absolute;  content: "";  width: 0;  height: 0;  border-top: 11px solid transparent;  border-bottom: 11px solid transparent;  border-right: 11px solid transparent;  border-left: 0;
+}
+
+#text3div{  display: none;  background-color: #66ccff;  position: absolute; left:195px; border: 4px solid #3ABBEF;  z-index: 999;  width:300px;  height:150px;  top:180px;  padding: 10px;  border-radius: 10px;  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+#text3div:before {  left: -14px;  top: 50%;  margin-top: -82px;  margin-left: 20px;  position: absolute;  z-index: -1;  content: "";  width: 0;  height: 0;  border-top: 0;  border-bottom: 11px solid #3ABBEF;  border-right: 11px solid transparent;  border-left: 11px solid transparent;
+}
+#text3div:after {  left: -11px;  top: 50%;  margin-top: 0px;  position: absolute;  content: "";  width: 0;  height: 0;  border-top: 11px solid transparent;  border-bottom: 11px solid transparent;  border-right: 11px solid transparent;  border-left: 0;
+}
+#homesob{  display: none;  background-color: #66ccff;  position: absolute;  border: 4px solid #3ABBEF;  z-index: 999;  width:350px;  height:auto;  top:385px; left:280px; padding: 10px;  border-radius: 10px;  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+#homesob:before {  left: -14px;  top: 50%;  margin-top: -82px;  margin-left: 20px;  position: absolute;  z-index: -1;  content: "";  width: 0;  height: 0;  border-top: 0;  border-bottom: 11px solid transparent;  border-right: 11px solid transparent;  border-left: 11px solid transparent;
+}
+#homesob:after {  left: -11px;  top: 15%;  margin-top: 0px;  position: absolute;  content: "";  width: 0;  height: 0;  border-top: 11px solid transparent;  border-bottom: 11px solid transparent;  border-right: 11px solid #3ABBEF;  border-left: 0;
+}
+
+.dail-box ul{
+    height:160px;
+    line-height:40px;
+}
+.dail-box ul:after{
+    content:"";
+    display: block;
+    clear:both;
+}
+.dail-box ul li{
+    height:25%;
+    line-height:40px;
+    border-bottom:solid 1px #ddd;list-style:none;padding:0;
+}
+.dail-box ul li a{
+    display:block;
+    line-height:40px;
+    width:100%;
+}
+.dail-box ul li.active{
+    background-color:#fff;
+    position:relative;
+    z-index:1000;
+    margin-right:-1px;
+}
+.dail-box  .list-group{
+    border-right:none;
+}
+html{height: 100%}
+body{height:100%;}

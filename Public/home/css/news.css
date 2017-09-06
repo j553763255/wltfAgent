@@ -1,0 +1,100 @@
+body{
+    background: #f0fff0;
+}
+.header{
+    font-size: 0.2rem;
+    text-align: center;
+    background-color: #fff;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    border-bottom: 1px solid #ccc;
+}
+.header-title{
+    font-weight: bold;
+    font-size: 0.2rem;
+}
+.header img{
+    height: 0.19rem;
+    width: 0.11rem;
+    position: absolute;
+    left: 0.15rem;
+    top:0.125rem;
+}
+.main-index{
+    background-color: #fff;
+    height: 1.4rem;
+}
+.main-index .index-nav{
+    height: 0.7rem;
+    border-bottom: 0.01rem solid #cccccc;
+}
+.main-index .index-nav .left-icon{
+    line-height: 0.4rem;
+    position: absolute;
+    left: 0.15rem;
+    margin-top:0.15rem;
+    width: 0.4rem;
+    margin-right: 0.15rem;
+}
+.main-index .index-nav .right-icon{
+    height: 0.15rem;
+    width: 0.08rem;
+    position: absolute;
+    right: 0.15rem;
+    margin-top:0.25rem;
+}
+.main-index .index-nav span{
+    position: absolute;
+    left: 0.7rem;
+    margin-top:0.15rem;
+}
+.main-index .index-nav .nav-title{
+     line-height: 0.2rem;
+     font-size: 0.15rem;
+     font-weight: bold;
+     color: #333333;
+}
+.main-index .index-nav .nav-remark{
+    line-height: 0.2rem;
+    font-size: 0.13rem;
+    color: #999999;
+}
+.news-list{
+    height: 1rem;
+    background-color: #fff;
+    border-bottom: 0.01rem solid #cccccc;
+    margin-bottom: 0.1rem;
+}
+.news-list .list-title{
+    line-height: 0.15rem;
+    font-weight: bold;
+    font-size: 0.15rem;
+    color: #333333;
+    padding-top: 0.15rem;
+    padding-left: 0.15rem;
+}
+.news-list .list-type{
+    line-height: 0.13rem;
+    font-size: 0.13rem;
+    color: #999999;
+    padding-top: 0.11rem;
+    padding-left: 0.15rem;
+}
+.news-list .list-time{
+    line-height: 0.13rem;
+    font-size: 0.13rem;
+    padding-top: 0.11rem;
+    padding-left: 0.15rem;
+    color: #999;
+}
+.news-list .list-time span{
+    position: absolute;
+    right: 0.15rem;
+}
+.info-dialogs{
+    display: none;
+    text-align: center;
+    font-size: 0.16rem;
+    line-height: 0.3rem;
+    height: 1.5rem;
+}

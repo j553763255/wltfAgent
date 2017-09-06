@@ -1,0 +1,38 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/RabbitBao.css">
+<link rel="stylesheet" href="/wltfagent/Public/home/css/task.css">
+<script src="/wltfagent/Public/home/js/RabbitBao.js"></script>
+<script src="/wltfagent/Public/admin/js/echarts.js"></script>
+<script src="/wltfagent/Public/admin/js/china.js"></script>
+    <style>
+        span{
+            color : green;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <a href="javascript:;" onclick="back()" class="fl-left">&lt;</a>
+    转账记录
+</div>
+
+<div>
+    <volist name="transfer" id="vo">
+        <div class="panel">
+            <div class="head"></div>
+            <div class="body">
+                <p class="title">{$vo.title}</p>
+                <p class="time">{$vo.create_time|date="Y",###}年{$vo.create_time|date="m",###}月{$vo.create_time|date="d",###}日</p>
+                <if condition="$vo.pay_id eq $_SESSION['uid']">
+                    <p class="content">您在<span>{$vo.create_time|date="Y年m月d日H:i:s",###}</span>，向<span>{$vo.username}</span>转账<span>{$vo.money|number_format=2}</span>注册币，手续费<span>{$vo.fee|number_format=2}</span>注册币。</p>
+                <elseif condition="$vo.rec_id eq $_SESSION['uid']" />
+                    <p class="content"><span>{$vo.username}</span>在<span>{$vo.create_time|date="Y年m月d日H:i:s",###}</span>，向您转账<span>{$vo.money|number_format=2}</span>注册币。</p>
+                <else />
+                    <p class="content">发生未知错误，请联系客服。</p>
+                </if>
+            </div>
+        </div>
+    </volist>
+</div>
+
+</body>

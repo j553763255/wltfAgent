@@ -1,0 +1,65 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<div class="tab">
+    <div class="tab-head">
+        <ul class="tab-nav">
+            <li class="active"><a href="#set">代理分级权限设置</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-body" style="width: 30%";>
+        <br>
+        <div class="" id="set">
+        <form method="post" class="form-x" style="float: right ; width: 80%" >
+              <div class="form-group" style="width: 80%" style="float: right">
+               <select class="input" name="registerpositionid" id="registerpositionid">
+                   <option name="" id="choice" value="">--请选择--</option>
+                   <option name="1" id="chairman" value="1">董事长</option>
+                   <option name="2" id="specialist" value="2">人事专员</option>
+                   <option name="3" id="manager" value="3">部门经理</option>
+                   <option name="4" id="minister" value="4">部门部长</option>
+               </select>
+              </div>
+
+           <div class="form-group" >
+             <!--  <input type=checkbox name=checkbox[] id=checkbox_1 value=权限1 />权限1
+               <input type=checkbox name=checkbox[] id=checkbox_2 value=权限2 />权限2
+               <input type=checkbox name=checkbox[] id=checkbox_3 value=权限3 />权限3
+               !-->
+               <div class="field label-block" style="width: 50%;">
+                   <label>
+                       <input name="authority1" type="checkbox" value="1">权限1
+                   </label>
+                   <label>
+                       <input name="authority2" type="checkbox" value="1">权限2
+                   </label>
+                   <label>
+                       <input name="authority3" type="checkbox" value="1">权限3
+                   </label>
+                   <label>
+                       <input name="authority4" type="checkbox" value="1">权限4
+                   </label>
+               </div>
+
+               <div class="field label-block" style="width: 50%;">
+                   <label>
+                       <input name="authority5" type="checkbox" value="1">权限5
+                   </label>
+                   <label>
+                       <input name="authority6" type="checkbox" value="1">权限6
+                   </label>
+                   <label>
+                       <input name="authority7" type="checkbox" value="1">权限7
+                   </label>
+                   <label>
+                       <input name="authority8" type="checkbox" value="1">权限8
+                   </label>
+               </div>
+           </div>
+         <div class="form-button"><button class="button bg-blue" type="submit" name="submit">设置</button></div>
+        </form>
+        </div>
+    </div>
+
+
+</div>

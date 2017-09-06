@@ -1,0 +1,94 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/wallet.css">
+<script src="/wltfagent/Public/home/js/wallet.js"></script>
+<body>
+<div id="header">
+    <a href="javascript:;" onclick="back()">
+        <img class="back" src="/wltfagent/Public/home/images/left.png">
+    </a>
+    注册币充值
+</div>
+<form class="recharge" action="{:U('home/wallet/transfer')}" method="post" target="niu-frame">
+    <div class="form-input">
+        <span class="target_account">充值金额</span>
+        <input class="need-pay" name="need-pay" placeholder="请输入充值金额">
+    </div>
+    <div class="form-label">
+        <label><img src="/wltfagent/Public/home/images/integral.png"><span>余额支付&nbsp;</span><input name="code" type="radio" value="1" checked ></label>
+    </div>
+    <button class="confirm rechargeSubmit" type="button">确认充值</button>
+</form>
+</body>
+<script>
+    $(".rechargeSubmit").click(function () {
+        $.ajax({
+            url:"{:U('home/wallet/recharge')}",
+            type:"post",
+            dataType:"json",
+            data:{"money":$("input[name='need-pay']").val(),"code":$("input[name='code']").val()},
+            success:function (data) {
+                if (data){
+                    layer.open({
+                        content:data
+                        ,btn: '我知道了'
+                        ,yes:function(){
+                            function _url(){
+                                window.location.href = '{:U("home/wallet/index")}';
+                            }
+                            setTimeout(_url,100);
+                        }
+                    })
+                }
+            }
+        });
+//        layer.open({
+//            title: [
+//                '支付密码',
+//                'background-color: #FF4351; color:#fff;'
+//            ]
+//            ,content:'<div class="pwd-box">' +
+//            '<input type="tel" maxlength="6" class="pwd-input pay-input" checked>' +
+//                 '<div class="fake-box">' +
+//                '<input type="password" readonly="">'+
+//                '<input type="password" readonly="">'+
+//                '<input type="password" readonly="">'+
+//                '<input type="password" readonly="">'+
+//                '<input type="password" readonly="">'+
+//                '<input id="last" type="password" readonly="">'+
+//                '</div>'+
+//                '</div>',
+//            success:function (layero, index) {
+//                var $input = $(".fake-box input");
+//                $(".pay-input").on("keyup", function() {
+//                    var pwd = $(this).val().trim();
+//                    for (var i = 0, len = pwd.length; i < len; i++) {
+//                        $input.eq("" + i + "").val(pwd[i]);
+//                    }
+//                    $input.each(function() {
+//                        var index = $(this).index();
+//                        if (index >= len) {
+//                            $(this).val("");
+//                        }
+//                    });
+//                    if (len == 6) {
+//                        $.ajax({
+//                            url:"{:U('home/wallet/recharge')}",
+//                            type:"post",
+//                            dataType:"json",
+//                            data:{"pwd":$(".pay-input").val(),"money":$("input[name='need-pay']").val(),"code":$("input[name='code']").val()},
+//                            success:function (data) {
+//                                if (data){
+//                                    layer.open({
+//                                        content:data
+//                                        ,btn: '我知道了'
+//                                    })
+//                                }
+//                            }
+//                        })
+//                    }
+//                });
+//            }
+//        });
+
+    })
+</script>

@@ -1,0 +1,78 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">加盟商列表</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <!--<form method="post" class="form-inline">-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="user_name">加盟商</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="user_name" name="user_name" size="20" placeholder="加盟商账号" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="province">省份</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="province" name="province_id" size="20" placeholder="所属省份" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="label">-->
+                            <!--<label for="city">城市</label>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                            <!--<input type="text" class="input" id="city" name="city_id" size="20" placeholder="所属城市" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-button">-->
+                        <!--<button class="button bg-main" type="submit">搜索</button>-->
+                    <!--</div>-->
+                <!--</form><br/>-->
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">加盟商</th>
+                        <th style="text-align: center">等级</th>
+                        <th style="text-align: center">所属省</th>
+                        <th style="text-align: center">所属市</th>
+                        <th style="text-align: center">个人业绩</th>
+                        <th style="text-align: center">直推人数</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.user_name}</td>
+                            <td>{$vo.rank}</td>
+                            <td>{$vo.province}</td>
+                            <td>{$vo.city}</td>
+                            <td>{$vo.achievement}</td>
+                            <td>{$vo.referee_num}</td>
+                            <td>
+                                <button id="recover" class="button bg-main button-small" msg_id="{$vo.id}">恢复</button>
+                            </td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#recover').on('click',function(){
+        var id = $(this).attr('msg_id');
+        $.post("{:U('admin/joining/botherList')}",{status:1,id:id},function(data){
+            if(data['code'] == 1){
+                layer.msg('回复成功',{icon:1});
+                setTimeout("window.location.reload()", 1500);
+            }
+        })
+    })
+</script>

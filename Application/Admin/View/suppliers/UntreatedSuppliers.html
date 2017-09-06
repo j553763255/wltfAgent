@@ -1,0 +1,75 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<br>
+<div class="container">
+    <div class="panel">
+        <div class="panel-head">待审核企业</div>
+        <div class="panel-body">
+            <div class="table-responsive-y">
+                <table class="table table-bordered" style="text-align: center">
+                    <tr>
+                        <th style="text-align: center">编号</th>
+                        <th style="text-align: center">名称</th>
+                        <th style="text-align: center">类别</th>
+                        <th style="text-align: center">对接专员</th>
+                        <th style="text-align: center">地址</th>
+                        <th style="text-align: center">注册资金</th>
+                        <th style="text-align: center">销售额</th>
+                        <th style="text-align: center">上传时间</th>
+                        <th style="text-align: center">状态</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    <if condition="$suppliers eq ''">
+                        <tr><td colspan="14" style="color: #00A0EA;font-size: 24px">暂无数据</td></tr>
+                    <else />
+                    <volist name="suppliers" id="vo">
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.suppliers_name}</td>
+                            <td>{$vo.suppliers_type}</td>
+                            <td>{$vo.user_id}</td>
+                            <td>{$vo.address}</td>
+                            <td>{$vo.registered}</td>
+                            <td>{$vo.money}</td>
+                            <td>{$vo.create_time|date="Y-m-d",###}</td>
+                            <td>{$vo.status}</td>
+                            <td>
+                                <button class="button button-small bg-main service-pass" val="{$vo.id}" status="2">通过</button>
+                                <button class="button button-small bg-red service-pass" val="{$vo.id}" status="3">拒绝</button>
+                            </td>
+                        </tr>
+                    </volist>
+                    </if>
+                </table>
+            </div>
+            <div class="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".service-pass").click(function () {
+        var id = $(this).attr("val");
+        var status = $(this).attr("status");
+        if (status == 2){
+            var msg = "是否确定通过？";
+        }else {
+             msg = "是否确定拒绝？";
+        }
+        layer.confirm(msg, function(index){
+            $.ajax({
+                url:"{:U('admin/Suppliers/UntreatedSuppliers')}",
+                type:"post",
+                data:{"id":id,"status":status},
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        layer.msg("审核成功！");
+                        setTimeout("location.reload()",1500);
+                    }else {
+                        layer.msg("审核失败！");
+                    }
+                }
+            });
+            layer.close(index);
+        })
+    })
+</script>

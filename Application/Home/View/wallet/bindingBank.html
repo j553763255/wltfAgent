@@ -1,0 +1,61 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/wallet.css">
+<script src="/wltfagent/Public/home/js/wallet.js"></script>
+<body>
+<div id="header">
+    <a href="javascript:;" class="goBank fl-left">&lt;</a>
+    绑定银行卡
+</div>
+<form method="post" action="{:U('home/wallet/bindingBank')}" target="niu-frame">
+<div class="input-card first-page">
+    <p>请绑定本人银行卡</p>
+    <div class="bank-card">
+        <span>银行卡号：</span>
+        <input class="" name="bank-card" type="text" placeholder="请输入银行卡号">
+    </div>
+    <div class="bank-card">
+        <span>确认卡号：</span>
+        <input class="bank-card2" name="bank-card2" type="text" placeholder="请确认银行卡号">
+    </div>
+    <div class="Notes">
+        注：绑定的银行卡为您在我们平台提现所用的银行卡，不会从你的银行卡中收取任何费用。
+    </div>
+    <button class="next" type="button">下一步</button>
+</div>
+<div class="input-massage last-page">
+    <p>通过验证银行卡信息确保本人操作</p>
+    <form></form>
+    <div class="bank-card">
+        <span>所属银行：</span>
+        <select class="" name="bank-name" style="border: none">
+            <option value="" selected>请选择所属银行</option>
+            <option value="中国银行">中国银行</option>
+            <option value="中国建设银行">中国建设银行</option>
+            <option value="中国工商银行">中国工商银行</option>
+            <option value="中国农业银行">中国农业银行</option>
+        </select>
+    </div>
+    <ul class="bank-massage">
+        <li>
+            <span>开户支行：</span>
+            <input class="" name="bank-account" type="text" placeholder="请输入开户银行">
+        </li>
+        <li>
+            <span>持卡人：</span>
+            <input class="" name="holder-name" type="text" placeholder="持卡人姓名">
+        </li>
+        <li>
+            <span>证件号：</span>
+            <input class="" name="card-id" type="text" placeholder="身份证号码">
+        </li>
+        <li>
+            <span>手机号：</span>
+            <input class="" name="mobile" type="text" placeholder="银行预留手机号">
+        </li>
+    </ul>
+    <button class="" type="submit">提交</button>
+</div>
+</form>
+</body>
+<iframe name="niu-frame" style="display: none"></iframe>
+</html>

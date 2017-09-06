@@ -1,0 +1,99 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<div class="container">
+    <button class="button bg-blue margin" onclick="forNotice()">发布公告</button>
+    <div class="panel">
+        <div class="panel-head">所有公告</div>
+        <div class="table-responsive-y">
+            <table class="table table-bordered">
+                <tr>
+                    <th>序号</th>
+                    <th>标题</th>
+                    <th>发布时间</th>
+                    <th>发布人</th>
+                    <th>修改时间</th>
+                    <th>修改人</th>
+                    <th>操作</th>
+                </tr>
+                <volist name="notice" id="vo">
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.create_time|date="Y-m-d H:i:s" ,###}</td>
+                        <td>{$vo.admin_mobile}</td>
+                        <if condition="!empty($vo['modify_time'])">
+                            <td>{$vo.modify_time|date="Y-m-d H:i:s" ,###}</td>
+                            <else/>
+                            <td>未修改</td>
+                        </if>
+
+                        <td>{$vo.modify_admin_mobile}</td>
+                        <td>
+                            <if condition="$vo.type neq 1">
+
+                                <button class="button button-small bg-gray">编辑
+                                </button>
+                                <button class="button button-small bg-gray">删除</button>
+                                <else/>
+                                <button class="button button-small bg-sub"
+                                        onclick="forNotice('{$vo.id}','{$vo.title}','{$vo.content}')">编辑
+                                </button>
+                                <button class="button button-small bg-red delNotice" value="{$vo.id}">删除</button>
+                            </if>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<div class="release-dialog" style="display: none">
+    <form method="post" action="{:U('admin/setting/notice')}">
+        <input class="id" type="hidden" name="id" value="">
+        <div class="form-group margin">
+            <label class="label">公告标题：</label>
+            <input type="text" class="input title" name="title" size="20"/>
+            <label class="label">公告内容：</label>
+            <textarea class="input content" rows="5" name="content">{$announce.daili_text}</textarea>
+            <button class="button float-right bg-blue margin" name="submit" type="submit">发布</button>
+        </div>
+    </form>
+</div>
+<script>
+    function forNotice(notice_id, title, content) {
+        $(".id").val(notice_id);
+        $(".title").val(title);
+        $(".content").val(content);
+        layer.open({
+            type: 1,
+            title: ['发布公告', 'font-size:18px;'],
+            area: '60%',
+            shadeClose: true,
+            skin: 'yourclass',
+            content: $(".release-dialog")
+        });
+    }
+    $(".delNotice").click(function () {
+        var notice_id=$(this).val();
+        layer.confirm('是否确认删除公告？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.ajax({
+                url:"/index.php/admin/setting/delNotice",
+                type:"post",
+                data:{"notice_id":notice_id},
+                dataType:"json",
+                success:function (data) {
+                    if (data){
+                        layer.msg('删除公告成功', {icon: 1});
+                        setTimeout("window.location.reload()",1500);
+                    }else {
+                        layer.msg('删除公告失败', {icon: 2});
+                    }
+                }
+            });
+        });
+    })
+</script>
+
+

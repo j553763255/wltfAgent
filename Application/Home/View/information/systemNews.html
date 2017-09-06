@@ -1,0 +1,31 @@
+<title>系统通知</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/news.css">
+<body>
+<div id="header">
+    <span class="header-title">系统通知</span>
+    <a href="{:U('home/information/index')}" class="fl-left">&lt;</a>
+</div>
+<volist name="list" id="vo">
+    <div class="news-list">
+        <div class="list-title">江苏兔尔宝文化发展有限公司</div>
+        <div class="list-type">类型：系统通知</div>
+        <div class="list-time">发布时间：{$vo.create_time|date="Y-m-d H:i:s",###}<span class="read-message" data-id="{$vo.id}">查看详情</span></div>
+    </div>
+    <div class="info-dialogs">
+        <div class="message-title title{$vo.id}" style="text-align: center;">{$vo.title}</div>
+        <div class="message-content content{$vo.id}">&nbsp;&nbsp;&nbsp;&nbsp;{$vo.content}</div>
+    </div>
+</volist>
+</body>
+<script>
+    $('.read-message').on('click',function(){
+        var id = $(this).attr('data-id');
+        layer.open({
+            title:$('.title'+id).html(),
+            content: $('.content'+id).html(),
+            btn: '我知道了'
+        });
+    });
+</script>
+</html>

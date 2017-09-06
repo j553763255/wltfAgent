@@ -1,0 +1,115 @@
+<block name="include"><include file="default:Public/header" /></block>
+<script type="application/javascript" src="/wltfagent/Public/home/layer_mobile/layer.js"></script>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/register.css">
+<script src="/wltfagent/Public/home/js/register.js"></script>
+<body>
+<div id="header">
+    <a href="#" onClick="javascript :history.back(-1);return false;" class="fl-left">&lt;</a>
+    添加企业
+</div>
+<div class="form">
+    <form class="" action="{:U('home/support/register')}" method="post" target="niu-frame">
+        <div class="form-input real_name">
+            <span>企业名称：</span>
+            <input name="name" type="text" placeholder="请填写企业全称">
+        </div>
+        <div class="form-input type">
+            <span>企业类别：</span>
+            <input name="type" type="text" placeholder="请填写企业类别">
+        </div>
+        <div class="form-input mobile">
+            <span>联系方式：</span>
+            <input name="mobile" type="number" placeholder="请填写对接企业的电话号码">
+        </div>
+        <div class="form-input explain">
+            <span>企业说明：</span>
+            <textarea name="explain" placeholder="请简单描述你所对接的企业。"></textarea>
+        </div>
+        <div class="form-input addr">
+            <span>企业地址：</span>
+            <select id="province" name="province">
+                <option selected="selected" value="">-省-</option>
+                <volist name="province" id="vo">
+                    <option value="{$vo.code}">{$vo.name}</option>
+                </volist>
+            </select>
+            <select id="city" name="city">
+                <option selected='selected'  value=''>-市-</option>
+            </select>
+            <select id="area" name="area">
+                <option selected="selected"  value="">-区-</option>
+            </select>
+        </div>
+        <div class="form-input address">
+            <span>详细地址：</span>
+            <input name="address" type="text" placeholder="请输入详细地址">
+        </div>
+        <div class="form-input registered">
+            <span>注册资金：</span>
+            <input name="registered" type="number" placeholder="请填写对接企业注册资金">
+        </div>
+        <div class="form-button">
+            <button class="button" type="submit" onclick="loadingBox('用户注册中，请稍后。。。')">提交</button>
+        </div>
+    </form>
+</div>
+<script>
+    $("#province").change(function () {
+        $("#city").html("<option selected='selected'  value=''>请选择市</option>");
+        var provinceId = $(this).val();
+        $.ajax({
+            type:"post",
+            url:"{:U('home/support/getCity')}",
+            dataType:"json",
+            data:{"provinceId":provinceId},
+            success:function (data) {
+                for (var i=0; i < data.length; i++){
+                    $("#city").append("<option value='" + data[i].code + "'>" + data[i].name +"</option>")
+                }
+            }
+        })
+    });
+    $("#city").change(function () {
+        $("#area").html("<option selected='selected'  value=''>请选择区</option>");
+        var cityId = $(this).val();
+        $.ajax({
+            type:"post",
+            url:"{:U('home/support/getArea')}",
+            dataType:"json",
+            data:{"cityId":cityId},
+            success:function (data) {
+                for (var i=0; i < data.length; i++){
+                    $("#area").append("<option value='" + data[i].code + "'>" + data[i].name +"</option>")
+                }
+            }
+        })
+    });
+    $(".referee").keyup(function () {
+        var referee = $("input[name='referee']").val();
+        if (referee.length == 11){
+            $.ajax({
+                type:"post",
+                url:"{:U('home/support/getReferee')}",
+                data:{"referee":referee},
+                dataType:"json",
+                success:function (data) {
+                    if (data == null){
+                        layer.open({
+                            content:"未找到推荐人信息",
+                            skin:"msg",
+                            time:2
+                        })
+                    }else{
+                        $("input[name='referee_id']").val(data.id);
+                        layer.open({
+                            content: "推荐人姓名：" + data.real_name
+                            ,btn: '我知道了'
+                        });
+                    }
+                }
+            })
+        }
+    })
+</script>
+</body>
+<iframe name="niu-frame" style="display: none;color:#ffffff;"></iframe>

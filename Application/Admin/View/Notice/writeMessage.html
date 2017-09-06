@@ -1,0 +1,92 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+
+<div class="panel">
+    <div class="panel-head"><strong><h3>发送邮件</h3></strong></div>
+    <!--表头-->
+    <div class="table-responsive table-bordered" style="height: 50px;line-height: 33px;font-size: 15px;padding: 5px 0;border-bottom: 1px solid #ddd;">
+        <div style="float: left;margin-left: 30px;"><button class="types" types="1">系统公告</button></div>
+        <div style="float: left;margin-left: 30px;"><button class="types" types="2">公司内部公告</button></div>
+        <div style="float: left;margin-left: 30px;"><button class="types" types="3">下属公司公告</button></div>
+        <div style="float: right;padding-right: 20px; "><a href="{:U('admin/Notice/innerMail')}" style="color: #00a2d4">返回信息列表</a></div>
+    </div>
+    <!--表单1-->
+    <div id="system" style="font-size: 15px;display: none;">
+        <form action="{:U('admin/Notice/writeMessage')}" method="post">
+            <input type="hidden" name="type" value="1" />
+            <div style="height: 400px;margin: 3% 20%;">
+                <p><span>收件人：</span>
+                    <!--<select name="rec_name">-->
+                        <!--<option value="">全体人员</option>-->
+                        <!--<foreach name="name_list" item="$list">-->
+                            <!--<option value="{$list.admin_id}"></option>-->
+                        <!--</foreach>-->
+                    <!--</select>-->
+                    <input type="text" name="" value="全体员工" readonly />
+                </p><br/>
+                <p><span>标题　：</span><input type="text" name="title" value="" /></p><br/>
+                <p><span>内容　：</span><textarea rows="3" cols="40" name="message"></textarea></p><br/>
+                <div style="margin: 0 20%"><input type="submit" name="submit" value="发送"/></div>
+            </div>
+        </form>
+    </div>
+    <!--表单2-->
+    <div id="companyinside" style="font-size: 15px;display: none;">
+        <form action="{:U('admin/Notice/writeMessage')}" method="post">
+            <div style="height: 400px;margin: 3% 20%;">
+                <input type="hidden" name="type" value="2" />
+                <p><span>收件人：</span>
+                    <select name="rec_name[][admin_id]"  multiple="true" size="2">
+                        <option value="0">公司全体人员</option>
+                        <foreach name="name_list" item="list">
+                            <option value="{$list.admin_id}">{$list.admin}</option>
+                        </foreach>
+                    </select>
+                </p><br/>
+                <p><span>标题　：</span><input type="text" name="title" value="" /></p><br/>
+                <p><span>内容　：</span><textarea rows="3" cols="40" name="message"></textarea></p><br/>
+                <div style="margin: 0 20%"><input type="submit" name="submit" value="发送"/></div>
+            </div>
+        </form>
+    </div>
+    <!--表单3-->
+    <div id="lowercompany" style="font-size: 15px;display: none;">
+        <form action="{:U('admin/Notice/writeMessage')}" method="post">
+            <div style="height: 400px;margin: 3% 20%;">
+                <input type="hidden" name="type" value="3" />
+                <p><span>收件人：</span>
+                    <select name="rec_name[]" multiple="true">
+                        <option value="">下级代理公司</option>
+                        <foreach name="company_list" item="list">
+                            <option value="{$list.company_id}">{$list.company_name}</option>
+                        </foreach>
+                    </select>
+                </p><br/>
+                <p><span>标题　：</span><input type="text" name="title" value="" /></p><br/>
+                <p><span>内容　：</span><textarea rows="3" cols="40" name="message"></textarea></p><br/>
+                <div style="margin: 0 20%"><input type="submit" name="submit" value="发送"/></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".types").on('click',function () {
+            var types = $(this).attr("types");
+            if(types == 1){
+                $("#system").css('display','block');
+                $("#companyinside").css('display','none');
+                $("#lowercompany").css('display','none');
+            }
+            if(types == 3){
+                $("#system").css('display','none');
+                $("#companyinside").css('display','none');
+                $("#lowercompany").css('display','block');
+            }
+            if(types == 2){
+                $("#system").css('display','none');
+                $("#companyinside").css('display','block');
+                $("#lowercompany").css('display','none');
+            }
+        })
+    })
+</script>

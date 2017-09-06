@@ -1,0 +1,22 @@
+<title>业绩详情</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/index.css">
+<body>
+<div class="header">
+    <span class="header-title">业绩详情</span>
+    <a href="javascript:;" onclick="back()"><span><img src="/wltfagent/Public/home/images/1_02.png"/></span></a>
+</div>
+<div class="partner-list">
+    <ul>
+        <volist name="nextService" id="vo">
+            <li class="next1" data-id="1">
+                <img src="/wltfagent/Public/home/images/1_03.png">
+                <span>tel:</span>
+                <span>{:substr_replace($vo['tel'],'****',3,4)}</span>
+                <span>{$vo.achievement}</span>
+            </li>
+        </volist>
+    </ul>
+</div>
+</body>
+</html>

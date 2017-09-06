@@ -1,0 +1,265 @@
+
+.header-person {
+    height: 0.8rem;
+    background-color: #fff;
+    margin-bottom: 0.01rem;
+    clear: both;
+}
+.person-img{
+    width: 0.48rem;
+    height: 0.48rem;
+    float: left;
+    padding-left:0.2rem;
+    padding-top:0.16rem ;
+    border-radius: 0.24rem;
+}
+.person-img img{
+    float: left;
+    border-radius: 0.24rem;
+}
+.person-name{
+    height: 0.38rem;
+    float: left;
+    margin:0.24rem 0.15rem;
+}
+.user-name{
+    font-size: 0.18rem;
+    font-weight: bold;
+    color:#333333;
+}
+.user-name span{
+    display: inline-block;
+    border-radius: 0.15rem;
+    width: 0.9rem;
+    font-size:0.14rem;
+    height:0.18rem;
+    text-align: center;
+    line-height: 0.18rem;
+    color: #FFFFFF;
+    font-weight:normal;
+}
+.user-id{
+    font-size: 0.15rem;
+    color: #999;
+}
+.person-info{
+    float: right;
+    font-size: 0.15rem;
+    height: 0.15rem;
+    margin-top: 0.325rem;
+    margin-right: 0.15rem;
+}
+.person-info a{
+    color: #999;
+}
+.person-info:visited{
+    color: #999999;
+}
+.img-icon{
+    float: right;
+    height: 0.15rem;
+    width: 0.08rem;
+    margin-left: 0.09rem;
+}
+.part-info{
+    height: 0.48rem;
+    background-color: #fff;
+    margin-bottom: 0.17rem;
+    clear: both;
+}
+.achievement-info{
+    width: 1.23rem;
+    float: left;
+    padding:0.08rem 0;
+    text-align: center;
+    line-height: 0.16rem;
+}
+.num{
+    font-size: 0.16rem;
+    font-weight:bold;
+    color: #333;
+}
+.name{
+    font-size: 0.12rem;
+    color: #999;
+}
+.partner-info{
+    width: 1.23rem;
+    float: left;
+    padding:0.08rem 0;
+    text-align: center;
+    line-height: 0.16rem;
+}
+.play{
+    width: 1.23rem;
+    float: left;
+    padding:0.08rem 0;
+    text-align: center;
+    line-height: 0.16rem;
+}
+.part-class{
+    background-color: #fff;
+    height: 0.7rem;
+    margin-bottom: 0.15rem;
+    clear: both;
+}
+.rank{
+    width: 1.86rem;
+    float: left;
+    margin-top: 0.2rem;
+    margin-bottom: 0.18rem;
+}
+.rank-img1{
+    float: left;
+    height: 0.31rem;
+    width: 0.26rem;
+    padding-left: 0.22rem;
+    padding-right: 0.11rem;
+}
+.rank-name{
+    float: left;
+    height: 0.14rem;
+    padding-bottom: 0.08rem;
+    font-weight:bold;
+    font-size: 0.16rem;
+    color:#333;
+}
+.rank-img2{
+    float: left;
+    height: 0.24rem;
+    width: 0.28rem;
+    padding-right: 0.11rem;
+    padding-left: 0.22rem;
+}
+.rank-remark{
+    float: left;
+    font-size: 0.10rem;
+    color: #ff9966;
+}
+.rank-remarks{
+    float: left;
+    font-size: 0.10rem;
+    color: #66ccff;
+}
+.part-class .line{
+    height: 0.4rem;
+    width: 0.01rem;
+    color: #ccc;
+    float: left;
+    border-left-style:solid;
+    border-bottom-style:none;
+    border-right-style:none;
+    border-top-style:none;
+}
+.line{
+    height: 0.2rem;
+    width: 1px;
+    color: #ccc;
+    margin-top: 0.14rem;
+    float: left;
+    border-left-style:solid;
+    border-bottom-style:none;
+    border-right-style:none;
+    border-top-style:none;
+}
+.part-pay{
+    height: 1rem;
+    padding-left: 0.19rem;
+    background-color: #fff;
+    margin-bottom: 0.1rem;
+    clear: both;
+}
+.part-pay img,.activity img,.set img{
+    margin-top: 0.15rem;
+    margin-right: 0.16rem;
+    float: left;
+    height: 0.2rem;
+    width: 0.2rem;
+}
+.nav-sort{
+    font-weight: bold;
+    height: 0.5rem;
+    font-size: 0.15rem;
+    line-height: 0.5rem;
+    color: #333333;
+    border-bottom: 0.01rem solid #ccc;
+}
+.nav-ad{
+    font-weight: bold;
+    height: 0.5rem;
+    font-size: 0.15rem;
+    line-height: 0.5rem;
+    color: #333333;
+}
+.part-pay .img-icon1,.activity .img-icon1,.set .img-icon1{
+    float: right;
+    height: 0.15rem;
+    width: 0.08rem;
+}
+.activity{
+    height: 1rem;
+    padding-left: 0.19rem;
+    background-color: #fff;
+    margin-bottom: 0.1rem;
+    clear: both;
+}
+.set{
+    height: 0.5rem;
+    padding-left: 0.19rem;
+    background-color: #fff;
+    margin-bottom: 0.1rem;
+    clear: both;
+}
+/*我的团队样式*/
+li{
+    list-style-type:none;
+    background: #fff;
+    text-align: center;
+    float: left;
+}
+.header img{
+    height: 0.19rem;
+    width: 0.11rem;
+    position: absolute;
+    left: 0.15rem;
+    top:0.125rem;
+}
+.partner-list ul li{
+    height: 0.6rem;
+    width: 100%;
+    background-color: #fff;
+    line-height: 0.6rem;
+    border-bottom: 1px solid #ccc;
+    clear: both;
+}
+.partner-list ul li img:nth-child(1){
+    height: 0.4rem;
+    width: 0.4rem;
+    margin-top: 0.1rem;
+    border-radius: 0.2rem;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    float: left;
+}
+.partner-list ul li span:nth-child(2){
+    font-size: 0.18rem;
+    color: #333;
+    float: left;
+}
+.partner-list ul li span:nth-child(3){
+    font-size: 0.14rem;
+    color: #666;
+    float: left;
+}
+.partner-list ul li span:nth-child(4){
+    font-size: 0.16rem;
+    color: #666;
+    margin-right: 0.15rem;
+    float: right;
+}
+.last-tel{!important;
+    font-size: 0.16rem;
+    color: #666;
+    margin-right: 0.15rem;
+    float: right;
+}

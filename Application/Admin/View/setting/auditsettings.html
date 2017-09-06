@@ -1,0 +1,132 @@
+ <include file="./Application/admin/View/default/Public/homeheader.html" />
+
+
+    <form method="post" id="" name="" action="" class="form-inline">
+        <div class="form-group">
+            <div class="label">
+                <label>编号:</label>
+            </div>
+            <input type="field" class="input "size="50" data-validate="required:" style="width: 150px" name="agentexamine_id" value=""  />
+
+            <div class="label">
+                <label>姓名:</label>
+                <input type="field" class="input "size="50" style="width: 150px" name="agentexamine_name" value="" />
+            </div>
+            <button class="button bg-blue float-right" type="submit" name="submit">搜索</button>
+        </div>
+      </form>
+
+
+
+    <table  class="table  table-hover table-responsive table-bordered" id="auditsettings" >
+        <thead>
+        <tr>
+            <th style="text-align: center;vertical-align: middle">序号</th>
+            <th style="text-align: center;vertical-align: middle">代理商</th>
+            <th style="text-align: center;vertical-align: middle ; width: 500px">审核内容</th>
+            <th style="text-align: center;vertical-align: middle">审核时间</th>
+            <th style="text-align: center;vertical-align: middle">审核IP</th>
+            <th style="text-align: center;vertical-align: middle;">审核操作</th>
+        </tr>
+        </thead>
+
+       <tbody>
+             <tr >
+                 <!--  <td style="text-align: center;vertical-align: middle; width: 50px">{$changetext.agentexamine_id}</td>!-->
+                 <td style="text-align: center;vertical-align: middle; width: 50px"><input id="changeid" name="changeid" style="text-align: center;vertical-align: middle;" class="input" value="{$changetext.agentexamine_id}" disabled="true" ></td>
+                 <td style="text-align: center;vertical-align: middle;">测试1</td>
+                 <td style="text-align: center;vertical-align: middle;">
+                     <input id="changetext" name="changetext" class="input" value="{$changetext.agentexamine_task}" disabled="true" style="height: 100px" >
+                 </td>
+                 <td style="text-align: center;vertical-align: middle;">{$changetext.agentexamine_time}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$changetext.agentexamine_ip}</td>
+                 <td style="text-align: center;vertical-align: middle;"><!--<button class="button bg-blue dialogs" data-toggle="click" data-target="#change">修改</button>
+                     <button class="button bg-red dialogs" data-toggle="click" data-target="#delete">删除</button>!-->
+                     <button class="button button-small bg-blue" onmousedown="changedata(this)">修改</button>
+                     <button class="button button-small bg-red " id="delete">删除</button>
+                   <!--  <button class="button button-small bg-red dialogs" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="20%">删除</button>!-->
+                     <button class="button button-small bg-green" id="save">保存</button>
+             </tr>
+
+       <!--   <volist name="context" id="context">
+             <tr>
+                 <td style="text-align: center;vertical-align: middle;">{$context.agentexamine_id}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$context.agentexamine_name}</td>
+                 <td style="text-align: center;vertical-align: middle;"><input id="changetext" name="changetext" class="input" value="{$context.agentexamine_task}" disabled="true" ></td>
+                 <td style="text-align: center;vertical-align: middle;">{$context.agentexamine_time}</td>
+                 <td style="text-align: center;vertical-align: middle;">{$context.agentexamine_feedback}</td>
+                 <td style="text-align: center;vertical-align: middle">
+                     <button class="button button-small bg-blue" onmousedown="changedata(this)">修改</button>
+                     <button class="button button-small bg-red dialogs" data-toggle="click" data-target="#mydialog" data-mask="1" data-width="20%">删除</button>
+                     <button class="button button-small bg-green" id="save">保存</button>
+             </tr>
+         </volist><!-->
+         </tbody>
+
+     </table>
+
+
+ <!--
+ <div id="mydialog">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span><strong>对话框标题</strong>
+        </div>
+        <div class="dialog-body">是否确认删除</div>
+        <div class="dialog-foot">
+            <button class="button dialog-close">取消</button>
+            <button class="button dialog-close bg-green" id="delete">确认</button>
+            <input id="deleteid" name="deleteid" value="{$changetext.agentexamine_id}" style="display: none">
+        </div>
+    </div>
+</div>!-->
+
+ <script><!--是否可读写!-->
+    var obj = document.getElementById("changetext");
+
+           function changedata()
+           {
+             obj.disabled = false;
+           }
+</script>
+ <script><!--保存!-->
+     $(function () {
+         $('#save').click(function () {
+             $.ajax({
+                 type: "POST",
+                 url: "/index.php/admin/auditsett",
+                 data: "changetext=" + $('#changetext').val()+"&changeid="+$("#changeid").val() ,
+                 success: function () {
+                   //  str = JSON.stringify(data);
+                     alert("设置成功！");
+                     obj.disabled = true;
+                    // $('#city').html(str);
+                 }, dataType: 'json'
+             })
+         })
+ })
+ </script>
+ <script><!--删除!-->
+     $(function () {
+         $('#delete').click(function () {
+             $.ajax({
+                 type: "POST",
+                 url: "/index.php/admin/auditdete",
+                 data: "changeid=" + $('#changeid').val(),
+                 success: function () {
+                     obj.disabled = false;
+                     alert("删除成功！")
+                     // $('#city').html(str);
+                 }, dataType: 'json'
+             })
+         })
+     })
+ </script>
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<title>合作伙伴</title>
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/support.css">
+<body>
+<div class="header">
+    <span class="header-title">我的办事处</span>
+    <a href="#" onclick="javascript :history.back();return false;"><span><img src="/wltfagent/Public/home/images/1_02.png"/></span></a>
+</div>
+<div class="partner-list">
+    <ul>
+        <volist name="myTeam" id="vo">
+            <!--<a href="{:U('home/support/nextTeam','uid='.$vo['id'])}">-->
+                <li class="next1" data-id="1">
+                    <img src="/wltfagent/Public/home/images/1_03.png">
+                    <span>{$vo.real_name}</span>
+                    <img src="/wltfagent/Public/home/images/1_06.png">
+                    <span>{$vo.tel}</span>
+                </li>
+            <!--</a>-->
+        </volist>
+    </ul>
+</div>
+</body>
+<script>
+    $('.next1').on('click',function(){
+        var id = $(this).attr('data-id');
+        $.post("{:U('home/support/nextTeam')}",{id:id});
+    });
+</script>
+</html>

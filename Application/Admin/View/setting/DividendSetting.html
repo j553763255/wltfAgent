@@ -1,0 +1,389 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<body>
+<!--<div class="margin" style="height:50%;">-->
+    <!--<br>-->
+    <!--<div class="panel" style="height: 100%">-->
+        <!--<div class="panel-head">-->
+            <!--<strong>项目分红设置</strong>-->
+        <!--</div>-->
+        <!--<div class="panel-body">-->
+            <!--<p class="panel-group bg-mix box-shadow">计算公式：（总用户充值金额 × 拨付比例 × 加盟商分红比例）÷ 总分红点 = 分红点价值 × 各个加盟商分红点 = 每个加盟商分到的金额</p>-->
+            <!--<div class="xm5 float-left">-->
+                <!--<table class="table table-bordered">-->
+                    <!--<tr>-->
+                        <!--<th>参数名</th>-->
+                        <!--<th>数值</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>用户充值总额</td>-->
+                        <!--<td><input style="border:none" type="number" name="money" value=""  placeholder="{$data.gameMoney}">元</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>总分红点</td>-->
+                        <!--<td>{$data.Dividends}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>一级加盟商人数</td>-->
+                        <!--<td>{$data.userNum1}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>二级加盟商人数</td>-->
+                        <!--<td>{$data.userNum2}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>三级加盟商人数</td>-->
+                        <!--<td>{$data.userNum3}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>拨付比例</td>-->
+                        <!--<td><input style="border:none" type="number" name="payRatio" value=""  placeholder="{$data.payRatio}">%</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>加盟商分红比例</td>-->
+                        <!--<td><input style="border:none" type="number" name="dividendRatio" value=""  placeholder="{$data.dividendRatio}">%</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</div>-->
+            <!--<div class="xm2 float-left" style="margin-top: 120px">-->
+                <!--<button class="button bg-sub xm6 measure" style="margin-left: 25%" >测算 =></button>-->
+            <!--</div>-->
+            <!--<div class="xm5 float-left">-->
+                <!--<table class="table table-bordered">-->
+                    <!--<tr>-->
+                        <!--<th>参数名</th>-->
+                        <!--<th>-->
+                            <!--<div class="xm4" style="display: inline">参考值</div>-->
+                            <!--<div class="xm4" style="display: inline">=></div>-->
+                            <!--<div class="xm4" style="display: inline">测算结果</div>-->
+                        <!--</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>分红点价值</td>-->
+                        <!--<td>-->
+                            <!--<div class="xm4" style="display: inline">{$data.dividendValue}</div>-->
+                            <!--<div class="xm4" style="display: inline">=></div>-->
+                            <!--<div class="xm4 dividendValue text-main" style="display: inline"></div></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>一级加盟商平均分红</td>-->
+                        <!--<td>-->
+                            <!--<div class="xm4" style="display: inline">{$data.average1}</div>-->
+                            <!--<div class="xm4" style="display: inline">=></div>-->
+                            <!--<div class="xm4 average1 text-main" style="display: inline"></div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>二级加盟商平均分红</td>-->
+                        <!--<td>-->
+                            <!--<div class="xm4" style="display: inline">{$data.average2}</div>-->
+                            <!--<div class="xm4" style="display: inline">=></div>-->
+                            <!--<div class="xm4 average2 text-main" style="display: inline"></div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>三级加盟商平均分红</td>-->
+                        <!--<td>-->
+                            <!--<div class="xm4" style="display: inline">{$data.average3}</div>-->
+                            <!--<div class="xm4" style="display: inline">=></div>-->
+                            <!--<div class="xm4 average3 text-main" style="display: inline"></div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<p class="text-center text-main margin-top">-->
+                        <!--参考值以 拨付金额=100万 拨付比例=50% 分红比例=50% 得出-->
+                    <!--</p>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<button class="button bg-sub margin-big float-right dividendSubmit">确认分红</button>-->
+    <!--</div>-->
+<!--</div>-->
+<!--新版手动分红发放-->
+<div class="margin"><br>
+    <div class="panel" style="height: 100%">
+        <div class="panel-head"><strong>项目分红设置</strong></div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <form action="/index.php/admin/setting/DividendSetting" method="post">
+                    <tr><td colspan="4" style="text-align: center;"><input id="bonus" type="text" name="bonus" value="{$bonus}"/><button type="submit" class="button button-small bg-sub search" style="margin-left: 50px;">查询</button></form>&nbsp;&nbsp;&nbsp;发放总额：<input type="text" id="total-money" value="{$total_money}" readonly></td></tr>
+                <tr>
+                    <th>类型</th>
+                    <th>单个点价值</th>
+                    <th>发放点数</th>
+                    <th>发放金额</th>
+                </tr>
+                <tr>
+                    <td>回本率90%-100%</td>
+                    <td><input type="text" id="reward1" name="money" value="{$lists[0].bonus}" /></td>
+                    <td><input type="text" value="{$lists[0].points}" readonly></td>
+                    <td><input type="text" id="total-money1" value="{$lists[0].money}" readonly></td>
+                    <input type="hidden" id="rec-id1" name="rec_ids" value="{$$lists[0].rec_ids}">
+                </tr>
+                <tr>
+                    <td>回本率80%-90%</td>
+                    <td><input type="text" id="reward2" name="money" value="{$lists[1].bonus}" /></td>
+                    <td><input type="text" value="{$lists[1].points}" readonly></td>
+                    <td><input type="text" id="total-money2" value="{$lists[1].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率70%-80%</td>
+                    <td><input type="text" id="reward3" name="money" value="{$lists[2].bonus}" /></td>
+                    <td><input type="text" value="{$lists[2].points}" readonly></td>
+                    <td><input type="text" id="total-money3" value="{$lists[2].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率60%-70%</td>
+                    <td><input type="text" id="reward4" name="money" value="{$lists[3].bonus}" /></td>
+                    <td><input type="text" value="{$lists[3].points}" readonly></td>
+                    <td><input type="text" id="total-money4" value="{$lists[3].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率50%-60%</td>
+                    <td><input type="text" id="reward5" name="money" value="{$lists[4].bonus}" /></td>
+                    <td><input type="text" value="{$lists[4].points}" readonly></td>
+                    <td><input type="text" id="total-money5" value="{$lists[4].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率40%-50%</td>
+                    <td><input type="text" id="reward6" name="money" value="{$lists[5].bonus}" /></td>
+                    <td><input type="text" value="{$lists[5].points}" readonly></td>
+                    <td><input type="text" id="total-money6" value="{$lists[5].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率30%-40%</td>
+                    <td><input type="text" id="reward7" name="money" value="{$lists[6].bonus}" /></td>
+                    <td><input type="text" value="{$lists[6].points}" readonly></td>
+                    <td><input type="text" id="total-money7" value="{$lists[6].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率20%-30%</td>
+                    <td><input type="text" id="reward8" name="money" value="{$lists[7].bonus}" /></td>
+                    <td><input type="text" value="{$lists[7].points}" readonly></td>
+                    <td><input type="text" id="total-money8" value="{$lists[7].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率10%-20%</td>
+                    <td><input type="text" id="reward9" name="money" value="{$lists[8].bonus}" /></td>
+                    <td><input type="text" value="{$lists[8].points}" readonly></td>
+                    <td><input type="text" id="total-money9" value="{$lists[8].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td>回本率0%-10%</td>
+                    <td><input type="text" id="reward10" name="money" value="{$lists[9].bonus}" /></td>
+                    <td><input type="text" value="{$lists[9].points}" readonly></td>
+                    <td><input type="text" id="total-money10" value="{$lists[9].money}" readonly></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <button type="button" class="button button-small bg-sub confirm-pay">确认拨付</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--<div class="margin" style="height: 50%"><br>-->
+    <!--<div class="panel">-->
+        <!--<div class="panel-head"><strong>项目分红手动拨付</strong></div>-->
+        <!--<div class="panel-body">-->
+            <!--<div class="table-responsive-y">-->
+                <!--<table class="table table-bordered" style="text-align: center">-->
+                    <!--<form class="form-x" method="post">-->
+                        <!--<tr>-->
+                            <!--<td colspan="6">-->
+                                <!--拨付金额：<input type="number" id="pay-money" name="pay_money" value="">&nbsp;&nbsp;&nbsp;-->
+                                <!--开始时间：<input type="date" id="start-time" name="start_time" value="">&nbsp;&nbsp;结束时间：<input type="date" id="end-time" name="end_time" value="">&nbsp;&nbsp;&nbsp;-->
+                                <!--<button class=" button button-small bg-main search" type="button">查询</button>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th style="text-align: center">当前分红点数</th>-->
+                            <!--<th style="text-align: center">单个分红点价值</th>-->
+                            <!--<th style="text-align: center">一级加盟商人数</th>-->
+                            <!--<th style="text-align: center">二级加盟商人数</th>-->
+                            <!--<th style="text-align: center">三级加盟商人数</th>-->
+                            <!--<th style="text-align: center">操作</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td><input type="text" id="dividend" name="dividend" class="input input-auto input-small" size="10" readonly style="background-color: #fff;font-size: 16px;"></td>-->
+                            <!--<td><input type="text" id="dividend_value" name="dividend_value" class="input input-auto input-small" size="10" readonly style="background-color: #fff;font-size: 16px;"></td>-->
+                            <!--<td><input type="text" id="first_class" name="first_class" class="input input-auto input-small" size="10" readonly style="background-color: #fff;font-size: 16px;"></td>-->
+                            <!--<td><input type="text" id="second_class" name="second_class" class="input input-auto input-small" size="10" readonly style="background-color: #fff;font-size: 16px;"></td>-->
+                            <!--<td><input type="text" id="three_class" name="three_class" class="input input-auto input-small" size="10" readonly style="background-color: #fff;font-size: 16px;"></td>-->
+                            <!--<input type="hidden" id="result-data" name="result_data">-->
+                            <!--<td><button type="button" class="button button-small bg-sub confirm-pay">确认拨付</button></td>-->
+                        <!--</tr>-->
+                    <!--</form>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="not_pay" style="display: none">
+    未成功拨付加盟商：
+</div>
+
+</body>
+<script>
+//    $(".measure").click(function () {
+//        $.ajax({
+//            type:"post",
+//            url:"/index.php/admin/setting/DividendMeasure",
+//            data:{"payRatio":$("input[name='payRatio']").val(),"dividendRatio":$("input[name='dividendRatio']").val(),"money":$("input[name='money']").val()},
+//            dataType:"json",
+//            success:function (data) {
+//                $(".dividendValue").html(data.dividendValue);
+//                $(".average1").html(data.average1);
+//                $(".average2").html(data.average2);
+//                $(".average3").html(data.average3);
+//            }
+//        })
+//    });
+//    $(".dividendSubmit").click(function () {
+//        layer.confirm('是否确认提交分红？', {btn: ['确认','取消']},
+//            function(){
+//                $.ajax({
+//                    type:"post",
+//                    url:"/index.php/admin/setting/payDividend",
+//                    data:{"payRatio":$("input[name='payRatio']").val(),"dividendRatio":$("input[name='dividendRatio']").val(),"money":$("input[name='money']").val()},
+//                    dataType:"json",
+//                    success:function(data){
+//                        if (data == 1){
+//                            layer.msg('分红成功！', {icon: 1});
+//                            setTimeout('window.location.reload()',1000);
+//                        }else{
+//                            for (var i = 0;i < data.length;i++){
+//                                $(".not_pay").append(data[i] + "、");
+//                            }
+//                            layer.open({
+//                                type: 1,
+//                                skin: 'layui-layer-rim', //加上边框
+//                                area: ['420px', '240px'], //宽高
+//                                content: $(".not_pay")
+//                            });
+//                        }
+//                    }
+//                })
+//            }
+//        );
+//    });
+//    $(".payRedBtn").click(function () {
+//        $.ajax({
+//            type:"post",
+//            url:"/index.php/admin/setting/payRed",
+//            data:{"type":"payRed"},
+//            dataType:"json",
+//            success:function(data){
+//                if (data){
+//                    layer.msg('分红成功！', {icon: 1});
+//                }else{
+//                    layer.msg('分红失败！', {icon: 5});
+//                }
+//            }
+//        })
+//    })
+//    /*查询*/
+//    $('.search').on('click',function(){
+//        var pay_money = $('#pay-money').val();
+//        var start_time = $('#start-time').val();
+//        var end_time = $('#end-time').val();
+//        if(start_time == "" && end_time == ""){
+//            layer.msg('请选择查询时间！',{icon:2});
+//        }else if(pay_money == ""){
+//            layer.msg('请填写拨付金额！',{icon:2});
+//        }else{
+//            $.ajax({
+//                url:"{:U('admin/setting/handOperation')}",
+//                type:'post',
+//                dataType:'json',
+//                data:{pay_money:pay_money,start_time:start_time,end_time:end_time},
+//                success:function(data){
+//                    if(data['code'] == 1){
+//                        $('#dividend').val(data['dividend']);
+//                        $('#dividend_value').val(data['dividend_value']);
+//                        $('#first_class').val(data['first_class']);
+//                        $('#second_class').val(data['second_class']);
+//                        $('#three_class').val(data['three_class']);
+//                        $('#result-data').val(data['id']);
+//                    }
+//                    if(data['code'] == 2){
+//                        layer.msg('对不起，暂无合适数据！',{icon:5});
+//                    }
+//                }
+//            });
+//        }
+//    });
+//    /*分红点拨付*/
+//    $('.confirm-pay').on('click',function(){
+//        var refer_data = $('#result-data').val();
+//        var single_val = $('#dividend_value').val();
+//        var num = $('#dividend').val();
+//        var pay_money = single_val * num;
+//        if(refer_data == ""){
+//            layer.msg('请将信息填写完整！',{icon:2});
+//        }else{
+//            layer.confirm('拨付总额为：'+pay_money+', 是否确认拨付？', {btn: ['确认','取消']},
+//                function() {
+//                    $.ajax({
+//                        url: "{:U('admin/setting/dividendPay')}",
+//                        type: 'post',
+//                        dataType: "json",
+//                        data: {result: refer_data, dividend_value:single_val},
+//                        success: function (data) {
+//                            if(data['code'] == 1){
+//                                layer.msg('拨付成功！',{icon:1});
+//								setTimeout('window.location.reload()',1500);
+//                            }
+//                            if(data['code'] == 2){
+//                                for (var i = 0;i < data['error'].length;i++){
+//                                    $(".not_pay").append(data['error'][i] + "、");
+//                                }
+//                                layer.open({
+//                                    type: 1,
+//                                    skin: 'layui-layer-rim', //加上边框
+//                                    area: ['420px', '240px'], //宽高
+//                                    content: $(".not_pay")
+//                                });
+//                            }
+//                        }
+//                    });
+//                }
+//            )
+//        }
+//    });
+$('.confirm-pay').on('click',function() {
+    var pay_money = $("#total-money").val();
+    var pay_bonus = $("#bonus").val();
+    if (pay_bonus == 0) {
+        layer.msg('请输入每个分红点的价值！', {icon: 2});
+    } else {
+        layer.confirm('拨付总额为：' + pay_money + ', 是否确认拨付？', {btn: ['确认', '取消']},
+            function () {
+                $.ajax({
+                    url: "{:U('admin/setting/payBonus')}",
+                    type: 'post',
+                    dataType: "json",
+                    data: {bonus: pay_bonus, operate: "pay"},
+                    success: function (data) {
+                        if (data['code'] == 1) {
+                            layer.msg('拨付成功！', {icon: 1});
+                            setTimeout('window.location.reload()', 1500);
+                        }
+                        if (data['code'] == 2) {
+                            for (var i = 0; i < data['error'].length; i++) {
+                                $(".not_pay").append(data['error'][i] + "、");
+                            }
+                            layer.open({
+                                type: 1,
+                                skin: 'layui-layer-rim', //加上边框
+                                area: ['420px', '240px'], //宽高
+                                content: $(".not_pay")
+                            });
+                        }
+                    }
+                });
+            }
+        )
+    }
+})
+</script>

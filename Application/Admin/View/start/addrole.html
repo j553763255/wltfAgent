@@ -1,0 +1,57 @@
+<include file="./Application/admin/View/default/Public/homeheader.html" />
+<strong>角色名称:</strong>{$role.role_name}
+<form method="post" action="{:U('admin/start/addrole')}">
+    <input type="hidden" name="role_id" value="{$role.role_id}">
+    <div class="form-group">
+        <div class="label"><label>角色权限</label></div>
+        <input type="button" onclick="ck(true,null)" value="全选">
+        <input type="button" onclick="ck(false,null)" value="取消全选">
+        <div class="field">
+            <label>
+                <volist name="menus" id="vo">
+                    <if condition="$vo['fmenu_id'] eq 0">
+                        <ul class="list-group">
+                            <li><strong><input type="checkbox" class="leavel1" name="menu_id[]" value="{$vo.menu_id}">{$vo.menu_name}</strong>
+                                <input type="button" onclick="ck(true,leavel1)" value="全选">
+                                <input type="button" onclick="ck(false,leavel1)" value="取消全选">
+                            </li>
+                            <volist name="menus" id="vo2">
+                                <if condition="$vo2['fmenu_id'] eq $vo['menu_id']">
+                                    <li>
+                                        <input type="checkbox" name="menu_id[]" value="{$vo2.menu_id}">{$vo2.menu_name}:
+                                        <volist name="menus" id="vo3">
+                                            <if condition="$vo3['fmenu_id'] eq $vo2['menu_id']">
+                                                <input type="checkbox" name="menu_id[]" value="{$vo3.menu_id}">{$vo3.menu_name}
+                                            </if>
+                                        </volist>
+                                    </li>
+                                </if>
+                            </volist>
+                        </ul>
+                    </if>
+                </volist>
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="button bg-blue">提交</button>
+</form>
+<script>
+    function ck(b,classname)
+    {
+        if (classname != null){
+            var class_name = document.getElementsByClassName("classname");
+            for (var j=0;j<class_name.length ;j++ )
+            {
+                if(class_name[j].type=="checkbox")
+                    class_name[j].checked = b;
+            }
+        }else{
+            var input = document.getElementsByTagName("input");
+            for (var i=0;i<input.length ;i++ )
+            {
+                if(input[i].type=="checkbox")
+                    input[i].checked = b;
+            }
+        }
+    }
+</script>

@@ -1,0 +1,297 @@
+<include file="./Application/admin/View/default/Public/homeheader.html"/>
+<body>
+
+<div class="container bg-white">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>任务设置</strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-5">任务设置</a></li>
+                <li><a href="#tab-4">代理级别任务</a></li>
+                <li><a href="#tab-3">个人任务</a></li>
+            </ul>
+        </div>
+        <div class="tab-body tab-body-bordered">
+            <div class="tab-panel active" id="tab-5">
+                <button class="button bg-blue addNewTask"><span class="icon-plus"></span>&nbsp;添加任务</button>
+                <span class="text-gray">注：若想给指定用户添加特定任务请先添加该任务！</span><br><br>
+                <form class="form-x" action="{:U('admin/setting/tasksetting')}" method="post">
+                    <div class="form-group inline">
+                        <div class="field">
+                            <div class="input-group x3">
+                                <span class="addon">任务项</span>
+                                <select class="input input-auto" name="taskTerm" id="taskTerm">
+                                    <option value="0">所有任务项</option>
+                                    <volist name="taskTerm" id="vo">
+                                        <option value="{$vo.id}">{$vo.task_name}</option>
+                                    </volist>
+                                </select>
+                            <span class="addbtn">
+                                <button class="button" type="submit" name="submit" value="taskTerm">搜索</button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form method="post" class="form-x form-auto" action="{:U(admin/setting/tasksetting)}">
+                    <div class="table-responsive-y">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>任务项</th>
+                                <th>任务指标</th>
+                                <th>单次奖励（￥）</th>
+                                <th>比重（%）</th>
+                                <th>操作</th>
+                            </tr>
+                            <volist name="list" id="vo">
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.task_name}</td>
+                                    <td>{$vo.num}</td>
+                                    <td>{$vo.price}</td>
+                                    <td>{$vo.ratio}</td>
+                                    <td>
+                                        <button class="button button-small bg-blue modifyTask" type="button" value="{$vo.id}" taskName="{$vo.task_name}">修改</button>
+                                        <button class="button button-small bg-red delTask" type="button" value="{$vo.id}">删除</button>
+                                    </td>
+                                </tr>
+                            </volist>
+                        </table>
+                        <div class="pages">{$page}</div>
+                        <br>
+                        <button class="button bg-blue" name="modifyTask" value="modifyTask">确认修改</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-panel" id="tab-4">
+                <strong>代理级别默认任务设置：</strong>
+                <p class="text-gray">注：任务编号对应任务具体数额可在任务设置中查看。</p>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>代理等级</th>
+                        <th>任务编号<span class="text-gray">(注：点击任务后面的X号可删除任务)</span></th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="ranks" id="vo">
+                        <tr>
+                            <td>{$vo.rank_name}</td>
+                            <td>
+                                <ul>
+                                    <volist name="vo['task']" id="vo2">
+                                        <li>
+                                            任务项：{$vo2.task_name}：任务指标：{$vo2.num}；单次奖励：{$vo2.price}；比重：{$vo2.ratio}
+                                            <a class="txt txt-little radius-circle bg-red icon-times" href="/index.php/admin/setting/tasksetting/rank_id/{$vo.id}/task_id/{$vo2.id}/type/delRankTask/default_task/{$vo.default_task}"></a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </td>
+                            <td>
+                                <button class="button button-small bg-sub addRankTask" type="button" value="{$vo.id}" oldtask="{$vo.default_task}">添加</button>
+                                <button class="button button-small bg-sub delRankTask" type="button" value="{$vo.id}" oldtask="{$vo.default_task}">删除</button>
+                            </td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+            <div class="tab-panel" id="tab-3">
+                <strong>个人任务分配：</strong>
+                <p class="text-gray">注：任务编号对应任务具体数额可在任务设置中查看。</p>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>姓名</th>
+                        <th>手机号码</th>
+                        <th>任务</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="user" id="vo">
+                        <tr>
+                            <td>{$vo.real_name}</td>
+                            <td>{$vo.tel}</td>
+                            <td>
+                                <ul>
+                                    <volist name="vo['task']" id="vo2">
+                                        <li>任务项：{$vo2.task_name}：任务指标：{$vo2.num}；单次奖励：{$vo2.price}；比重：{$vo2.ratio}</li>
+                                    </volist>
+                                </ul>
+                            </td>
+                            <td>
+                                <button class="button button-small bg-sub addUserTask" type="button" value="{$vo.id}">添加</button>
+                                <button class="button button-small bg-sub delUserTask" type="button" value="{$vo.id}">删除</button>
+                            </td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addNewTask" style="display: none">
+    <div class="panel padding">
+        <form class="form-x" action="{:U('admin/setting/tasksetting')}" method="post">
+            <strong>任务项：</strong>
+            <select class="input input-auto taskTerm" name="taskTerm">
+                <volist name="taskTerm" id="vo">
+                    <option value="{$vo.id},{$vo.task_name}">{$vo.task_name}</option>
+                </volist>
+            </select><br>
+            <span class="text-gray">注：由于新加的任务项没有审核任务的代码，所以请联系技术部门添加任务项并研发新加任务项的审核事宜，再进行任务分配！</span><br>
+            <strong>任务指标：</strong>
+            <input class="input input-auto inline" type="number" name="num">
+            <input class="input input-auto inline people" type="hidden" name="people"><br>
+            <strong>比重（%）：</strong>
+            <input class="input input-auto" type="number" name="ratio"><br>
+            <strong>单次奖励（￥）：</strong>
+            <input class="input input-auto" type="number" name="price"><br>
+            <button class="button bg-blue" type="submit" name="submit" value="addTask">添加任务</button>
+        </form>
+    </div>
+</div>
+<div id="modifyTaskDialog" style="display:none">
+    <form class="form-x" action="{:U('admin/setting/tasksetting')}" method="post">
+        <input type="hidden" name="task_id" id="task_id" value="">
+        <div class="panel padding">
+            任务编号：<span class="badge" id="taskId"></span>
+            任务项：<span id="taskName"></span>
+            <br><br>
+            任务指标：<input class="input input-auto" type="number" name="typeNum"><br>
+            单次奖励：<input class="input input-auto" type="number" name="price"><br>
+            任务比重：<input class="input input-auto" type="number" name="ratio"><br>
+            <button class="button button-small bg-sub" type="submit" name="submit" value="modifyTask">提交</button>
+        </div>
+    </form>
+</div>
+<div id="addTask" style="display: none">
+    <div class="panel padding">
+        <p class="text-gray">注：请注意选择任务的时候不要选择已存在的任务！</p>
+        <form class="form-x" action="/index.php/admin/setting/tasksetting" method="post">
+            <input id="rankId" type="hidden" name="rankId">
+            <input id="userId" type="hidden" name="userId">
+            <input id="oldRank" type="hidden" name="oldRank">
+            选择任务：
+            <select class="input input-auto" name="taskId">
+                <volist name="list" id="vo">
+                    <option value="{$vo.id}">编号：{$vo.id}；任务项：{$vo.task_name}；指标：{$vo.num}；奖励：{$vo.price}；比重：{$vo.ratio}</option>
+                </volist>
+            </select>
+            <button class="button button-small bg-sub" id="submit" name="submit">添加</button>
+        </form>
+    </div>
+</div>
+<div id="delRankTask" style="display: none">
+    <div class="panel padding">
+        <form class="form-x" action="" method="post">
+            <input id="rankId2" type="hidden" name="rankId">
+            选择任务：
+            <select class="input input-auto" name="taskId" id="delRankTaskSelect"></select>
+            <button class="button button-small bg-sub">添加</button>
+        </form>
+    </div>
+</div>
+<script>
+    $(".addNewTask").click(function () {
+        layer.open({
+            type: 1,
+            title:['添加任务', 'font-size:18px;'],
+            area:"50%",
+            closeBtn: 2,
+            skin: 'yourclass',
+            shadeClose:true,
+            content: $("#addNewTask")
+        });
+    });
+    $(".delTask").click(function () {
+        var task_id=$(this).val();
+        layer.confirm('是否确认删除任务？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.ajax({
+                url: "/index.php/admin/setting/delTaskAjax",
+                type: "post",
+                data: {"task_id": task_id,"type": "all"},
+                datatype: "json",
+                success: function (data) {
+                    if (data) {
+                        layer.msg('任务删除成功！', {icon: 1});
+                        setTimeout("window.location.reload()", 1500);
+                    } else {
+                        layer.msg('任务删除失败！', {icon: 2});
+                    }
+                }
+            });
+        })
+    });
+    $(".modifyTask").click(function () {
+        $("#taskId").html($(this).val());
+        $("#task_id").val($(this).val());
+        $("#taskName").html($(this).attr("taskName"));
+        layer.open({
+            type: 1,
+            title:['修改任务', 'font-size:18px;'],
+            area:"40%",
+            closeBtn: 2,
+            skin: 'yourclass',
+            shadeClose:true,
+            content: $("#modifyTaskDialog")
+        });
+    });
+    $(".addRankTask").click(function () {
+        $("#rankId").val($(this).val());
+        $("#submit").val("addRankTask");
+        $("#oldRank").val($(this).attr("oldtask"));
+        layer.open({
+            type: 1,
+            title:['添加代理默认任务', 'font-size:18px;'],
+            area:"50%",
+            closeBtn: 2,
+            skin: 'yourclass',
+            shadeClose:true,
+            content: $("#addTask")
+        });
+    });
+    $(".delRankTask").click(function () {
+        $("#taskId2").val($(this).val());
+        $.ajax({
+            type:"post",
+            dataType:"json",
+            url:"/index.php/admin/setting/delTaskAjax",
+            data:{"old_task": $(this).attr("oldtask"),"type":"rank"},
+            success:function (data) {
+                for (var k in data){
+                    $("#delRankTaskSelect").html("<option value='" + data[k].id + "'>任务项：" + data[k].task_name + "任务指标:：" + data[k].num +  "比重：" + data[k].ratio + "</option>")
+                }
+            }
+        });
+        layer.open({
+            type: 1,
+            title:['删除代理默认任务', 'font-size:18px;'],
+            area:"50%",
+            closeBtn: 2,
+            skin: 'yourclass',
+            shadeClose:true,
+            content: $("#delRankTask")
+        });
+    });
+    $(".addUserTask").click(function () {
+        $("#userId").val($(this).val());
+        $("#submit").val("addUserTask");
+        layer.open({
+            type: 1,
+            title:['个人任务设置', 'font-size:18px;'],
+            area:"50%",
+            closeBtn: 2,
+            skin: 'yourclass',
+            shadeClose:true,
+            content: $("#addTask")
+        });
+    });
+    $(".taskTerm").change(function () {
+        if ($(this).val()=="4,推荐人消费"){
+            $(".people").attr("type","number");
+        }else{
+            $(".people").attr("type","hidden");
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<block name="include"><include file="default:Public/header" /></block>
+<link rel="stylesheet" href="/wltfagent/Public/home/css/wallet.css">
+<body>
+<div id="header">
+    <a href="javascript:;" onclick="javascript :history.back(-1);return false;">
+        <img class="back" src="/wltfagent/Public/home/images/left.png">
+    </a>
+    我的银行卡
+</div>
+<div class="myBank">
+    <ul>
+        <volist name="bankMsg" id="vo">
+            <li>
+                <div class="massage">
+                    <img src="/wltfagent/Public/home/images/Bank-logo.png">
+                    <div>
+                        <p class="bank-name">{$vo.bank_name}</p>
+                        <p class="card-type">储蓄卡</p>
+                        <p class="card-num">{$vo.bank_card}</p>
+                    </div>
+                </div>
+                <if condition="$vo.status eq 1">
+                    <div class="operation">
+                        <span><img class="yesImg" src="/wltfagent/Public/home/images/yes.png"><p>默认银行卡</p></span>
+                        <button class="delete" value="{$vo.id}"><img src="/wltfagent/Public/home/images/delete.png">删除</button>
+                    </div>
+                    <else/>
+                    <div class="operation">
+                        <button class="setting" value="{$vo.id}">设置默认银行卡</button>
+                        <button class="delete" value="{$vo.id}"><img src="/wltfagent/Public/home/images/delete.png">删除</button>
+                    </div>
+                </if>
+            </li>
+        </volist>
+    </ul>
+</div>
+</body>
+<iframe name="niu-frame" style="display: none"></iframe>
+</html>
+<script>
+    $(function () {
+        $(".setting").click(function () {
+            var bank_id = $(this).val();
+            $.ajax({
+                type:"post",
+                dataType:"json",
+                url:"{:U('home/wallet/setBank')}",
+                data:{"bank_id":bank_id},
+                success:function (data) {
+                    if (data){
+                        location.reload();
+                    }else{
+                        layer.open({
+                            content: '修改默认银行卡失败！'
+                            ,skin: 'msg'
+                            ,time: 2 //2秒后自动关闭
+                        });
+                    }
+                }
+            })
+        });
+        $(".delete").click(function () {
+            var bank_id = $(this).val();
+            layer.open({
+                content: '是否确定删除该银行卡？'
+                ,btn: ['删除', '取消']
+                ,skin: 'footer'
+                ,yes: function(){
+                    $.ajax({
+                        url:"{:U('home/wallet/delBank')}",
+                        type:"post",
+                        dataType:"json",
+                        data:{"bank_id":bank_id},
+                        success:function (data) {
+                            if (data){
+                                location.reload();
+                            }else{
+                                layer.open({
+                                    content: '修改默认银行卡失败！'
+                                    ,skin: 'msg'
+                                    ,time: 2 //2秒后自动关闭
+                                });
+                            }
+                        }
+                    })
+                }
+            });
+        });
+    })
+</script>
