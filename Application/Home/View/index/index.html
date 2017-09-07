@@ -7,7 +7,7 @@
         <h1 class="text-c">基本信息</h1>
         <div class="user-bg">
             <a href="{:U('home/index/myInfo')}"><img src="/wltfagent/Public/home/images/1_05.png">
-            <p class="text-c"><span>Michael</span><span class="zw">市级办事处</span></p>
+            <p class="text-c"><span>{$user_message.real_name}</span><span class="zw">{$user_message.rank_name}</span></p>
             </a>
         </div>
         <!-- 业绩统计 -->
@@ -21,13 +21,13 @@
             <div class="count-box2">
                 <a href="/wltfagent/index.php/home/support/myTeam.html">
                     <p class="count-num">3</p>
-                    <p>合作伙伴</p>
+                    <p>贸易伙伴</p>
                 </a>
             </div>
             <div class="count-box3">
                 <a href="javascript:void(0);" onclick="mobileBoxMsg('游戏暂未开放，敬请期待')">
                     <p class="count-num">0</p>
-                    <p>对接企业</p>
+                    <p>合作企业</p>
                 </a>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <a href="/wltfagent/index.php/home/index/rank.html">
                         <img src="/wltfagent/Public/home/images/1_11.png" class="fl-left" />
                         <div class="fl-left ml10">
-                            <b class="ft16">级别：市级</b>
+                            <b class="ft16">级别：{$user_message.rank}</b>
                             <p class="orange mt5">级别越高，福利越多</p>
                         </div>
                     </a>
@@ -49,7 +49,7 @@
                 <a href="/wltfagent/index.php/home/index/rankingList.html">
                     <img src="/wltfagent/Public/home/images/1_14.png" class="fl-left" />
                     <div class="fl-left ml10">
-                        <b class="ft16">排行：2</b>
+                        <b class="ft16">机构列表</b>
                         <p class="blue mt5">排行越高，荣誉越高</p>
                     </div>
                 </a>

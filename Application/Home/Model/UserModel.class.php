@@ -125,6 +125,13 @@ class UserModel extends Model{
             $rank = D('Rank')->getMessage(array('rank'=>$result['rank_id']));
             $result['rank_name'] = $rank['rank_name'];
             $result['service_ratio'] = $rank['service_ratio'];
+            if ($result['rank_id'] == 1){
+                $result['rank'] = "省级";
+            }elseif ($result['rank_id'] ==2){
+                $result['rank'] = "市级";
+            }else{
+                $result['rank'] = "贸易商";
+            }
             //获取省市区
             $addr['code'] = array('in',array($result['province_id'],$result['city_id'],$result['area_id']));
             $addr_res = M('daili_address')->field('name')->where($addr)->select();
